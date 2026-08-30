@@ -73,10 +73,15 @@
   }
 
   function addPrintMenu() {
+    const homeLink = document.querySelector(".deck-home");
+    if (homeLink) {
+      homeLink.title = "Retour à la liste des cours";
+    }
+
     const menu = document.createElement("details");
     menu.className = "print-menu";
     menu.innerHTML = [
-      '<summary aria-label="Options d’impression">',
+      '<summary aria-label="Options d’impression" title="Imprimer le cours">',
       '  <span class="print-menu-icon" aria-hidden="true"></span>',
       '  <span>Imprimer</span>',
       '</summary>',
