@@ -2,6 +2,8 @@
 
 Site statique pour les notes de cours INF155. Aucun traitement côté serveur n’est requis : GitHub Actions publie directement les fichiers HTML, CSS, JavaScript, Markdown et les médias sur GitHub Pages.
 
+**Site du cours :** <https://anisboubaker.github.io/INF155/>
+
 ## Modifier un cours
 
 Le petit fichier `diapos/cours01/index.html` ne contient que le squelette Reveal.js. Le contenu est réparti par thème dans `diapos/cours01/slides/` :
