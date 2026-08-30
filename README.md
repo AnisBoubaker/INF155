@@ -28,7 +28,7 @@ Tous les cours suivent le même principe :
 - `diapos/cours09/slides/` : allocation dynamique;
 - `diapos/cours10/slides/` : fichiers et analyse de texte.
 
-Dans un fichier Markdown, une ligne contenant seulement `---` crée une nouvelle diapositive. Les images propres à une séance vont dans son dossier `assets/`. Le thème et les diagrammes réutilisables sont dans `css/inf155.css`, et la configuration Reveal commune dans `js/inf155.js`.
+Dans un fichier Markdown, une ligne contenant seulement `---` crée une nouvelle diapositive. Les images propres à un cours vont dans son dossier `assets/`. Le thème et les diagrammes réutilisables sont dans `css/inf155.css`, et la configuration Reveal commune dans `js/inf155.js`.
 
 ### Comparer deux extraits de code
 
