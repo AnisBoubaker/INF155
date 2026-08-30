@@ -4,6 +4,7 @@
   const query = new URLSearchParams(window.location.search);
   const printMode = query.get("print");
   const isPrintView = query.has("print-pdf");
+  const copyrightText = "Copyright Anis Boubaker, 2017-" + new Date().getFullYear();
 
   if (isPrintView && printMode === "slides") {
     document.documentElement.classList.add("print-slides");
@@ -51,12 +52,23 @@
       link.rel = "noopener noreferrer";
     });
 
+    addDeckCopyright();
+
     if (isPrintView && (printMode === "slides" || printMode === "notes")) {
       preparePrintView(printMode);
+    } else if (isPrintView) {
+      decoratePrintPages();
     } else {
       addPrintMenu();
     }
   });
+
+  function addDeckCopyright() {
+    const copyright = document.createElement("small");
+    copyright.className = "deck-copyright";
+    copyright.textContent = copyrightText;
+    document.body.appendChild(copyright);
+  }
 
   function courseUrl() {
     const url = new URL(window.location.href);
@@ -131,17 +143,15 @@
     });
     document.body.appendChild(toolbar);
 
-    if (mode === "notes") {
-      addNoteAreas();
-    }
+    decoratePrintPages(mode);
   }
 
-  function addNoteAreas(attempt) {
+  function decoratePrintPages(mode, attempt) {
     const pages = Array.from(document.querySelectorAll(".reveal .slides .pdf-page"));
 
     if (!pages.length && (attempt || 0) < 120) {
       window.requestAnimationFrame(function () {
-        addNoteAreas((attempt || 0) + 1);
+        decoratePrintPages(mode, (attempt || 0) + 1);
       });
       return;
     }
@@ -150,7 +160,14 @@
     const session = document.body.dataset.session || "Cours";
 
     pages.forEach(function (page, index) {
-      if (page.querySelector(".handout-notes")) {
+      if (!page.querySelector(".print-copyright")) {
+        const copyright = document.createElement("small");
+        copyright.className = "print-copyright";
+        copyright.textContent = copyrightText;
+        page.appendChild(copyright);
+      }
+
+      if (mode !== "notes" || page.querySelector(".handout-notes")) {
         return;
       }
 
