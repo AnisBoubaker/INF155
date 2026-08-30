@@ -479,6 +479,125 @@ body {
   padding: 8px 0;
 }
 
+.print-menu {
+  position: fixed;
+  top: 20px;
+  left: 132px;
+  z-index: 45;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+.print-menu summary {
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
+  min-height: 35px;
+  padding: 8px 12px;
+  border: 1px solid rgba(11, 32, 56, 0.13);
+  border-radius: 999px;
+  background: rgba(251, 250, 247, 0.86);
+  color: var(--ink-soft);
+  font-weight: 760;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  list-style: none;
+}
+
+.print-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.print-menu summary:hover,
+.print-menu summary:focus-visible,
+.print-menu[open] summary {
+  border-color: var(--ets-red);
+  color: var(--ets-red-dark);
+}
+
+.print-menu-icon {
+  position: relative;
+  width: 14px;
+  height: 10px;
+  border: 2px solid currentColor;
+  border-radius: 2px;
+}
+
+.print-menu-icon::before,
+.print-menu-icon::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  width: 6px;
+  border: 1.5px solid currentColor;
+  background: var(--paper);
+}
+
+.print-menu-icon::before {
+  top: -7px;
+  height: 5px;
+  border-bottom: 0;
+}
+
+.print-menu-icon::after {
+  bottom: -5px;
+  height: 5px;
+}
+
+.print-menu-options {
+  position: absolute;
+  top: calc(100% + 0.55rem);
+  left: 0;
+  width: 312px;
+  padding: 0.8rem;
+  border: 1px solid rgba(11, 32, 56, 0.13);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 18px 48px rgba(11, 32, 56, 0.18);
+}
+
+.print-menu-options > strong {
+  display: block;
+  padding: 0.25rem 0.35rem 0.55rem;
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.print-option {
+  display: block;
+  padding: 0.68rem 0.72rem;
+  border-radius: 0.6rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.print-option:hover,
+.print-option:focus-visible {
+  background: var(--cyan-pale);
+  color: var(--navy);
+}
+
+.print-option span,
+.print-option small {
+  display: block;
+}
+
+.print-option span {
+  font-weight: 760;
+}
+
+.print-option small {
+  margin-top: 0.18rem;
+  color: var(--ink-soft);
+  font-size: 0.77rem;
+  line-height: 1.35;
+}
+
 .reveal .controls {
   color: var(--ets-red);
 }
@@ -1449,6 +1568,52 @@ html.print-pdf .reveal .slides section.code-compare {
   font: 600 0.9rem/1.4 var(--font-sans);
 }
 
+.print-toolbar {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem;
+  border: 1px solid rgba(11, 32, 56, 0.15);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 42px rgba(11, 32, 56, 0.2);
+  color: var(--ink-soft);
+  font: 650 0.84rem/1.2 var(--font-sans);
+}
+
+.print-toolbar a,
+.print-toolbar button {
+  padding: 0.58rem 0.72rem;
+  border-radius: 0.5rem;
+  font: inherit;
+}
+
+.print-toolbar a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.print-toolbar a:hover,
+.print-toolbar a:focus-visible {
+  color: var(--ets-red-dark);
+}
+
+.print-toolbar button {
+  border: 0;
+  background: var(--ets-red);
+  color: white;
+  cursor: pointer;
+}
+
+.print-toolbar button:hover,
+.print-toolbar button:focus-visible {
+  background: var(--ets-red-dark);
+}
+
 /* Reveal mesure les diapositives avant que Chrome passe en média print. */
 html.print-pdf,
 html.print-pdf body,
@@ -1468,6 +1633,138 @@ html.print-pdf .reveal .slides .pdf-page:last-of-type {
   page-break-after: auto !important;
 }
 
+/* Deux diapositives sur chaque feuille Lettre portrait. */
+html.print-pdf.print-slides,
+html.print-pdf.print-slides body,
+html.print-pdf.print-slides .reveal-viewport,
+html.print-pdf.print-slides .reveal {
+  width: 816px !important;
+  max-width: 816px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+html.print-pdf.print-slides .reveal .slides {
+  width: 816px !important;
+}
+
+html.print-pdf.print-slides .reveal .slides .pdf-page {
+  width: 816px !important;
+  height: 528px !important;
+  min-height: 528px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  break-after: auto !important;
+  page-break-after: auto !important;
+  background:
+    linear-gradient(90deg, rgba(11, 32, 56, 0.025) 1px, transparent 1px),
+    linear-gradient(rgba(11, 32, 56, 0.025) 1px, transparent 1px),
+    var(--paper) !important;
+  background-size: 34px 34px !important;
+}
+
+html.print-pdf.print-slides .reveal .slides .pdf-page:nth-of-type(2n) {
+  break-after: page !important;
+  page-break-after: always !important;
+}
+
+html.print-pdf.print-slides .reveal .slides .pdf-page:last-of-type {
+  break-after: auto !important;
+  page-break-after: auto !important;
+}
+
+html.print-pdf.print-slides .reveal .slides .pdf-page > section {
+  top: 59px !important;
+  left: 43px !important;
+  width: 1280px !important;
+  height: 720px !important;
+  min-height: 720px !important;
+  transform: scale(0.57) !important;
+  transform-origin: top left !important;
+}
+
+/* Cahier de notes : diapositive à gauche, espace ligné à droite. */
+html.print-pdf.print-handout,
+html.print-pdf.print-handout body,
+html.print-pdf.print-handout .reveal-viewport,
+html.print-pdf.print-handout .reveal {
+  width: 1056px !important;
+  max-width: 1056px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+html.print-pdf.print-handout .reveal .slides {
+  width: 1056px !important;
+}
+
+html.print-pdf.print-handout .reveal .slides .pdf-page {
+  width: 1056px !important;
+  height: 816px !important;
+  min-height: 816px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  background: white !important;
+}
+
+html.print-pdf.print-handout .reveal .slides .pdf-page > section {
+  top: 246px !important;
+  left: 36px !important;
+  width: 1280px !important;
+  height: 720px !important;
+  min-height: 720px !important;
+  transform: scale(0.45) !important;
+  transform-origin: top left !important;
+  box-shadow: 0 0 0 2px rgba(11, 32, 56, 0.16);
+}
+
+.handout-notes {
+  position: absolute;
+  top: 42px;
+  right: 36px;
+  bottom: 42px;
+  left: 648px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid rgba(11, 32, 56, 0.18);
+  padding-left: 28px;
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+.handout-notes header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 42px;
+  border-bottom: 2px solid var(--navy);
+}
+
+.handout-notes strong {
+  color: var(--navy);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+
+.handout-notes header span {
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.handout-note-lines {
+  flex: 1;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgba(64, 84, 108, 0.3) 31px,
+    rgba(64, 84, 108, 0.3) 32px
+  );
+}
+
 @media (max-width: 820px) {
   .course-list {
     grid-template-columns: 1fr;
@@ -1476,6 +1773,18 @@ html.print-pdf .reveal .slides .pdf-page:last-of-type {
   .site-header p,
   .deck-label {
     display: none;
+  }
+
+  .print-menu {
+    left: 118px;
+  }
+
+  .print-menu summary span:last-child {
+    display: none;
+  }
+
+  .print-menu-options {
+    width: min(312px, calc(100vw - 142px));
   }
 }
 
@@ -1487,7 +1796,9 @@ html.print-pdf .reveal .slides .pdf-page:last-of-type {
   }
 
   .deck-home,
-  .deck-label {
+  .deck-label,
+  .print-menu,
+  .print-toolbar {
     display: none !important;
   }
 

@@ -79,6 +79,15 @@ Raccourcis utiles dans une présentation :
 - `Ctrl`/`Cmd` + `Shift` + `F` : recherche
 - `H` : retour à l’accueil INF155
 
+### Imprimer un cours
+
+Le bouton **Imprimer**, en haut de chaque présentation, propose deux mises en page :
+
+- **2 diapositives par page** : format compact sur une feuille Lettre portrait;
+- **Cahier de notes** : une diapositive à gauche et une grande zone lignée à droite, sur une feuille Lettre paysage.
+
+L’aperçu ouvre toujours l’ensemble du cours. Utiliser ensuite le bouton **Imprimer** de l’aperçu pour imprimer ou enregistrer le document en PDF.
+
 ## Ajouter un cours
 
 1. Copier le dossier d’un cours existant vers le nouveau numéro.
