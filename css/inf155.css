@@ -747,6 +747,13 @@ body {
   align-items: center;
 }
 
+.reveal .three-col {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65em;
+  align-items: stretch;
+}
+
 .reveal .two-col--wide-right {
   grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
 }

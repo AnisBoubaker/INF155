@@ -21,10 +21,13 @@ La plupart des programmes interagissent avec leur environnement.
   <img src="assets/ordinateur.png" alt="Icône représentant un ordinateur">
 </div>
 
-<div class="comparison small">
+<div class="comparison">
   <div><h3>Entrée</h3><p>Une donnée fournie au programme pour effectuer un traitement.</p></div>
-  <div><h3>Sortie</h3><p>Une information produite par le programme et présentée à l’usager.</p></div>
+  <div><h3>Sortie</h3><p>Une information produite par le programme et présentée à l’usager (ex.: écran, fichier, courriel, ...)</p></div>
 </div>
+<p class="callout small">
+<strong>Les entrées</strong> peuvent provenir du clavier, d'un fichier, du réseau etc. <strong>Les sorties</strong> peuvent être à l'écran, au clavier, sur le réseau, etc.
+</p>
 
 ---
 
@@ -146,19 +149,3 @@ double total = sous_total + taxes;
 printf("Total : %.2f $\n", total);
 ```
 
----
-
-## Exercice · Taxes avec saisie
-
-Reprendre le programme de calcul des taxes.
-
-<div class="exercise">
-  <ol>
-    <li>Demander à l’usager de saisir le sous-total.</li>
-    <li>Vérifier que la saisie a réussi.</li>
-    <li>Calculer les taxes et le total.</li>
-    <li>Afficher chaque montant avec deux décimales.</li>
-  </ol>
-</div>
-
-<p class="callout small"><strong>Testez au minimum :</strong> un montant entier, un montant avec décimales, zéro et une saisie invalide.</p>

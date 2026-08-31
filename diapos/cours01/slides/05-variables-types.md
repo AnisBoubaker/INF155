@@ -43,7 +43,7 @@ int salaire = 1500;
 <div class="two-col">
   <div>
     <div class="memory-strip">
-      <div>00000000</div><div>00000000</div><div>00000101</div><div class="active">11011100</div>
+      <div>00000000</div><div>00000000</div><div class="active">00000101</div><div class="active">11011100</div>
     </div>
     <p class="small">Les quatre octets représentent la valeur décimale <strong>1500</strong>.</p>
   </div>
@@ -82,11 +82,11 @@ Règles lexicales de base :
 - ne commence pas par un chiffre;
 - n’est pas un mot réservé du langage.
 
-Conventions du cours :
+Conventions à respecter :
 
 - commencer par une minuscule;
 - utiliser un nom représentatif;
-- séparer les mots avec <code>_</code> : <code>nombre_heures_travaillees</code>.
+- séparer les mots avec <code>_</code> : <code>nombre_heures_travaillees</code>. <span class="small">(_snail case_)</span>
 
 ---
 
@@ -264,7 +264,7 @@ int main(void)
 }
 ```
 
-<div class="comparison small">
+<div class="comparison">
   <div><h3>Initialisation</h3><p>Première valeur donnée au moment de la déclaration.</p></div>
   <div><h3>Affectation</h3><p>Nouvelle valeur donnée après la déclaration.</p></div>
 </div>

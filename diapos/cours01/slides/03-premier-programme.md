@@ -10,19 +10,31 @@
 
 ## Exécution d’un programme
 
-Par défaut, les instructions s’exécutent <strong>dans l’ordre où elles apparaissent</strong>, du haut vers le bas.
+Un programme peut exécuter des instructions une fois, choisir un chemin ou répéter un bloc.
 
-<div class="two-col">
-  <div class="card"><h3>Condition</h3><p>Un bloc s’exécute seulement si une expression prend la valeur vraie.</p></div>
-  <div class="card"><h3>Boucle</h3><p>Un bloc est répété tant qu’une condition le demande.</p></div>
-</div>
-
-```c
-if (x > y)
-    maximum = x;
+<div class="three-col">
+  <div class="card">
+    <h3>Code séquentiel <span>(normal)</span></h3>
+    <p>Chaque instruction s’exécute une fois, de haut en bas.</p>
+    <pre><code class="language-c">prix = 12.50;
+quantite = 2;
+total = prix * quantite;</code></pre>
+  </div>
+  <div class="card">
+    <h3>Structure conditionnelle</h3>
+    <p>Un bloc s’exécute seulement si une condition est vraie.</p>
+    <pre><code class="language-c">if (note &gt;= 60)
+    printf("Réussi");
 else
-    maximum = y;
-```
+    printf("Échec");</code></pre>
+  </div>
+  <div class="card">
+    <h3>Boucle</h3>
+    <p>Un bloc est répété tant qu’une condition le demande.</p>
+    <pre><code class="language-c">for (i = 0; i &lt; 3; i++)
+    printf("%d\n", i);</code></pre>
+  </div>
+</div>
 
 ---
 
@@ -120,11 +132,11 @@ Chaque fichier source est analysé et traduit séparément.
 
 ## 3 · Liaison
 
-L’éditeur de liens rassemble les fichiers objets et les bibliothèques nécessaires.
+L’éditeur de liens combine plusieurs fichiers objets et le code objet des bibliothèques pour construire un exécutable.
 
 <div class="pipeline">
-  <div><strong><code>main.o</code></strong><span>Votre programme principal</span></div>
-  <div><strong>Bibliothèques</strong><span>Fonctions comme <code>printf</code></span></div>
+  <div><strong>Fichiers objets + bibliothèques</strong><span><code>main.o</code> + <code>calcul.o</code> + <code>affichage.o</code> + …<br>+ code objet des bibliothèques</span></div>
+  <div><strong>Éditeur de liens</strong><span>Résout les références et combine le code objet</span></div>
   <div><strong>Exécutable</strong><span>Programme complet</span></div>
 </div>
 
