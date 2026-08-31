@@ -60,6 +60,7 @@
       decoratePrintPages();
     } else {
       addPrintMenu();
+      addDeckNavigation();
     }
   });
 
@@ -119,6 +120,235 @@
         menu.removeAttribute("open");
       }
     });
+  }
+
+  function addDeckNavigation() {
+    const slides = Reveal.getSlides();
+    const deckLabel = document.querySelector(".deck-label");
+
+    if (!slides.length || !deckLabel) {
+      return;
+    }
+
+    const courseTitle = cleanText(deckLabel);
+    const sections = collectDeckSections(slides);
+    const toggle = document.createElement("button");
+    const panel = document.createElement("aside");
+    const panelHeader = document.createElement("header");
+    const panelTitle = document.createElement("div");
+    const panelNav = document.createElement("nav");
+    const closeButton = document.createElement("button");
+    const slideButtons = [];
+
+    toggle.type = "button";
+    toggle.className = "deck-outline-toggle";
+    toggle.setAttribute("aria-controls", "deck-outline");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Afficher la liste des diapositives");
+    toggle.title = "Liste des diapositives";
+    toggle.innerHTML = [
+      '<span class="deck-outline-icon" aria-hidden="true">',
+      '  <i></i><i></i><i></i>',
+      '</span>'
+    ].join("");
+
+    panel.id = "deck-outline";
+    panel.className = "deck-outline";
+    panel.hidden = true;
+    panel.setAttribute("aria-label", "Liste des diapositives");
+
+    panelHeader.className = "deck-outline-header";
+    panelTitle.innerHTML = [
+      "<strong>Diapositives</strong>",
+      "<span>" + slides.length + " au total</span>"
+    ].join("");
+    closeButton.type = "button";
+    closeButton.className = "deck-outline-close";
+    closeButton.setAttribute("aria-label", "Fermer la liste des diapositives");
+    closeButton.textContent = "×";
+    panelHeader.append(panelTitle, closeButton);
+
+    panelNav.className = "deck-outline-nav";
+    panelNav.setAttribute("aria-label", "Navigation dans le cours");
+
+    sections.forEach(function (section) {
+      const group = document.createElement("section");
+      const heading = document.createElement("h2");
+      const list = document.createElement("ol");
+
+      group.className = "deck-outline-section";
+      heading.textContent = section.title;
+      list.start = section.startIndex + 1;
+
+      section.slides.forEach(function (slide, localIndex) {
+        const slideIndex = slides.indexOf(slide);
+        const indices = Reveal.getIndices(slide);
+        const item = document.createElement("li");
+        const button = document.createElement("button");
+        const number = document.createElement("span");
+        const title = document.createElement("span");
+
+        button.type = "button";
+        button.dataset.slideIndex = String(slideIndex);
+        button.dataset.slideH = String(indices.h || 0);
+        button.dataset.slideV = String(indices.v || 0);
+        number.className = "deck-outline-number";
+        number.textContent = String(slideIndex + 1).padStart(2, "0");
+        title.className = "deck-outline-title";
+        title.textContent = slideTitle(slide, slideIndex);
+        button.append(number, title);
+
+        if (localIndex === 0) {
+          const start = document.createElement("span");
+          button.classList.add("is-section-start");
+          start.className = "deck-outline-start";
+          start.textContent = "Début";
+          button.appendChild(start);
+        }
+
+        button.addEventListener("click", function () {
+          Reveal.slide(Number(button.dataset.slideH), Number(button.dataset.slideV));
+          closeOutline(true);
+        });
+
+        item.appendChild(button);
+        list.appendChild(item);
+        slideButtons.push(button);
+      });
+
+      group.append(heading, list);
+      panelNav.appendChild(group);
+      section.element = group;
+    });
+
+    panel.append(panelHeader, panelNav);
+    document.body.append(toggle, panel);
+
+    function openOutline() {
+      panel.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      syncNavigation(true);
+      closeButton.focus();
+    }
+
+    function closeOutline(returnFocus) {
+      panel.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+      if (returnFocus) {
+        toggle.focus();
+      }
+    }
+
+    function syncNavigation(scrollToCurrent) {
+      const currentSlide = Reveal.getCurrentSlide();
+      const currentIndex = slides.indexOf(currentSlide);
+      const currentSection = sections.find(function (section) {
+        return section.slides.includes(currentSlide);
+      });
+
+      slideButtons.forEach(function (button) {
+        const isCurrent = Number(button.dataset.slideIndex) === currentIndex;
+        button.classList.toggle("is-current", isCurrent);
+        if (isCurrent) {
+          button.setAttribute("aria-current", "page");
+        } else {
+          button.removeAttribute("aria-current");
+        }
+      });
+
+      sections.forEach(function (section) {
+        section.element.classList.toggle("is-current", section === currentSection);
+      });
+
+      deckLabel.textContent = currentSection
+        ? courseTitle + " — " + currentSection.title
+        : courseTitle;
+      deckLabel.title = deckLabel.textContent;
+
+      if (scrollToCurrent && !panel.hidden) {
+        const currentButton = slideButtons[currentIndex];
+        if (currentButton) {
+          currentButton.scrollIntoView({ block: "nearest" });
+        }
+      }
+    }
+
+    toggle.addEventListener("click", function () {
+      if (panel.hidden) {
+        openOutline();
+      } else {
+        closeOutline(false);
+      }
+    });
+
+    closeButton.addEventListener("click", function () {
+      closeOutline(true);
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!panel.hidden && !panel.contains(event.target) && !toggle.contains(event.target)) {
+        closeOutline(false);
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !panel.hidden) {
+        event.preventDefault();
+        closeOutline(true);
+      }
+    });
+
+    Reveal.on("slidechanged", function () {
+      syncNavigation(!panel.hidden);
+    });
+    syncNavigation(false);
+  }
+
+  function collectDeckSections(slides) {
+    const sections = [];
+
+    slides.forEach(function (slide, index) {
+      const startsSection = slide.classList.contains("title-slide") ||
+        slide.classList.contains("chapter");
+      let section = sections[sections.length - 1];
+
+      if (!section || startsSection) {
+        section = {
+          startIndex: index,
+          slides: []
+        };
+        sections.push(section);
+      }
+
+      section.slides.push(slide);
+    });
+
+    sections.forEach(function (section, index) {
+      section.title = sectionTitle(section.slides[0], index);
+    });
+
+    return sections;
+  }
+
+  function sectionTitle(slide, index) {
+    const kicker = slide.querySelector(".section-kicker");
+    const heading = slide.querySelector("h1, h2");
+
+    if (slide.classList.contains("title-slide")) {
+      return "Introduction";
+    }
+
+    return cleanText(kicker) || cleanText(heading) || "Section " + (index + 1);
+  }
+
+  function slideTitle(slide, index) {
+    const heading = slide.querySelector("h1, h2");
+    const kicker = slide.querySelector(".section-kicker, .eyebrow");
+    return cleanText(heading) || cleanText(kicker) || "Diapositive " + (index + 1);
+  }
+
+  function cleanText(element) {
+    return element ? element.textContent.replace(/\s+/g, " ").trim() : "";
   }
 
   function preparePrintView(mode) {

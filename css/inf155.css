@@ -487,7 +487,12 @@ body {
 
 .deck-label {
   right: 24px;
+  max-width: calc(100vw - 160px);
   padding: 8px 0;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .print-menu {
@@ -500,7 +505,8 @@ body {
   font-size: 13px;
 }
 
-.print-menu summary {
+.print-menu summary,
+.deck-outline-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -517,6 +523,13 @@ body {
   backdrop-filter: blur(10px);
   cursor: pointer;
   list-style: none;
+}
+
+.deck-outline-toggle {
+  position: fixed;
+  top: 72px;
+  left: 4px;
+  z-index: 45;
 }
 
 .print-menu summary > span:last-child {
@@ -536,9 +549,38 @@ body {
 
 .print-menu summary:hover,
 .print-menu summary:focus-visible,
-.print-menu[open] summary {
+.print-menu[open] summary,
+.deck-outline-toggle:hover,
+.deck-outline-toggle:focus-visible,
+.deck-outline-toggle[aria-expanded="true"] {
   border-color: var(--ets-red);
   color: var(--ets-red-dark);
+}
+
+.deck-outline-icon {
+  display: grid;
+  width: 15px;
+  gap: 2px;
+}
+
+.deck-outline-icon i {
+  position: relative;
+  display: block;
+  height: 2px;
+  margin-left: 5px;
+  border-radius: 99px;
+  background: currentColor;
+}
+
+.deck-outline-icon i::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .print-menu-icon {
@@ -619,6 +661,180 @@ body {
   color: var(--ink-soft);
   font-size: 0.77rem;
   line-height: 1.35;
+}
+
+.deck-outline[hidden] {
+  display: none;
+}
+
+.deck-outline {
+  position: fixed;
+  top: 12px;
+  bottom: 12px;
+  left: 44px;
+  z-index: 60;
+  display: flex;
+  width: min(430px, calc(100vw - 60px));
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid rgba(11, 32, 56, 0.14);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 24px 70px rgba(11, 32, 56, 0.24);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+.deck-outline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.deck-outline-header strong,
+.deck-outline-header span {
+  display: block;
+}
+
+.deck-outline-header strong {
+  color: var(--navy);
+  font-size: 1.05rem;
+}
+
+.deck-outline-header span {
+  margin-top: 0.12rem;
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+}
+
+.deck-outline-close {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-soft);
+  font: 400 1.5rem/1 var(--font-sans);
+  cursor: pointer;
+}
+
+.deck-outline-close:hover,
+.deck-outline-close:focus-visible {
+  background: var(--paper-deep);
+  color: var(--ets-red-dark);
+}
+
+.deck-outline-nav {
+  min-height: 0;
+  padding: 0.75rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.deck-outline-section + .deck-outline-section {
+  margin-top: 0.9rem;
+}
+
+.deck-outline-section h2 {
+  position: sticky;
+  top: -0.75rem;
+  z-index: 2;
+  margin: 0 0 0.3rem;
+  padding: 0.65rem 0.65rem 0.55rem;
+  border-top: 3px solid var(--line);
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.deck-outline-section.is-current h2 {
+  border-top-color: var(--ets-red);
+  color: var(--ets-red-dark);
+}
+
+.deck-outline-section ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deck-outline-section li + li {
+  margin-top: 0.18rem;
+}
+
+.deck-outline-section li > button {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2.2rem minmax(0, 1fr) auto;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.58rem 0.65rem;
+  border: 0;
+  border-radius: 0.55rem;
+  background: transparent;
+  color: var(--ink);
+  font: 600 0.88rem/1.28 var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+}
+
+.deck-outline-section li > button:hover,
+.deck-outline-section li > button:focus-visible {
+  background: var(--cyan-pale);
+  color: var(--navy);
+}
+
+.deck-outline-section li > button.is-section-start {
+  box-shadow: inset 3px 0 var(--ets-red);
+}
+
+.deck-outline-section li > button.is-current {
+  background: var(--navy);
+  box-shadow: none;
+  color: white;
+}
+
+.deck-outline-number {
+  color: var(--ets-red-dark);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.deck-outline-section li > button.is-current .deck-outline-number {
+  color: #8fdae3;
+}
+
+.deck-outline-title {
+  min-width: 0;
+}
+
+.deck-outline-start {
+  padding: 0.16rem 0.34rem;
+  border-radius: 999px;
+  background: #fff1ee;
+  color: var(--ets-red-dark);
+  font-size: 0.61rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.deck-outline-section li > button.is-current .deck-outline-start {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
 }
 
 .reveal .controls {
@@ -1859,6 +2075,11 @@ html.print-pdf.print-handout .print-copyright {
   .print-menu-options {
     width: min(312px, calc(100vw - 62px));
   }
+
+  .deck-outline {
+    left: 40px;
+    width: calc(100vw - 48px);
+  }
 }
 
 @media print {
@@ -1872,6 +2093,8 @@ html.print-pdf.print-handout .print-copyright {
   .deck-label,
   .deck-copyright,
   .print-menu,
+  .deck-outline-toggle,
+  .deck-outline,
   .print-toolbar {
     display: none !important;
   }
