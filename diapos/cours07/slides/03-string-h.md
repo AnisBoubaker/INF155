@@ -11,7 +11,7 @@
 ## <code>strlen</code> · longueur du texte
 
 ```c
-size_t longueur = strlen("INF155");  // 6
+int longueur = (int)strlen("INF155");  // 6
 ```
 
 <code>strlen</code> compte les octets avant le premier <code>'\0'</code>. Il ne compte ni la capacité du tableau ni le zéro terminal.
@@ -26,7 +26,7 @@ size_t longueur = strlen("INF155");  // 6
 char destination[20];
 const char *source = "Bonjour";
 
-if (strlen(source) < sizeof destination) {
+if ((int)strlen(source) < (int)sizeof destination) {
     strcpy(destination, source);
 }
 ```
@@ -43,8 +43,8 @@ if (strlen(source) < sizeof destination) {
 char message[40] = "Bonjour ";
 const char *nom = "Ada";
 
-size_t requis = strlen(message) + strlen(nom) + 1;
-if (requis <= sizeof message) {
+int requis = (int)(strlen(message) + strlen(nom) + 1);
+if (requis <= (int)sizeof message) {
     strcat(message, nom);
 }
 ```

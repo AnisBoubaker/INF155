@@ -82,11 +82,11 @@ La partie gauche est de nouveau triée. L’invariant est restauré avant l’it
 ## Algorithme du tri par insertion
 
 ```c
-void tri_insertion(int t[], size_t n)
+void tri_insertion(int t[], int n)
 {
-    for (size_t i = 1; i < n; ++i) {
+    for (int i = 1; i < n; ++i) {
         int valeur = t[i];
-        size_t j = i;
+        int j = i;
 
         while (j > 0 && t[j - 1] > valeur) {
             t[j] = t[j - 1];

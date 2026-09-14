@@ -11,7 +11,9 @@
 ## Redimensionner avec <code>realloc</code>
 
 ```c
-void *realloc(void *bloc, size_t nouvelle_taille);
+int nouveau_nombre = 60;
+int nouvelle_taille = nouveau_nombre * (int)sizeof *valeurs;
+int *nouveau_bloc = realloc(valeurs, nouvelle_taille);
 ```
 
 La fonction peut :
@@ -39,7 +41,7 @@ Si l’appel échoue, <code>valeurs</code> devient <code>NULL</code> et l’adre
 ## Patron sûr avec pointeur temporaire
 
 ```c
-int *temp = realloc(valeurs, nouveau_nombre * sizeof *valeurs);
+int *temp = realloc(valeurs, nouveau_nombre * (int)sizeof *valeurs);
 
 if (temp == NULL) {
     /* valeurs désigne encore l'ancien bloc */
@@ -84,8 +86,8 @@ Après <code>free</code> :
 
 ```c
 int resultat = EXIT_FAILURE;
-int *a = malloc(n * sizeof *a);
-int *b = malloc(n * sizeof *b);
+int *a = malloc(n * (int)sizeof *a);
+int *b = malloc(n * (int)sizeof *b);
 
 if (a != NULL && b != NULL) {
     /* traitement */

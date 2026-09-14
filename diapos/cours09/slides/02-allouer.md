@@ -11,11 +11,15 @@
 ## <code>void *</code> · pointeur générique
 
 ```c
-void *malloc(size_t taille);
-void *calloc(size_t nombre, size_t taille);
+int nombre_octets = 64;
+int nombre_elements = 10;
+int octets_par_element = (int)sizeof(int);
+
+void *bloc = malloc(nombre_octets);
+void *bloc_initialise = calloc(nombre_elements, octets_par_element);
 ```
 
-Un <code>void *</code> peut être converti implicitement vers un pointeur d’objet en C.
+Ces fonctions reçoivent des nombres d’octets et retournent un <code>void *</code>, qui peut être converti implicitement vers un pointeur d’objet en C.
 
 ```c
 int *entier = malloc(sizeof *entier);
@@ -44,8 +48,8 @@ La mémoire retournée est non initialisée. Elle doit être écrite avant d’�
 ## Allouer un tableau
 
 ```c
-size_t nombre = 30;
-double *valeurs = malloc(nombre * sizeof *valeurs);
+int nombre = 30;
+double *valeurs = malloc(nombre * (int)sizeof *valeurs);
 
 if (valeurs == NULL) {
     return EXIT_FAILURE;
@@ -60,14 +64,17 @@ valeurs[3] = 25.2;
 
 ## Vérifier le produit des tailles
 
-Le calcul <code>nombre * sizeof *valeurs</code> peut lui-même déborder.
+Le calcul du nombre d’octets peut lui-même dépasser la capacité d’un <code>int</code>.
 
 ```c
-if (nombre > SIZE_MAX / sizeof *valeurs) {
+#include <limits.h>
+
+if (nombre < 0 || nombre > INT_MAX / (int)sizeof *valeurs) {
     /* taille impossible */
 }
 
-valeurs = malloc(nombre * sizeof *valeurs);
+int nombre_octets = nombre * (int)sizeof *valeurs;
+valeurs = malloc(nombre_octets);
 ```
 
 <p class="warning small">Un produit débordé peut réserver un bloc plus petit que prévu et mener à un dépassement de tampon.</p>
@@ -77,7 +84,7 @@ valeurs = malloc(nombre * sizeof *valeurs);
 ## Initialiser avec <code>calloc</code>
 
 ```c
-int *compteurs = calloc(nombre, sizeof *compteurs);
+int *compteurs = calloc(nombre, (int)sizeof *compteurs);
 ```
 
 <code>calloc</code> réserve l’espace de <code>nombre</code> éléments et met tous les bits à zéro.

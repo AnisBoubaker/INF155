@@ -13,17 +13,17 @@
 Les deux algorithmes du cours retournent :
 
 - l’indice d’une occurrence lorsque la cible est trouvée;
-- <code>nombre</code> lorsque la cible est absente.
+- <code>-1</code> lorsque la cible est absente.
 
 ```c
-size_t position = fouille_lineaire(valeurs, nombre, cible);
+int position = fouille_lineaire(valeurs, nombre, cible);
 
-if (position != nombre) {
-    printf("Trouvee a l'indice %zu\n", position);
+if (position != -1) {
+    printf("Trouvee a l'indice %d\n", position);
 }
 ```
 
-<p class="callout small"><code>nombre</code> constitue une sentinelle sûre, car ce n’est jamais un indice valide.</p>
+<p class="callout small"><code>-1</code> constitue une sentinelle sûre, car les indices valides commencent à zéro.</p>
 
 ---
 
@@ -47,16 +47,15 @@ La <strong>fouille linéaire</strong>, aussi appelée séquentielle :
 ## Algorithme de fouille linéaire
 
 ```c
-size_t fouille_lineaire(const int valeurs[],
-                        size_t nombre, int cible)
+int fouille_lineaire(const int valeurs[], int nombre, int cible)
 {
-    for (size_t i = 0; i < nombre; ++i) {
+    for (int i = 0; i < nombre; ++i) {
         if (valeurs[i] == cible) {
             return i;
         }
     }
 
-    return nombre;
+    return -1;
 }
 ```
 
@@ -110,7 +109,7 @@ On maintient l’intervalle demi-ouvert <code>[debut, fin)</code> :
 - si la cible existe, elle se trouve toujours dans cet intervalle.
 
 ```c
-size_t milieu = debut + (fin - debut) / 2;
+int milieu = debut + (fin - debut) / 2;
 ```
 
 Après la comparaison au milieu, on conserve uniquement la moitié qui peut encore contenir la cible.
@@ -124,12 +123,12 @@ Après la comparaison au milieu, on conserve uniquement la moitié qui peut enco
 ## Algorithme de fouille binaire
 
 ```c
-size_t fouille_binaire(const int valeurs[], size_t nombre, int cible)
+int fouille_binaire(const int valeurs[], int nombre, int cible)
 {
-    size_t debut = 0, fin = nombre;
+    int debut = 0, fin = nombre;
 
     while (debut < fin) {
-        size_t milieu = debut + (fin - debut) / 2;
+        int milieu = debut + (fin - debut) / 2;
 
         if (valeurs[milieu] == cible) return milieu;
 
@@ -140,7 +139,7 @@ size_t fouille_binaire(const int valeurs[], size_t nombre, int cible)
         }
     }
 
-    return nombre;
+    return -1;
 }
 ```
 

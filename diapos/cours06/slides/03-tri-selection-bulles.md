@@ -25,12 +25,12 @@
 ## Algorithme du tri par sélection
 
 ```c
-void tri_selection(int t[], size_t n)
+void tri_selection(int t[], int n)
 {
-    for (size_t i = 0; i + 1 < n; ++i) {
-        size_t indice_min = i;
+    for (int i = 0; i + 1 < n; ++i) {
+        int indice_min = i;
 
-        for (size_t j = i + 1; j < n; ++j) {
+        for (int j = i + 1; j < n; ++j) {
             if (t[j] < t[indice_min]) {
                 indice_min = j;
             }
@@ -80,13 +80,13 @@ Après un passage de gauche à droite, la plus grande valeur de la zone considé
 ## Algorithme du tri à bulles
 
 ```c
-void tri_bulles(int t[], size_t n)
+void tri_bulles(int t[], int n)
 {
     bool permutation = true;
 
     while (n > 1 && permutation) {
         permutation = false;
-        for (size_t i = 0; i + 1 < n; ++i) {
+        for (int i = 0; i + 1 < n; ++i) {
             if (t[i] > t[i + 1]) {
                 int temp = t[i];
                 t[i] = t[i + 1];

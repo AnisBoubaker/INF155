@@ -59,9 +59,10 @@ Les parenthèses sont nécessaires dans la seconde forme, car <code>.</code> a p
 ## Modifier un enregistrement
 
 ```c
-bool definir_note(Etudiant *etudiant, size_t evaluation, int note)
+bool definir_note(Etudiant *etudiant, int evaluation, int note)
 {
-    if (etudiant == NULL || evaluation >= 5 || note < 0 || note > 100) {
+    if (etudiant == NULL || evaluation < 0 || evaluation >= 5 ||
+        note < 0 || note > 100) {
         return false;
     }
 
@@ -82,7 +83,7 @@ double moyenne(const Etudiant *etudiant)
     static const double poids[] = {0.1, 0.1, 0.1, 0.3, 0.4};
     double total = 0.0;
 
-    for (size_t i = 0; i < 5; ++i) {
+    for (int i = 0; i < 5; ++i) {
         total += etudiant->notes[i] * poids[i];
     }
     return total;

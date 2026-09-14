@@ -39,13 +39,11 @@ Le programme client inclut le fichier d’en-tête et lie l’implémentation co
 #ifndef TABLEAUX_H
 #define TABLEAUX_H
 
-#include <stddef.h>
-
-size_t fouille_lineaire(const int valeurs[], size_t nombre,
-                        int cible);
-size_t fouille_binaire(const int valeurs[], size_t nombre,
-                       int cible);
-void tri_insertion(int valeurs[], size_t nombre);
+int fouille_lineaire(
+    const int valeurs[], int nombre, int cible);
+int fouille_binaire(
+    const int valeurs[], int nombre, int cible);
+void tri_insertion(int valeurs[], int nombre);
 
 #endif
 ```
@@ -59,16 +57,15 @@ L’en-tête annonce les services sans révéler leur code.
 ```c
 #include "tableaux.h"
 
-size_t fouille_lineaire(const int valeurs[], size_t nombre,
-                        int cible)
+int fouille_lineaire(const int valeurs[], int nombre, int cible)
 {
-    for (size_t i = 0; i < nombre; ++i) {
+    for (int i = 0; i < nombre; ++i) {
         if (valeurs[i] == cible) {
             return i;
         }
     }
 
-    return nombre;
+    return -1;
 }
 ```
 
@@ -82,17 +79,18 @@ Le fichier source inclut sa propre interface pour vérifier la cohérence des d�
 #include <stdio.h>
 #include "tableaux.h"
 
+#define NB_VALEURS 4
+
 int main(void)
 {
-    int valeurs[] = {8, 3, 5, 1};
-    size_t nombre = sizeof valeurs / sizeof valeurs[0];
+    int valeurs[NB_VALEURS] = {8, 3, 5, 1};
 
-    size_t position = fouille_lineaire(valeurs, nombre, 5);
-    if (position != nombre) {
-        printf("indice : %zu\n", position);
+    int position = fouille_lineaire(valeurs, NB_VALEURS, 5);
+    if (position != -1) {
+        printf("indice : %d\n", position);
     }
 
-    tri_insertion(valeurs, nombre);
+    tri_insertion(valeurs, NB_VALEURS);
     return 0;
 }
 ```

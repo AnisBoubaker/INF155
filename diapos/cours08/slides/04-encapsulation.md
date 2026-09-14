@@ -29,7 +29,6 @@ Un module peut offrir :
 #define ETUDIANT_H
 
 #include <stdbool.h>
-#include <stddef.h>
 
 typedef struct {
     char nom[40];
@@ -53,9 +52,9 @@ double etudiant_moyenne(const Etudiant *e);
 bool etudiant_initialiser(Etudiant *e, const char *nom,
                           const char *prenom, const char *code)
 {
-    if (e == NULL || strlen(nom) >= sizeof e->nom ||
-        strlen(prenom) >= sizeof e->prenom ||
-        strlen(code) >= sizeof e->code) {
+    if (e == NULL || (int)strlen(nom) >= (int)sizeof e->nom ||
+        (int)strlen(prenom) >= (int)sizeof e->prenom ||
+        (int)strlen(code) >= (int)sizeof e->code) {
         return false;
     }
 
@@ -77,9 +76,9 @@ const char *etudiant_nom(const Etudiant *e)
     return e->nom;
 }
 
-bool etudiant_definir_note(Etudiant *e, size_t i, int note)
+bool etudiant_definir_note(Etudiant *e, int i, int note)
 {
-    if (e == NULL || i >= 5 || note < 0 || note > 100) {
+    if (e == NULL || i < 0 || i >= 5 || note < 0 || note > 100) {
         return false;
     }
     e->notes[i] = note;

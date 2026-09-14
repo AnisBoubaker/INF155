@@ -64,8 +64,8 @@ Chaque indice commence à zéro et doit demeurer dans sa propre limite.
 ## Parcours avec boucles imbriquées
 
 ```c
-for (size_t ligne = 0; ligne < 3; ++ligne) {
-    for (size_t colonne = 0; colonne < 4; ++colonne) {
+for (int ligne = 0; ligne < 3; ++ligne) {
+    for (int colonne = 0; colonne < 4; ++colonne) {
         printf("%3d", grille[ligne][colonne]);
     }
     putchar('\n');
@@ -89,7 +89,7 @@ La case <code>grille[l][c]</code> se trouve conceptuellement après <code>l × 4
 ## Tableau 2D en paramètre
 
 ```c
-void afficher(size_t lignes, size_t colonnes,
+void afficher(int lignes, int colonnes,
               const int tableau[lignes][colonnes]);
 ```
 
@@ -102,11 +102,11 @@ Avec un tableau 2D, la fonction doit connaître la longueur d’une ligne pour l
 ## Exemple · Remplir une grille
 
 ```c
-void remplir(size_t lignes, size_t colonnes,
+void remplir(int lignes, int colonnes,
              int tableau[lignes][colonnes], int valeur)
 {
-    for (size_t l = 0; l < lignes; ++l) {
-        for (size_t c = 0; c < colonnes; ++c) {
+    for (int l = 0; l < lignes; ++l) {
+        for (int c = 0; c < colonnes; ++c) {
             tableau[l][c] = valeur;
         }
     }
@@ -118,7 +118,7 @@ void remplir(size_t lignes, size_t colonnes,
 ## Une ligne est un tableau 1D
 
 ```c
-void afficher_ligne(const int ligne[], size_t colonnes);
+void afficher_ligne(const int ligne[], int colonnes);
 
 int grille[3][4] = {
     {1, 2, 4, 5},

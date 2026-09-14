@@ -11,7 +11,7 @@
 ## Tableau en paramètre
 
 ```c
-double calculer_moyenne(const int notes[], size_t nombre);
+double calculer_moyenne(const int notes[], int nombre);
 ```
 
 Dans une liste de paramètres, les crochets indiquent que la fonction reçoit un accès aux éléments du tableau, et non une copie de toutes ses cases.
@@ -23,9 +23,9 @@ La taille ne fait pas partie de ce paramètre : il faut la transmettre séparém
 ## Pourquoi transmettre la taille ?
 
 ```c
-double calculer_moyenne(const int notes[], size_t nombre)
+double calculer_moyenne(const int notes[], int nombre)
 {
-    size_t nombre_calcule = sizeof notes / sizeof notes[0];
+    int nombre_calcule = (int)(sizeof notes / sizeof notes[0]);
     // Ne donne pas le nombre d'éléments du tableau de l'appelant.
 }
 ```
@@ -41,14 +41,14 @@ Dans une fonction, <code>sizeof notes</code> ne mesure pas le tableau fourni par
 ## Exemple · Calculer la moyenne
 
 ```c
-double calculer_moyenne(const int notes[], size_t nombre)
+double calculer_moyenne(const int notes[], int nombre)
 {
-    if (nombre == 0) {
+    if (nombre <= 0) {
         return 0.0;
     }
 
     long somme = 0;
-    for (size_t i = 0; i < nombre; ++i) {
+    for (int i = 0; i < nombre; ++i) {
         somme += notes[i];
     }
 
@@ -63,9 +63,9 @@ double calculer_moyenne(const int notes[], size_t nombre)
 ## Modifier un tableau reçu
 
 ```c
-void incrementer(int valeurs[], size_t nombre)
+void incrementer(int valeurs[], int nombre)
 {
-    for (size_t i = 0; i < nombre; ++i) {
+    for (int i = 0; i < nombre; ++i) {
         ++valeurs[i];
     }
 }
@@ -99,5 +99,5 @@ Pour chaque fonction qui reçoit un tableau :
 - transmettre une taille fiable;
 - préciser si le tableau est lu ou modifié;
 - utiliser <code>const</code> quand aucune modification n’est prévue;
-- définir le comportement pour une taille nulle;
+- refuser une taille négative et définir le comportement pour une taille nulle;
 - ne jamais accéder au-delà de la taille annoncée.

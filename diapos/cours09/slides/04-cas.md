@@ -11,11 +11,13 @@
 ## Tableau dynamique 1D
 
 ```c
-size_t nombre;
-scanf("%zu", &nombre);
+int nombre;
+if (scanf("%d", &nombre) != 1 || nombre <= 0) {
+    return EXIT_FAILURE;
+}
 
-double *mesures = malloc(nombre * sizeof *mesures);
-if (mesures == NULL && nombre != 0) {
+double *mesures = malloc(nombre * (int)sizeof *mesures);
+if (mesures == NULL) {
     return EXIT_FAILURE;
 }
 
@@ -29,7 +31,7 @@ free(mesures);
 
 ```c
 const char *source = "Allô le monde!";
-size_t taille = strlen(source) + 1;
+int taille = (int)strlen(source) + 1;
 
 char *copie = malloc(taille);
 if (copie != NULL) {
@@ -44,7 +46,7 @@ La taille comprend le zéro terminal. Le propriétaire de <code>copie</code> dev
 ## Matrice dynamique contiguë
 
 ```c
-double *matrice = malloc(lignes * colonnes * sizeof *matrice);
+double *matrice = malloc(lignes * colonnes * (int)sizeof *matrice);
 
 if (matrice != NULL) {
     matrice[ligne * colonnes + colonne] = 3.5;
@@ -58,10 +60,10 @@ Avantages : une seule allocation, une seule libération et bonne localité mémo
 ## Matrice comme tableau de pointeurs
 
 ```c
-double **m = malloc(lignes * sizeof *m);
+double **m = malloc(lignes * (int)sizeof *m);
 
-for (size_t i = 0; i < lignes; ++i) {
-    m[i] = malloc(colonnes * sizeof *m[i]);
+for (int i = 0; i < lignes; ++i) {
+    m[i] = malloc(colonnes * (int)sizeof *m[i]);
 }
 ```
 
@@ -72,7 +74,7 @@ Cette représentation permet des lignes de tailles différentes, mais exige de g
 ## Libérer une matrice de lignes
 
 ```c
-for (size_t i = 0; i < lignes; ++i) {
+for (int i = 0; i < lignes; ++i) {
     free(m[i]);
 }
 free(m);

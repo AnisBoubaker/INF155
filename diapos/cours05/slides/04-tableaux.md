@@ -80,7 +80,7 @@ for (int *p = debut; p != fin; ++p) {
 ### Avec un pointeur
 
 ```c
-for (size_t i = 0; i < 5; ++i) {
+for (int i = 0; i < 5; ++i) {
     printf("%d\n", valeurs[i]);
 }
 ```
@@ -100,8 +100,8 @@ for (int *p = valeurs; p != valeurs + 5; ++p) {
 Ces deux prototypes déclarent le même type de paramètre :
 
 ```c
-double moyenne(const int valeurs[], size_t taille);
-double moyenne(const int *valeurs, size_t taille);
+double moyenne(const int valeurs[], int taille);
+double moyenne(const int *valeurs, int taille);
 ```
 
 La fonction reçoit un pointeur, pas une copie du tableau. Elle doit donc recevoir séparément le nombre d’éléments accessibles.

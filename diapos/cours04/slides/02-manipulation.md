@@ -44,11 +44,11 @@ Le langage C ne vérifie généralement pas les limites à l’exécution. Un d�
 ## Parcourir toutes les cases
 
 ```c
-enum { NB_NOTES = 8 };
+#define NB_NOTES 8
 int notes[NB_NOTES] = {70, 89, 72, 65, 92, 77, 81, 78};
 
-for (size_t i = 0; i < NB_NOTES; ++i) {
-    printf("notes[%zu] = %d\n", i, notes[i]);
+for (int i = 0; i < NB_NOTES; ++i) {
+    printf("notes[%d] = %d\n", i, notes[i]);
 }
 ```
 
@@ -61,7 +61,7 @@ La condition utilise <code>&lt;</code>, car <code>NB_NOTES</code> n’est pas un
 ```c
 int somme = 0;
 
-for (size_t i = 0; i < NB_NOTES; ++i) {
+for (int i = 0; i < NB_NOTES; ++i) {
     somme += notes[i];
 }
 
@@ -77,8 +77,8 @@ L’accumulateur <code>somme</code> conserve le résultat partiel pendant le par
 ```c
 int valeurs[20];
 
-size_t octets = sizeof valeurs;
-size_t nombre = sizeof valeurs / sizeof valeurs[0];
+int octets = (int)sizeof valeurs;
+int nombre = (int)(sizeof valeurs / sizeof valeurs[0]);
 ```
 
 <div class="formula"><code>nombre d’éléments</code><span>=</span><code>taille du tableau</code><span>÷</span><code>taille d’une case</code></div>
