@@ -6,6 +6,8 @@
 
 <p class="lede">Dans la plupart des expressions, un tableau est converti en pointeur vers son premier élément.</p>
 
+<p class="callout small">Cette conversion explique le comportement des paramètres <code>int valeurs[]</code> observé au cours précédent.</p>
+
 ---
 
 ## Tableau et première case

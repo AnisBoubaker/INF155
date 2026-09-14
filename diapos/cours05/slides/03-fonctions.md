@@ -1,120 +1,124 @@
 <!-- .slide: class="chapter" -->
 
-<p class="section-kicker">03 · Partager une collection</p>
+<p class="section-kicker">03 · Modifier chez l’appelant</p>
 
-# Tableaux et fonctions
+# Pointeurs et fonctions
 
-<p class="lede">Une fonction reçoit l’adresse du premier élément et une taille explicite.</p>
-
----
-
-## Tableau en paramètre
-
-```c
-double calculer_moyenne(const int notes[], size_t nombre);
-```
-
-À l’intérieur de la fonction, <code>notes</code> est ajusté en pointeur vers <code>int</code>.
-
-Ces prototypes sont équivalents :
-
-```c
-double calculer_moyenne(const int notes[], size_t nombre);
-double calculer_moyenne(const int *notes, size_t nombre);
-```
+<p class="lede">Le C passe toujours les arguments par valeur — y compris les adresses.</p>
 
 ---
 
-## Pourquoi transmettre la taille ?
+## Le problème
+
+Créer une fonction qui reçoit deux entiers et renvoie leur minimum et leur maximum.
 
 ```c
-double calculer_moyenne(const int notes[], size_t nombre)
+int minimum;
+int maximum;
+
+trouver_extremes(8, 3, /* comment produire deux résultats ? */);
+```
+
+Une fonction ne retourne directement qu’une valeur. Les variables locales de la fonction disparaissent à son retour.
+
+---
+
+## Une fausse solution
+
+```c
+void trouver_extremes(int a, int b)
 {
-    sizeof notes;  // taille d'un pointeur, pas du tableau original
+    int minimum = a < b ? a : b;
+    int maximum = a > b ? a : b;
 }
 ```
 
-Le paramètre ne transporte aucune information sur le nombre de cases disponibles.
+Les deux variables appartiennent à l’appel. Elles cessent d’exister à la fin de la fonction et l’appelant ne peut pas les lire.
 
-<p class="definition"><strong>Contrat :</strong> le pointeur et le nombre d’éléments forment une paire indissociable.</p>
+---
+
+## Transmettre les destinations
+
+```c
+void trouver_extremes(int a, int b, int *min, int *max)
+{
+    *min = a < b ? a : b;
+    *max = a > b ? a : b;
+}
+```
+
+L’appelant fournit les adresses des variables à remplir :
+
+```c
+trouver_extremes(8, 3, &minimum, &maximum);
+```
+
+---
+
+## Tracer l’appel
+
+<div class="pointer-flow"><span><code>&minimum</code><small>argument copié</small></span><b>→</b><span><code>min</code><small>paramètre pointeur</small></span><b>→</b><span><code>*min</code><small>variable de l’appelant</small></span></div>
+
+La copie du pointeur désigne le même objet que l’adresse originale.
+
+<p class="definition"><strong>Passage par adresse :</strong> idiome qui simule un passage par référence en transmettant une adresse par valeur.</p>
 
 ---
 
 <!-- .slide: class="compact" -->
 
-## Exemple · Calculer la moyenne
+## Exemple complet
 
 ```c
-double calculer_moyenne(const int notes[], size_t nombre)
+#include <stdio.h>
+
+void trouver_extremes(int a, int b, int *min, int *max)
 {
-    if (nombre == 0) {
-        return 0.0;
-    }
+    *min = a < b ? a : b;
+    *max = a > b ? a : b;
+}
 
-    long somme = 0;
-    for (size_t i = 0; i < nombre; ++i) {
-        somme += notes[i];
-    }
+int main(void)
+{
+    int min;
+    int max;
 
-    return (double)somme / nombre;
+    trouver_extremes(8, 3, &min, &max);
+    printf("min = %d, max = %d\n", min, max);
+    return 0;
 }
 ```
 
-<code>const</code> garantit que la fonction ne modifie pas les notes par ce paramètre.
+---
+
+## Contrat d’un paramètre pointeur
+
+Le prototype seul ne dit pas tout :
+
+```c
+bool lire_entier(int *resultat);
+```
+
+Le commentaire doit préciser :
+
+- si le pointeur peut être <code>NULL</code>;
+- si l’objet pointé sera lu, modifié ou les deux;
+- combien d’éléments sont accessibles;
+- qui demeure propriétaire de la mémoire.
 
 ---
 
-## Modifier un tableau reçu
+## <code>const</code> pour annoncer « lecture seule »
 
 ```c
-void incrementer(int valeurs[], size_t nombre)
+void afficher_valeur(const int *valeur)
 {
-    for (size_t i = 0; i < nombre; ++i) {
-        ++valeurs[i];
+    if (valeur != NULL) {
+        printf("%d\n", *valeur);
     }
 }
 ```
 
-L’appel modifie le tableau original :
+<code>const int *</code> interdit à cette fonction de modifier l’objet par ce pointeur.
 
-```c
-int nombres[] = {10, 20, 30};
-incrementer(nombres, 3);
-```
-
----
-
-## Tableau passé « par référence » ?
-
-Le langage C passe toujours les arguments par valeur.
-
-Pour un tableau, l’expression fournie à la fonction est convertie en adresse du premier élément; cette adresse est copiée dans le paramètre.
-
-<div class="pointer-flow"><span><code>nombres</code><small>adresse du premier élément</small></span><b>copie →</b><span><code>valeurs</code><small>pointeur local</small></span><b>→</b><span>mêmes cases</span></div>
-
----
-
-## Concevoir une bonne interface
-
-Pour chaque fonction qui reçoit un tableau :
-
-- transmettre une taille fiable;
-- préciser si le tableau est lu ou modifié;
-- utiliser <code>const</code> quand aucune modification n’est prévue;
-- définir le comportement pour une taille nulle;
-- ne jamais accéder au-delà de la taille annoncée.
-
----
-
-<!-- .slide: class="chapter compact" -->
-
-<p class="section-kicker">À retenir</p>
-
-# Tableaux 1D · À retenir
-
-<ol class="plan">
-  <li>Les indices commencent à zéro.</li>
-  <li>La dernière case est à l’indice <code>taille - 1</code>.</li>
-  <li><code>sizeof</code> ne retrouve pas la longueur dans une fonction.</li>
-  <li>Un paramètre <code>const</code> protège les données en lecture seule.</li>
-</ol>
+<p class="callout small"><code>const</code> documente le contrat et permet au compilateur de détecter certaines erreurs.</p>

@@ -2,9 +2,9 @@
 
 <p class="eyebrow">INF155 · Cours 04</p>
 
-# Les pointeurs
+# Les tableaux à une dimension
 
-<p class="lede">Nommer une adresse, accéder à la mémoire et permettre à une fonction de modifier une donnée.</p>
+<p class="lede">Regrouper une suite de valeurs de même type et la traiter systématiquement.</p>
 
 <p class="byline"><strong>Anis Boubaker, Ph. D.</strong><br>Professeur Enseignant<br>École de technologie supérieure</p>
 
@@ -13,9 +13,8 @@
 ## Plan du cours
 
 <ol class="plan">
-  <li>Variables, mémoire et adresses</li>
-  <li>Déclarer, initialiser et déréférencer un pointeur</li>
-  <li>Passage par adresse aux fonctions</li>
-  <li>Relation entre tableaux et pointeurs</li>
-  <li>Arithmétique des pointeurs</li>
+  <li>Pourquoi utiliser un tableau ?</li>
+  <li>Déclaration, initialisation et indices</li>
+  <li>Parcours, taille et limites</li>
+  <li>Tableaux en paramètres de fonctions</li>
 </ol>

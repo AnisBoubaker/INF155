@@ -29,6 +29,7 @@ int une_variable = 15;
 Accéder indirectement à une donnée devient utile pour :
 
 - permettre à une fonction de modifier une variable de l’appelant;
+- expliquer le passage des tableaux aux fonctions vu au cours précédent;
 - parcourir efficacement un tableau;
 - représenter des structures liées;
 - réserver de la mémoire à l’exécution;
