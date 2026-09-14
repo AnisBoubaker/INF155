@@ -41,8 +41,11 @@ Le programme client inclut le fichier d’en-tête et lie l’implémentation co
 
 #include <stddef.h>
 
+size_t fouille_lineaire(const int valeurs[], size_t nombre,
+                        int cible);
+size_t fouille_binaire(const int valeurs[], size_t nombre,
+                       int cible);
 void tri_insertion(int valeurs[], size_t nombre);
-double moyenne(const int valeurs[], size_t nombre);
 
 #endif
 ```
@@ -56,18 +59,20 @@ L’en-tête annonce les services sans révéler leur code.
 ```c
 #include "tableaux.h"
 
-void tri_insertion(int valeurs[], size_t nombre)
+size_t fouille_lineaire(const int valeurs[], size_t nombre,
+                        int cible)
 {
-    /* implémentation */
-}
+    for (size_t i = 0; i < nombre; ++i) {
+        if (valeurs[i] == cible) {
+            return i;
+        }
+    }
 
-double moyenne(const int valeurs[], size_t nombre)
-{
-    /* implémentation */
+    return nombre;
 }
 ```
 
-Le fichier source inclut sa propre interface pour vérifier la cohérence des déclarations.
+Le fichier source inclut sa propre interface pour vérifier la cohérence des déclarations. Les autres services sont définis dans ce même fichier.
 
 ---
 
@@ -80,8 +85,14 @@ Le fichier source inclut sa propre interface pour vérifier la cohérence des d�
 int main(void)
 {
     int valeurs[] = {8, 3, 5, 1};
-    tri_insertion(valeurs, 4);
-    printf("%.1f\n", moyenne(valeurs, 4));
+    size_t nombre = sizeof valeurs / sizeof valeurs[0];
+
+    size_t position = fouille_lineaire(valeurs, nombre, 5);
+    if (position != nombre) {
+        printf("indice : %zu\n", position);
+    }
+
+    tri_insertion(valeurs, nombre);
     return 0;
 }
 ```
@@ -151,11 +162,11 @@ Chaque fichier <code>.c</code> est une unité de traduction. L’éditeur de lie
 
 <p class="section-kicker">À retenir</p>
 
-# Des données organisées, des algorithmes expliqués, un projet découpé
+# Fouiller, trier et modulariser
 
 <ol class="plan">
-  <li>Respecter chaque dimension et sa limite.</li>
-  <li>Identifier l’invariant d’un algorithme de tri.</li>
-  <li>Placer le contrat public dans le <code>.h</code>.</li>
-  <li>Garder les détails d’implémentation dans le <code>.c</code>.</li>
+  <li>Utiliser la fouille linéaire lorsque le tableau n’est pas ordonné.</li>
+  <li>Exiger un tableau trié avant toute fouille binaire.</li>
+  <li>Identifier l’invariant de chaque algorithme.</li>
+  <li>Séparer le contrat public dans le <code>.h</code> de son implémentation.</li>
 </ol>

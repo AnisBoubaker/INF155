@@ -1,6 +1,6 @@
 <!-- .slide: class="chapter" -->
 
-<p class="section-kicker">01 · Organiser en lignes et colonnes</p>
+<p class="section-kicker">04 · Organiser en lignes et colonnes</p>
 
 # Tableaux à deux dimensions
 
@@ -93,7 +93,7 @@ void afficher(size_t lignes, size_t colonnes,
               const int tableau[lignes][colonnes]);
 ```
 
-Avec un tableau 2D, la fonction doit connaître la longueur d’une ligne pour calculer l’adresse de chaque case.
+Avec un tableau 2D, la fonction doit connaître la longueur d’une ligne pour localiser correctement chaque case.
 
 <p class="callout small">Les tableaux de longueur variable exigent C99. Un projet peut aussi employer une constante de compilation pour le nombre de colonnes.</p>
 
@@ -118,14 +118,32 @@ void remplir(size_t lignes, size_t colonnes,
 ## Une ligne est un tableau 1D
 
 ```c
-int grille[3][4] = {0};
-int *premiere_ligne = grille[0];
+void afficher_ligne(const int ligne[], size_t colonnes);
+
+int grille[3][4] = {
+    {1, 2, 4, 5},
+    {8, 4, 3, 2},
+    {7, 0, 0, 1}
+};
+
+afficher_ligne(grille[0], 4);
 ```
 
-<code>grille[0]</code> désigne la première ligne et se convertit en pointeur vers sa première case.
+<code>grille[0]</code> désigne la première ligne. Elle peut être fournie à une fonction qui traite un tableau 1D.
 
-```c
-grille[1][2] == *(*(grille + 1) + 2)
-```
+<p class="callout small">Chaque ligne possède le même nombre de colonnes et se parcourt avec un seul indice.</p>
 
-<p class="tiny">L’écriture indicée demeure nettement plus expressive ici.</p>
+---
+
+<!-- .slide: class="chapter compact" -->
+
+<p class="section-kicker">À retenir</p>
+
+# Les tableaux · À retenir
+
+<ol class="plan">
+  <li>Chaque indice commence à zéro et possède sa propre limite.</li>
+  <li>Un tableau 2D est un tableau de lignes de même longueur.</li>
+  <li>Une fonction reçoit séparément les dimensions nécessaires.</li>
+  <li><code>const</code> protège les données qui doivent rester en lecture seule.</li>
+</ol>
