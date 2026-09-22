@@ -97,6 +97,36 @@ resultat = factorielle(n);
 Les arguments sont évalués et copiés, puis le contrôle passe au corps de <code>factorielle</code>. Ses variables locales existent pendant cet appel.
 
 ---
+## Cycle d’exécution · L'exécution de la fonction
+
+<div class="execution-strip">
+  <span><strong>1</strong> Entrer dans <code>main</code></span>
+  <span><strong>2</strong> Appeler une fonction</span>
+  <span class="active"><strong>3</strong> Exécuter son corps</span>
+  <span><strong>4</strong> Revenir à l’appelant</span>
+</div>
+
+```c
+/*
+ * Calcule la factorielle d'un entier n.
+ * Paramètre : n, entier compris entre 0 et 20.
+ * Retour : n! sous forme d'entier non signé.
+ */
+unsigned long long factorielle(int n)
+{
+    unsigned long long resultat = 1;
+
+    for (int i = 2; i <= n; i++) {
+        resultat *= i;
+    }
+
+    return resultat;
+}
+```
+
+Le corps de la fonction s'exécute. Les paramètres formel ont une valeur (celles passées à l'appel).
+
+---
 
 ## Cycle d’exécution · Le retour
 
@@ -141,7 +171,7 @@ Chaque appel suspend temporairement la fonction appelante et crée son propre co
 
 ```c
 afficher_resultat(n, resultat);
-puts("Calcul terminé.");       // reprise ici
+printf("Calcul terminé.");       // reprise ici
 ```
 
 <p class="definition"><strong>Adresse de retour :</strong> l’environnement d’exécution conserve l’endroit où la fonction appelante doit reprendre.</p>
@@ -156,7 +186,7 @@ return EXIT_SUCCESS;
 
 Lorsque <code>main</code> se termine :
 
-- sa valeur de retour est transmise à l’environnement d’exécution;
+- sa valeur de retour est transmise au système d'exploitation;
 - les ressources du processus sont récupérées par le système;
 - le système d’exploitation reprend le contrôle.
 

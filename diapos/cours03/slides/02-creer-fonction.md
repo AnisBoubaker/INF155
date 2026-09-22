@@ -141,7 +141,6 @@ double calculer_moyenne(double somme, int nombre)
 
 Les paramètres <code>somme</code> et <code>nombre</code>, ainsi que la variable <code>moyenne</code>, sont locaux à cet appel.
 
-<p class="callout small">Depuis C99, une variable peut être déclarée au plus près de sa première utilisation dans un bloc.</p>
 
 ---
 
@@ -180,6 +179,7 @@ double valeur_absolue(double x)
 ```
 
 <p class="callout small">Une fonction peut contenir plusieurs <code>return</code>; chacun doit respecter le type de retour annoncé.</p>
+<p class="callout small">L'utilisation de plusieurs <code>return</code> dans une même fonction devrait être réservé à des cas d'optimisation et de simplification de l'algorithme (qui en facilite la lecture)</p>
 
 ---
 
