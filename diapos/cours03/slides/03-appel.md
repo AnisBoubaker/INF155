@@ -97,6 +97,7 @@ resultat = factorielle(n);
 Les arguments sont évalués et copiés, puis le contrôle passe au corps de <code>factorielle</code>. Ses variables locales existent pendant cet appel.
 
 ---
+
 ## Cycle d’exécution · L'exécution de la fonction
 
 <div class="execution-strip">
