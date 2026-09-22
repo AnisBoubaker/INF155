@@ -81,7 +81,8 @@ Le nom :
 - sert à appeler la fonction;
 - respecte les règles lexicales d’un identifiant C;
 - décrit le traitement effectué;
-- commence généralement par un verbe.
+- Si la fonction **retourne** une valeur: adopte généralement une forme nominale (ex.: moyenne_notes, saisie, etc.).
+- Si la fonction **ne retourne pas** de valeur: adopte généralement un forme verbale (ex.: afficher_menu) 
 
 <p class="callout small">Préférer <code>calculer_moyenne</code> à <code>traitement2</code>.</p>
 
