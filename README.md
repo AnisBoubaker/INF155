@@ -27,6 +27,7 @@ Tous les cours suivent le même principe :
 - `diapos/cours08/slides/` : enregistrements et encapsulation;
 - `diapos/cours09/slides/` : allocation dynamique;
 - `diapos/cours10/slides/` : fichiers et analyse de texte.
+- `diapos/cours11/slides/` : introduction aux objets, classes et instances en C++.
 
 Dans un fichier Markdown, une ligne contenant seulement `---` crée une nouvelle diapositive. Les images propres à un cours vont dans son dossier `assets/`. Le thème et les diagrammes réutilisables sont dans `css/inf155.css`, et la configuration Reveal commune dans `js/inf155.js`.
 
