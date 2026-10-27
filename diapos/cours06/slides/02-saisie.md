@@ -12,7 +12,7 @@
 
 ```c
 char nom[20];
-scanf("%s", nom);
+scanf("%s", nom); //Remarquez l'absence du &, pourquoi? 
 ```
 
 Sans largeur maximale, une entrée trop longue déborde le tableau. De plus, <code>%s</code> s’arrête au premier espace.

@@ -62,6 +62,25 @@ Le compilateur :
 
 ---
 
+## Afficher une chaîne avec <code>printf</code>
+
+```c
+char cours[] = "INF155";
+printf("Cours : %s\n", cours);
+```
+
+Affichage :
+
+```text
+Cours : INF155
+```
+
+- <code>%s</code> affiche les caractères jusqu’au <code>'\0'</code>, qui n’est pas affiché.
+- On passe le nom du tableau (<code>cours</code>).
+- <code>\n</code> ajoute un retour à la ligne.
+
+---
+
 ## Modifier un tableau de caractères
 
 ```c
