@@ -80,14 +80,16 @@ Chaque case peut être modifiée tant que l’indice demeure valide et que le z�
 ## Littéral de chaîne et pointeur
 
 ```c
-const char *message = "Allô le monde!";
+char *message = "Allô le monde!";
 ```
+
+Dans le modèle mémoire du cours, le pointeur pointe vers une zone mémoire du « Code Block » contenant le littéral. Cette zone est en lecture seule.
 
 Le pointeur peut être réaffecté pour désigner un autre texte, mais le littéral ne doit pas être modifié.
 
 ```c
 message = "Bonjour";  // permis
-message[0] = 'b';      // interdit par const
+message[0] = 'b';      // comportement indéfini : zone en lecture seule
 ```
 
 ---

@@ -23,10 +23,11 @@ int longueur = (int)strlen("INF155");  // 6
 ## Copier une chaîne
 
 ```c
-char destination[20];
+#define CAPACITE_DESTINATION 20
+char destination[CAPACITE_DESTINATION];
 const char *source = "Bonjour";
 
-if ((int)strlen(source) < (int)sizeof destination) {
+if ((int)strlen(source) < CAPACITE_DESTINATION) {
     strcpy(destination, source);
 }
 ```
@@ -40,11 +41,12 @@ if ((int)strlen(source) < (int)sizeof destination) {
 ## Concaténer deux chaînes
 
 ```c
-char message[40] = "Bonjour ";
+#define CAPACITE_MESSAGE 40
+char message[CAPACITE_MESSAGE] = "Bonjour ";
 const char *nom = "Ada";
 
 int requis = (int)(strlen(message) + strlen(nom) + 1);
-if (requis <= (int)sizeof message) {
+if (requis <= CAPACITE_MESSAGE) {
     strcat(message, nom);
 }
 ```
@@ -53,17 +55,17 @@ if (requis <= (int)sizeof message) {
 
 ---
 
-## Formater avec <code>snprintf</code>
+## Formater avec <code>sprintf</code>
 
 ```c
-char resultat[64];
+#define CAPACITE_RESULTAT 64
+char resultat[CAPACITE_RESULTAT];
 int note = 93;
 
-int taille = snprintf(resultat, sizeof resultat,
-                      "Note finale : %d %%", note);
+int taille = sprintf(resultat, "Note finale : %d %%", note);
 ```
 
-<code>snprintf</code> connaît la capacité et permet de détecter une troncature lorsque la valeur retournée est négative ou au moins égale à la capacité.
+<code>sprintf</code> écrit le texte formaté dans le tableau et retourne le nombre de caractères écrits, sans compter le zéro terminal. Le tableau doit être assez grand pour contenir le texte et le <code>'\0'</code>.
 
 ---
 
@@ -83,18 +85,29 @@ int resultat = strcmp(chaine1, chaine2);
 
 ## Convertir du texte en nombre
 
-Les fonctions <code>atoi</code> et <code>atof</code> signalent mal les erreurs. Préférer :
+<code>atoi</code> convertit une chaîne en <code>int</code>; <code>atof</code> la convertit en <code>double</code>.
 
 ```c
-char *fin;
-long valeur = strtol(texte, &fin, 10);
+#include <stdlib.h>
 
-if (fin == texte || *fin != '\0') {
-    /* conversion invalide ou caractères restants */
-}
+int nombre = atoi("123");       // 123
+double prix = atof("19.95");    // 19.95
 ```
 
-<code>strtol</code> permet aussi de vérifier les limites avec <code>errno</code>.
+---
+
+## Versions avec une limite explicite
+
+```c
+char *strncpy(char *destination, const char *source,
+              size_t nombre);
+
+char *strncat(char *destination, const char *source,
+              size_t max_ajout);
+
+int snprintf(char *destination, size_t capacite,
+             const char *format, ...);
+```
 
 ---
 

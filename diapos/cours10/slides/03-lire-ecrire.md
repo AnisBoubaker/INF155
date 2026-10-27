@@ -27,9 +27,10 @@ Après la boucle, utiliser <code>ferror</code> pour distinguer erreur et fin nor
 ## Lire une ligne avec <code>fgets</code>
 
 ```c
-char ligne[256];
+#define CAPACITE_LIGNE 256
+char ligne[CAPACITE_LIGNE];
 
-while (fgets(ligne, sizeof ligne, fichier) != NULL) {
+while (fgets(ligne, CAPACITE_LIGNE, fichier) != NULL) {
     fputs(ligne, stdout);
 }
 
@@ -89,14 +90,16 @@ Les fonctions retournent un nombre d’éléments complets, pas un nombre d’oc
 ## Patron complet de lecture
 
 ```c
+#define CAPACITE_LIGNE 256
+
 FILE *f = fopen("notes.txt", "r");
 if (f == NULL) {
     perror("notes.txt");
     return EXIT_FAILURE;
 }
 
-char ligne[256];
-while (fgets(ligne, sizeof ligne, f) != NULL) {
+char ligne[CAPACITE_LIGNE];
+while (fgets(ligne, CAPACITE_LIGNE, f) != NULL) {
     /* analyser ligne */
 }
 

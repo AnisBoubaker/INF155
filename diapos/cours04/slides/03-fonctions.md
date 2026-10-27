@@ -23,14 +23,13 @@ La taille ne fait pas partie de ce paramètre : il faut la transmettre séparém
 ## Pourquoi transmettre la taille ?
 
 ```c
-double calculer_moyenne(const int notes[], int nombre)
-{
-    int nombre_calcule = (int)(sizeof notes / sizeof notes[0]);
-    // Ne donne pas le nombre d'éléments du tableau de l'appelant.
-}
+#define NB_NOTES 4
+int notes[NB_NOTES] = {70, 80, 90, 100};
+
+double moyenne = calculer_moyenne(notes, NB_NOTES);
 ```
 
-Dans une fonction, <code>sizeof notes</code> ne mesure pas le tableau fourni par l’appelant.
+Le paramètre <code>notes</code> ne contient pas la taille du tableau fourni par l’appelant. La fonction utilise donc le paramètre <code>nombre</code> pour connaître le nombre d’éléments.
 
 <p class="definition"><strong>Contrat :</strong> le tableau et son nombre d’éléments forment une paire indissociable.</p>
 

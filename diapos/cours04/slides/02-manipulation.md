@@ -72,18 +72,20 @@ L’accumulateur <code>somme</code> conserve le résultat partiel pendant le par
 
 ---
 
-## Obtenir la taille dans sa portée
+## Conserver une taille explicite
 
 ```c
-int valeurs[20];
+#define NB_VALEURS 20
+int valeurs[NB_VALEURS];
 
-int octets = (int)sizeof valeurs;
-int nombre = (int)(sizeof valeurs / sizeof valeurs[0]);
+for (int i = 0; i < NB_VALEURS; ++i) {
+    valeurs[i] = 0;
+}
 ```
 
-<div class="formula"><code>nombre d’éléments</code><span>=</span><code>taille du tableau</code><span>÷</span><code>taille d’une case</code></div>
+La constante <code>NB_VALEURS</code> sert à déclarer le tableau et à limiter son parcours.
 
-<p class="callout small">Cette formule fonctionne seulement là où l’objet est encore réellement un tableau.</p>
+<p class="callout small">Lors d’un appel de fonction, transmettre aussi le nombre d’éléments.</p>
 
 ---
 

@@ -30,11 +30,15 @@ Un module peut offrir :
 
 #include <stdbool.h>
 
+#define TAILLE_NOM 40
+#define TAILLE_CODE 16
+#define NB_NOTES 5
+
 typedef struct {
-    char nom[40];
-    char prenom[40];
-    char code[16];
-    int notes[5];
+    char nom[TAILLE_NOM];
+    char prenom[TAILLE_NOM];
+    char code[TAILLE_CODE];
+    int notes[NB_NOTES];
 } Etudiant;
 
 bool etudiant_initialiser(Etudiant *e, const char *nom,
@@ -52,16 +56,18 @@ double etudiant_moyenne(const Etudiant *e);
 bool etudiant_initialiser(Etudiant *e, const char *nom,
                           const char *prenom, const char *code)
 {
-    if (e == NULL || (int)strlen(nom) >= (int)sizeof e->nom ||
-        (int)strlen(prenom) >= (int)sizeof e->prenom ||
-        (int)strlen(code) >= (int)sizeof e->code) {
+    if (e == NULL || (int)strlen(nom) >= TAILLE_NOM ||
+        (int)strlen(prenom) >= TAILLE_NOM ||
+        (int)strlen(code) >= TAILLE_CODE) {
         return false;
     }
 
     strcpy(e->nom, nom);
     strcpy(e->prenom, prenom);
     strcpy(e->code, code);
-    memset(e->notes, 0, sizeof e->notes);
+    for (int i = 0; i < NB_NOTES; ++i) {
+        e->notes[i] = 0;
+    }
     return true;
 }
 ```
@@ -78,7 +84,7 @@ const char *etudiant_nom(const Etudiant *e)
 
 bool etudiant_definir_note(Etudiant *e, int i, int note)
 {
-    if (e == NULL || i < 0 || i >= 5 || note < 0 || note > 100) {
+    if (e == NULL || i < 0 || i >= NB_NOTES || note < 0 || note > 100) {
         return false;
     }
     e->notes[i] = note;
