@@ -46,39 +46,11 @@ if (fgets(ligne, CAPACITE_LIGNE, stdin) != NULL) {
 
 ## Retirer le retour de ligne
 
-Après un appel réussi à <code>fgets</code>, chercher le retour de ligne dans la chaîne.
+Pour une ligne lue avec son retour de ligne :
 
 ```c
-int i = 0;
-while (ligne[i] != '\0' && ligne[i] != '\n') {
-    ++i;
-}
-
-if (ligne[i] == '\n') {
-    ligne[i] = '\0';
-}
+fgets(ligne, CAPACITE_LIGNE, stdin);
+ligne[strlen(ligne)-1] = '\0';
 ```
 
-La boucle s’arrête au retour de ligne ou au zéro terminal. Si un retour de ligne est présent, on le remplace par <code>'\0'</code>.
-
----
-
-## Gérer une ligne trop longue
-
-Si aucun <code>'\n'</code> n’a été lu, il peut rester des caractères dans l’entrée. Faire cette vérification après un appel réussi à <code>fgets</code>, avant de retirer le retour de ligne.
-
-```c
-int i = 0;
-while (ligne[i] != '\0' && ligne[i] != '\n') {
-    ++i;
-}
-
-if (ligne[i] == '\0') {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF) {
-        ;
-    }
-}
-```
-
-<p class="callout small">Ici, on conserve le début de la ligne et on ignore la suite jusqu’à <code>'\n'</code> ou <code>EOF</code>.</p>
+<code>strlen(ligne)-1</code> donne l’indice du dernier caractère, ici <code>'\n'</code>, qu’on remplace par <code>'\0'</code>.

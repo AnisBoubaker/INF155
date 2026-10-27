@@ -30,18 +30,11 @@ On commence par écrire ces trois fonctions dans le même fichier que le program
 
 ```text
 PROCÉDURE retirer_retour_ligne(texte)
-    i ← 0
-    TANT QUE texte[i] ≠ '\0' ET texte[i] ≠ '\n'
-        i ← i + 1
-    FIN TANT QUE
-
-    SI texte[i] = '\n'
-        texte[i] ← '\0'
-    FIN SI
+    texte[strlen(texte)-1] ← '\0'
 FIN PROCÉDURE
 ```
 
-On parcourt une chaîne valide et on remplace son premier retour de ligne par le zéro terminal, s’il est présent.
+Le retour de ligne final est remplacé par <code>'\0'</code>.
 
 ---
 
@@ -174,6 +167,7 @@ void remplacer_caractere(char texte[],
 
 ```c
 #include "chaines.h"
+#include <string.h>
 
 /* Définitions des trois fonctions,
    à écrire en C à partir du pseudocode. */
@@ -257,8 +251,7 @@ Les détails des traitements et les éventuelles fonctions internes restent dans
 #ifndef CHAINES_H
 #define CHAINES_H
 
-/* Remplace le premier '\n' par '\0' dans texte.
- * Laisse texte inchangé si aucun '\n' n'est présent. */
+/* Remplace le retour de ligne final par '\0' dans texte. */
 void retirer_retour_ligne(char texte[]);
 
 /* Retourne le nombre d'occurrences de cible dans texte.
