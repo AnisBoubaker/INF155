@@ -22,8 +22,8 @@ Tous les cours suivent le même principe :
 - `diapos/cours03/slides/` : fonctions, appels, décomposition, portée et mémoire.
 - `diapos/cours04/slides/` : tableaux 1D et 2D, parcours et fonctions;
 - `diapos/cours05/slides/` : pointeurs, adresses, fonctions et tableaux;
-- `diapos/cours06/slides/` : fouille linéaire et binaire, tris et modules;
-- `diapos/cours07/slides/` : chaînes de caractères et bibliothèque standard;
+- `diapos/cours06/slides/` : chaînes de caractères, bibliothèque standard et modules;
+- `diapos/cours07/slides/` : fouille linéaire et binaire, tris par insertion, par sélection et à bulles;
 - `diapos/cours08/slides/` : enregistrements et encapsulation;
 - `diapos/cours09/slides/` : allocation dynamique;
 - `diapos/cours10/slides/` : fichiers et analyse de texte.

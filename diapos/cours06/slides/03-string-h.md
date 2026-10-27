@@ -113,7 +113,7 @@ int snprintf(char *destination, size_t capacite,
 
 <!-- .slide: class="chapter compact" -->
 
-<p class="section-kicker">À retenir</p>
+<p class="section-kicker">Bilan · Les chaînes de caractères</p>
 
 # Une chaîne est un tableau avec un contrat supplémentaire
 
