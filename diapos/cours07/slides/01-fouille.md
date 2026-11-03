@@ -147,11 +147,11 @@ int fouille_binaire(const int valeurs[], int nombre, int cible)
 
 ## Tracer la fouille de 70
 
-| Intervalle | Milieu | Valeur | Décision |
-|---|---:|---:|---|
-| <code>[0, 9)</code> | 4 | 50 | conserver <code>[5, 9)</code> |
-| <code>[5, 9)</code> | 7 | 80 | conserver <code>[5, 7)</code> |
-| <code>[5, 7)</code> | 6 | 70 | retourner <code>6</code> |
+| Intervalle          | Milieu | Valeur | Décision                     |
+| ------------------- | -----: | -----: | ----------------------------- |
+| <code>[0, 9)</code> |      4 |     50 | conserver <code>[5, 9)</code> |
+| <code>[5, 9)</code> |      7 |     80 | conserver <code>[5, 7)</code> |
+| <code>[5, 7)</code> |      6 |     70 | retourner <code>6</code>      |
 
 <div class="array-strip"><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span class="sorted">70<small>6</small></span><span>80</span><span>90</span></div>
 
@@ -161,16 +161,16 @@ Trois comparaisons suffisent ici, contre sept avec une fouille linéaire depuis 
 
 ## Linéaire ou binaire ?
 
-| Situation | Choix naturel | Coût de la fouille |
-|---|---|---:|
-| tableau non ordonné | linéaire | <code>O(n)</code> |
-| tableau trié, petite taille | linéaire ou binaire | <code>O(n)</code> ou <code>O(log n)</code> |
-| tableau trié, grande taille | binaire | <code>O(n)</code> |
-| tableau trié, fouilles répétées | binaire | <code>O(log n)</code> chacune |
+| Situation                           | Choix naturel        |                        Coût de la fouille |
+| ----------------------------------- | -------------------- | -----------------------------------------: |
+| tableau non ordonné                | linéaire            |                          <code>O(n)</code> |
+| tableau trié, petite taille        | linéaire ou binaire | <code>O(n)</code> ou <code>O(log n)</code> |
+| tableau trié, grande taille        | binaire              |                      <code>O(log n)</code> |
+| tableau trié, fouilles répétées | binaire              |              <code>O(log n)</code> chacune |
 
 Dans un million d’éléments triés:
 
 * la fouille binaire demande environ 20 itérations au pire. Le refaire 1000 fois coute 20 000 itérations.
-* la fouille linéaire demande 1 million d'itérations. Le refaire 1000 fois coute **1 milliard s'itérations**. 
+* la fouille linéaire demande 1 million d'itérations. Le refaire 1000 fois coute **1 milliard s'itérations**.
 
 <p class="callout small">Trier uniquement pour effectuer une seule fouille peut coûter plus cher qu’un parcours linéaire.</p>
