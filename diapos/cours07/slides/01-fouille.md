@@ -65,9 +65,6 @@ Le paramètre <code>const</code> annonce que la fouille ne modifie pas le tablea
 
 ## Tracer la fouille de 92
 
-<div class="array-strip"><span class="active">31<small>0</small></span><span>8<small>1</small></span><span>54<small>2</small></span><span>17<small>3</small></span><span>92<small>4</small></span><span>6<small>5</small></span><span>40<small>6</small></span><span>25<small>7</small></span></div>
-
-<div class="array-strip"><span>31<small>0</small></span><span>8<small>1</small></span><span class="active">54<small>2</small></span><span>17<small>3</small></span><span>92<small>4</small></span><span>6<small>5</small></span><span>40<small>6</small></span><span>25<small>7</small></span></div>
 
 <div class="array-strip"><span>31<small>0</small></span><span>8<small>1</small></span><span>54<small>2</small></span><span>17<small>3</small></span><span class="sorted">92<small>4</small></span><span>6<small>5</small></span><span>40<small>6</small></span><span>25<small>7</small></span></div>
 

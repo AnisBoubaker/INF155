@@ -41,14 +41,14 @@ On garde le terme dominant, sans son facteur constant :
 
 ## Grand O · Coûts à connaître
 
-| Notation | Croissance | Exemple |
-|---|---|---|
-| <code>O(1)</code> | constante | lire <code>valeurs[i]</code> |
-| <code>O(log n)</code> | logarithmique | réduire une quantité de moitié à chaque étape |
-| <code>O(n)</code> | linéaire | afficher les <code>n</code> valeurs d’un tableau |
-| <code>O(n²)</code> | quadratique | parcourir <code>n</code> lignes de <code>n</code> cases |
-| <code>O(nᵏ)</code> | polynomiale (<code>k</code> fixé) | <code>k</code> boucles imbriquées de <code>n</code> itérations chacune |
-| <code>O(2ⁿ)</code> | exponentielle | un travail qui double à chaque ajout d’un élément |
+| Notation              | Croissance                         | Exemple                                                                  |
+| --------------------- | ---------------------------------- | ------------------------------------------------------------------------ |
+| <code>O(1)</code>     | constante                          | lire <code>valeurs[i]</code>                                             |
+| <code>O(log n)</code> | logarithmique                      | réduire une quantité de moitié à chaque étape                       |
+| <code>O(n)</code>     | linéaire                          | afficher les <code>n</code> valeurs d’un tableau                        |
+| <code>O(n²)</code>   | quadratique                        | parcourir <code>n</code> lignes de <code>n</code> cases                  |
+| <code>O(nᵏ)</code>   | polynomiale (<code>k</code> fixé) | <code>k</code> boucles imbriquées de <code>n</code> itérations chacune |
+| <code>O(2ⁿ)</code>   | exponentielle                      | un travail qui double à chaque ajout d’un élément                    |
 
 <p class="small">Les coûts linéaire et quadratique sont aussi <strong>polynomiaux</strong> : <code>k = 1</code> et <code>k = 2</code>.</p>
 
