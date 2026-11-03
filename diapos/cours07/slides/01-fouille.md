@@ -164,25 +164,13 @@ Trois comparaisons suffisent ici, contre sept avec une fouille linéaire depuis 
 | Situation | Choix naturel | Coût de la fouille |
 |---|---|---:|
 | tableau non ordonné | linéaire | <code>O(n)</code> |
-| tableau trié, une seule fouille | linéaire ou binaire | selon le contexte |
+| tableau trié, petite taille | linéaire ou binaire | <code>O(n)</code> ou <code>O(log n)</code> |
+| tableau trié, grande taille | binaire | <code>O(n)</code> |
 | tableau trié, fouilles répétées | binaire | <code>O(log n)</code> chacune |
 
-Dans un million d’éléments triés, la fouille binaire demande environ 20 itérations au pire.
+Dans un million d’éléments triés:
+
+* la fouille binaire demande environ 20 itérations au pire. Le refaire 1000 fois coute 20 000 itérations.
+* la fouille linéaire demande 1 million d'itérations. Le refaire 1000 fois coute **1 milliard s'itérations**. 
 
 <p class="callout small">Trier uniquement pour effectuer une seule fouille peut coûter plus cher qu’un parcours linéaire.</p>
-
----
-
-## Cas à tester
-
-Pour chaque algorithme, vérifier :
-
-- un tableau vide;
-- une cible en première et en dernière position;
-- une cible absente;
-- plusieurs occurrences de la cible;
-- un tableau réduit à une case.
-
-Pour la fouille binaire, vérifier aussi la précondition de tri.
-
-<p class="warning small">Avec des doublons, ces fonctions retournent une occurrence, pas nécessairement la première.</p>
