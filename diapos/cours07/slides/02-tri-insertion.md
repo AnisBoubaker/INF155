@@ -10,7 +10,7 @@
 
 ## Trier un tableau
 
-<div class="sort-transform"><div class="array-strip"><span>8</span><span>3</span><span>5</span><span>3</span><span>1</span></div><b>→</b><div class="array-strip"><span>1</span><span>3</span><span>3</span><span>5</span><span>8</span></div></div>
+<div class="sort-transform"><div class="array-strip"><span>8</span><span>3</span><span>5</span><span>3</span><span>1</span></div><b>→</b><div class="array-strip"><span class="sorted">1</span><span class="sorted">3</span><span class="sorted">3</span><span class="sorted">5</span><span class="sorted">8</span></div></div>
 
 Trier consiste à placer les éléments selon un ordre défini : croissant, décroissant, lexicographique ou selon une clé.
 

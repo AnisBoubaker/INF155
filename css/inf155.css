@@ -1825,15 +1825,30 @@ html.print-pdf .reveal .slides section.code-compare {
 
 .reveal .sort-transform {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  gap: 0.5em;
-  margin: 0.6em 0;
+  gap: 0.8em;
+  max-width: 1080px;
+  margin: 1.15em auto;
+}
+
+.reveal .sort-transform .array-strip {
+  margin: 0;
+  gap: 0.2em;
+}
+
+.reveal .sort-transform .array-strip > span {
+  flex: 1 1 0;
+  aspect-ratio: 1;
+  min-height: 0;
+  border-radius: 0.12em;
+  font-size: 1.1em;
 }
 
 .reveal .sort-transform > b {
   color: var(--ets-red);
-  font-size: 1.3em;
+  font-size: 1.8em;
+  line-height: 1;
 }
 
 .reveal .sort-walkthrough {
