@@ -273,14 +273,14 @@ Une grande valeur avance vers la droite en échangeant sa place avec ses voisins
 ```text
 PROCÉDURE tri_bulles(tableau, taille)
     limite ← taille
-    permutation ← VRAI
+    permutation ← 1
 
-    TANT QUE limite > 1 ET permutation
-        permutation ← FAUX
+    TANT QUE limite > 1 ET permutation != 0
+        permutation ← 0
         POUR i DE 0 À limite - 2
             SI tableau[i] > tableau[i + 1]
                 ÉCHANGER tableau[i] ET tableau[i + 1]
-                permutation ← VRAI
+                permutation ← 1
             FIN SI
         FIN POUR
         limite ← limite - 1
@@ -289,6 +289,8 @@ FIN PROCÉDURE
 ```
 
 Les indices commencent à 0. Après chaque passage, on exclut la dernière position, désormais définitive.
+
+Le témoin <code>permutation</code> est un <code>int</code> : <code>0</code> pour faux, <code>1</code> pour vrai.
 
 ---
 

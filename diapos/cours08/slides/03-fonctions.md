@@ -59,19 +59,19 @@ Les parenthèses sont nécessaires dans la seconde forme, car <code>.</code> a p
 ## Modifier un enregistrement
 
 ```c
-bool definir_note(Etudiant *etudiant, int evaluation, int note)
+int definir_note(Etudiant *etudiant, int evaluation, int note)
 {
     if (etudiant == NULL || evaluation < 0 || evaluation >= 5 ||
         note < 0 || note > 100) {
-        return false;
+        return 0;
     }
 
     etudiant->notes[evaluation] = note;
-    return true;
+    return 1;
 }
 ```
 
-Le contrat valide à la fois le pointeur, l’indice et la note.
+Le contrat valide à la fois le pointeur, l’indice et la note. La fonction retourne <code>1</code> si la note est enregistrée, <code>0</code> sinon.
 
 ---
 

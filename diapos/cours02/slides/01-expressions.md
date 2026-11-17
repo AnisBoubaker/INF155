@@ -114,7 +114,7 @@ taille = longueur * i;
 age >= 18       // vaut 0 ou 1
 ```
 
-<p class="definition"><strong>En C :</strong> zéro signifie faux; toute valeur non nulle signifie vrai. Un opérateur de comparaison produit <code>0</code> ou <code>1</code>.</p>
+<p class="definition"><strong>En C :</strong> zéro signifie faux; toute valeur non nulle signifie vrai. Un opérateur de comparaison produit un <code>int</code> valant <code>0</code> ou <code>1</code>.</p>
 
 ---
 

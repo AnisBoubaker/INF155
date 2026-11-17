@@ -1606,6 +1606,341 @@ html.print-pdf .reveal .slides section.code-compare {
   text-decoration: line-through;
 }
 
+/* Cours 09 : même espace mémoire, états successifs animés par Reveal. */
+.reveal .memory-scene {
+  font-size: 26.5px;
+}
+
+.reveal .memory-scene-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: start;
+  gap: 36px;
+}
+
+.reveal .memory-explanation > p:first-child {
+  margin-top: 0;
+}
+
+.reveal .memory-explanation pre {
+  font-size: 18px;
+  box-shadow: none;
+}
+
+.reveal .memory-explanation pre code {
+  padding: 16px;
+  line-height: 1.35;
+}
+
+.reveal .memory-takeaway {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 3px solid var(--cyan);
+  font-size: 0.88em;
+}
+
+.reveal .memory-takeaway--warning {
+  border-color: var(--ets-red);
+}
+
+.reveal .memory-detail {
+  color: var(--ink-soft);
+  font-size: 0.73em;
+}
+
+.reveal .memory-growth-line {
+  margin: 1em 0;
+  font-size: 0.9em;
+}
+
+.reveal .memory-exhausted,
+.reveal .memory-exhausted strong {
+  color: var(--ets-red);
+  font-size: 1.35em;
+  font-weight: 850;
+}
+
+.reveal .memory-figure {
+  position: relative;
+  height: 490px;
+  margin: 0;
+}
+
+.reveal .memory-figure .memory-address {
+  position: absolute;
+  left: 84px;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.reveal .memory-figure .memory-address--high {
+  top: 0;
+}
+
+.reveal .memory-figure .memory-address--low {
+  bottom: 0;
+}
+
+.reveal .memory-map {
+  position: absolute;
+  top: 24px;
+  right: 64px;
+  left: 84px;
+  height: 442px;
+  outline: 1px solid #a9b3bd;
+  background: white;
+}
+
+.reveal .memory-stack-region,
+.reveal .memory-heap-region {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+.reveal .memory-stack-region {
+  top: 0;
+  background: #eee5d6;
+  color: #6c5a3d;
+}
+
+.reveal .memory-region-label {
+  position: absolute;
+  top: 5px;
+  right: calc(100% + 14px);
+  width: 70px;
+  color: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: right;
+}
+
+.reveal .memory-region-label b {
+  display: block;
+  margin-top: 3px;
+  font-size: 30px;
+}
+
+.reveal .memory-call-frame {
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px 12px;
+  border-bottom: 2px solid var(--paper);
+  background: #eee5d6;
+  color: #574832;
+  font-family: var(--font-mono);
+}
+
+.reveal .memory-call-frame strong {
+  color: inherit;
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.reveal .memory-call-frame > span {
+  font-size: 16px;
+  line-height: 1.18;
+}
+
+.reveal .memory-call-frame--active {
+  background: #8a7655;
+  color: white;
+}
+
+.reveal .memory-free {
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  background: repeating-linear-gradient(135deg, #fff 0 9px, #f0f3f5 9px 10px);
+  color: var(--ink-soft);
+  font-size: 18px;
+  text-align: center;
+}
+
+.reveal .memory-free > span {
+  max-width: 23ch;
+}
+
+.reveal .memory-free--unknown {
+  background: #f1f3f5;
+  font-size: 21px;
+}
+
+.reveal .memory-heap-region {
+  bottom: 74px;
+  color: #7c5261;
+}
+
+.reveal .memory-heap-region > .memory-region-label {
+  top: auto;
+  bottom: 0;
+}
+
+.reveal .memory-raw-block {
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px 10px;
+  border: 1px solid #8a6c75;
+  background: #f2e4e9;
+  text-align: center;
+}
+
+.reveal .memory-raw-block strong {
+  color: #68424e;
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.reveal .memory-raw-bytes {
+  background: repeating-linear-gradient(90deg, transparent 0 31px, #d9bdc7 31px 32px);
+  color: #68424e;
+  font: 600 15px/1.15 var(--font-mono);
+}
+
+.reveal .memory-code-region {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  height: 74px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: var(--navy);
+  color: white;
+  text-align: center;
+}
+
+.reveal .memory-code-region > strong {
+  color: inherit;
+  font-size: 18px;
+}
+
+.reveal .memory-code-region > span:not(.memory-region-label) {
+  font: 500 16px/1.2 var(--font-mono);
+}
+
+.reveal .memory-code-region > .memory-region-label {
+  top: 16px;
+  color: var(--navy);
+  font-size: 18px;
+}
+
+.reveal .memory-pointer-link {
+  position: absolute;
+  z-index: 2;
+  border: 2px solid var(--ets-red);
+  border-left: 0;
+  color: var(--ets-red);
+}
+
+.reveal .memory-pointer-link::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: -5px;
+  border-top: 6px solid transparent;
+  border-right: 8px solid currentColor;
+  border-bottom: 6px solid transparent;
+}
+
+.reveal .memory-pointer-link--a {
+  top: 170px;
+  right: -26px;
+  bottom: 100px;
+  width: 26px;
+}
+
+.reveal .memory-pointer-link--b {
+  top: 186px;
+  right: -48px;
+  bottom: 160px;
+  width: 48px;
+  border-color: #8a6c75;
+  color: #8a6c75;
+}
+
+.reveal .memory-figure--leak .memory-raw-block {
+  border: 2px dashed var(--ets-red);
+  background: #fff0f0;
+}
+
+.reveal .memory-figure--leak .memory-raw-bytes {
+  background: transparent;
+  color: var(--ets-red-dark);
+}
+
+.reveal .memory-figure--dense .memory-call-frame {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.reveal .memory-figure--dense .memory-raw-block {
+  padding: 1px 10px;
+}
+
+.reveal .memory-figure--dense .memory-raw-block strong {
+  font-size: 17px;
+}
+
+.reveal .memory-contact {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  left: 0;
+  height: 5px;
+  transform: translateY(-2.5px);
+  background: var(--ets-red);
+}
+
+.reveal .memory-contact > span {
+  position: absolute;
+  top: -10px;
+  left: calc(100% + 6px);
+  width: 58px;
+  padding: 3px 0;
+  background: var(--ets-red);
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.reveal .memory-figure figcaption {
+  position: absolute;
+  right: 0;
+  bottom: -25px;
+  left: 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .memory-scene [data-auto-animate-target] {
+    transition-duration: 0s !important;
+  }
+}
+
 .reveal .compact {
   font-size: 0.78em;
 }

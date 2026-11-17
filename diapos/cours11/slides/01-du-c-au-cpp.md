@@ -15,7 +15,7 @@ typedef struct {
     int notes[5];
 } Etudiant;
 
-bool definir_note(Etudiant *e, int i, int note);
+int definir_note(Etudiant *e, int i, int note);
 double calculer_moyenne(const Etudiant *e);
 ```
 
@@ -31,7 +31,7 @@ private:
     int notes[5];
 
 public:
-    bool definir_note(int i, int note);
+    int definir_note(int i, int note);
     double calculer_moyenne() const;
 };
 ```

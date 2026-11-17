@@ -49,7 +49,7 @@ Si <code>ptr</code> pointe vers un <code>int</code>, <code>ptr + 1</code> désig
 
 <div class="pointer-flow"><span><code>ptr</code><small><code>&valeurs[0]</code></small></span><b>+ 1 →</b><span><code>ptr + 1</code><small><code>&valeurs[1]</code></small></span></div>
 
-L’incrément est automatiquement adapté à <code>sizeof *ptr</code>.
+Pour ce pointeur, un déplacement d’une case correspond à <code>sizeof(int)</code> octets.
 
 ---
 

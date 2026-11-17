@@ -76,9 +76,11 @@ Vérifier les valeurs de retour lorsque la perte de données est importante.
 
 ## Lire et écrire des blocs binaires
 
+Pour un tableau de <code>int</code> :
+
 ```c
-int lus = (int)fread(tableau, sizeof tableau[0], nombre, fichier);
-int ecrits = (int)fwrite(tableau, sizeof tableau[0], nombre, fichier);
+int lus = (int)fread(tableau, sizeof(int), nombre, fichier);
+int ecrits = (int)fwrite(tableau, sizeof(int), nombre, fichier);
 ```
 
 Les fonctions retournent un nombre d’éléments complets, pas un nombre d’octets.

@@ -44,20 +44,20 @@ Avec un attribut privé, les modifications passent par une méthode qui vérifie
 ## Protéger un invariant
 
 ```cpp
-bool retirer(double montant)
+int retirer(double montant)
 {
     if (montant <= 0.0 || montant > solde) {
-        return false;
+        return 0;
     }
 
     solde -= montant;
-    return true;
+    return 1;
 }
 ```
 
 <p class="callout"><strong>Invariant :</strong> règle qui doit rester vraie pendant toute la vie valide de l’objet.</p>
 
-Ici, un retrait accepté ne peut pas rendre le solde négatif.
+Ici, un retrait accepté ne peut pas rendre le solde négatif. La méthode retourne <code>1</code> si le retrait est accepté, <code>0</code> sinon.
 
 ---
 
@@ -72,7 +72,7 @@ private:
 public:
     CompteBancaire(std::string nom);
     void deposer(double montant);
-    bool retirer(double montant);
+    int retirer(double montant);
     double obtenir_solde() const;
 };
 ```

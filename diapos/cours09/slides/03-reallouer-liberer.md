@@ -12,8 +12,8 @@
 
 ```c
 int nouveau_nombre = 60;
-int nouvelle_taille = nouveau_nombre * (int)sizeof *valeurs;
-int *nouveau_bloc = realloc(valeurs, nouvelle_taille);
+int nouvelle_taille = nouveau_nombre * (int)sizeof(double);
+double *nouveau_bloc = (double *)realloc(valeurs, nouvelle_taille);
 ```
 
 La fonction peut :
@@ -29,7 +29,7 @@ Tout pointeur vers l’intérieur de l’ancien bloc doit être recalculé aprè
 ## Le piège classique
 
 ```c
-valeurs = realloc(valeurs, nouvelle_taille);  // dangereux
+valeurs = (double *)realloc(valeurs, nouvelle_taille);  // dangereux
 ```
 
 Si l’appel échoue, <code>valeurs</code> devient <code>NULL</code> et l’adresse de l’ancien bloc est perdue : fuite mémoire.
@@ -41,7 +41,7 @@ Si l’appel échoue, <code>valeurs</code> devient <code>NULL</code> et l’adre
 ## Patron sûr avec pointeur temporaire
 
 ```c
-int *temp = realloc(valeurs, nouveau_nombre * (int)sizeof *valeurs);
+double *temp = (double *)realloc(valeurs, nouveau_nombre * (int)sizeof(double));
 
 if (temp == NULL) {
     /* valeurs désigne encore l'ancien bloc */
@@ -86,8 +86,8 @@ Après <code>free</code> :
 
 ```c
 int resultat = EXIT_FAILURE;
-int *a = malloc(n * (int)sizeof *a);
-int *b = malloc(n * (int)sizeof *b);
+int *a = (int *)malloc(n * (int)sizeof(int));
+int *b = (int *)malloc(n * (int)sizeof(int));
 
 if (a != NULL && b != NULL) {
     /* traitement */

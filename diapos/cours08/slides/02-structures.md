@@ -36,7 +36,7 @@ struct Etudiant etudiant;
 L’objet contient un emplacement pour chacun des champs. Sa taille inclut aussi, éventuellement, des octets de remplissage imposés par l’alignement.
 
 ```c
-printf("%d\n", (int)sizeof etudiant);
+printf("%d\n", (int)sizeof(struct Etudiant));
 ```
 
 <p class="tiny">La taille n’est pas nécessairement la somme exacte des tailles des champs.</p>

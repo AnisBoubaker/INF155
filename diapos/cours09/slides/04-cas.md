@@ -16,12 +16,13 @@ if (scanf("%d", &nombre) != 1 || nombre <= 0) {
     return EXIT_FAILURE;
 }
 
-double *mesures = malloc(nombre * (int)sizeof *mesures);
+double *mesures = (double *)malloc(nombre * (int)sizeof(double));
 if (mesures == NULL) {
     return EXIT_FAILURE;
 }
 
 /* utiliser mesures[0] à mesures[nombre - 1] */
+mesures[0] = 25.4;
 free(mesures);
 ```
 
@@ -33,7 +34,7 @@ free(mesures);
 const char *source = "Allô le monde!";
 int taille = (int)strlen(source) + 1;
 
-char *copie = malloc(taille);
+char *copie = (char *)malloc(taille);
 if (copie != NULL) {
     memcpy(copie, source, taille);
 }
@@ -43,27 +44,13 @@ La taille comprend le zéro terminal. Le propriétaire de <code>copie</code> dev
 
 ---
 
-## Matrice dynamique contiguë
-
-```c
-double *matrice = malloc(lignes * colonnes * (int)sizeof *matrice);
-
-if (matrice != NULL) {
-    matrice[ligne * colonnes + colonne] = 3.5;
-}
-```
-
-Avantages : une seule allocation, une seule libération et bonne localité mémoire.
-
----
-
 ## Matrice comme tableau de pointeurs
 
 ```c
-double **m = malloc(lignes * (int)sizeof *m);
+double **m = (double **)malloc(lignes * (int)sizeof(double *));
 
 for (int i = 0; i < lignes; ++i) {
-    m[i] = malloc(colonnes * (int)sizeof *m[i]);
+    m[i] = (double *)malloc(colonnes * (int)sizeof(double));
 }
 ```
 
@@ -94,7 +81,8 @@ Si une allocation de ligne échoue, seules les lignes déjà créées doivent ê
 
 <ol class="plan">
   <li>Vérifier chaque allocation.</li>
-  <li>Calculer les tailles avec <code>sizeof *ptr</code>.</li>
+  <li>Calculer les tailles avec <code>sizeof(type)</code>.</li>
+  <li>Écrire le cast vers le type de pointeur attendu.</li>
   <li>Utiliser un temporaire avec <code>realloc</code>.</li>
   <li>Libérer exactement une fois chaque bloc acquis.</li>
 </ol>

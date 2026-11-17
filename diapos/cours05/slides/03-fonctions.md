@@ -96,7 +96,8 @@ int main(void)
 Le prototype seul ne dit pas tout :
 
 ```c
-bool lire_entier(int *resultat);
+/* Retourne 1 si la lecture réussit, 0 sinon. */
+int lire_entier(int *resultat);
 ```
 
 Le commentaire doit préciser :

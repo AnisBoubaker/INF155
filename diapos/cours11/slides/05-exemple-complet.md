@@ -24,7 +24,7 @@ private:
 public:
     CompteBancaire(std::string nom);
     void deposer(double montant);
-    bool retirer(double montant);
+    int retirer(double montant);
     double obtenir_solde() const;
 };
 
@@ -58,14 +58,14 @@ void CompteBancaire::deposer(double montant)
 ## Une opération qui peut échouer
 
 ```cpp
-bool CompteBancaire::retirer(double montant)
+int CompteBancaire::retirer(double montant)
 {
     if (montant <= 0.0 || montant > solde) {
-        return false;
+        return 0;
     }
 
     solde -= montant;
-    return true;
+    return 1;
 }
 
 double CompteBancaire::obtenir_solde() const
@@ -73,6 +73,8 @@ double CompteBancaire::obtenir_solde() const
     return solde;
 }
 ```
+
+Le résultat du retrait est un <code>int</code> : <code>1</code> pour la réussite, <code>0</code> pour l’échec.
 
 ---
 

@@ -28,8 +28,6 @@ Un module peut offrir :
 #ifndef ETUDIANT_H
 #define ETUDIANT_H
 
-#include <stdbool.h>
-
 #define TAILLE_NOM 40
 #define TAILLE_CODE 16
 #define NB_NOTES 5
@@ -41,25 +39,26 @@ typedef struct {
     int notes[NB_NOTES];
 } Etudiant;
 
-bool etudiant_initialiser(Etudiant *e, const char *nom,
-                          const char *prenom, const char *code);
+int etudiant_initialiser(Etudiant *e, const char *nom,
+                         const char *prenom, const char *code);
 double etudiant_moyenne(const Etudiant *e);
-
 #endif
 ```
+
+L’initialisation retourne un <code>int</code> : <code>1</code> pour la réussite, <code>0</code> pour l’échec.
 
 ---
 
 ## Initialiser sans allocation dynamique
 
 ```c
-bool etudiant_initialiser(Etudiant *e, const char *nom,
-                          const char *prenom, const char *code)
+int etudiant_initialiser(Etudiant *e, const char *nom,
+                         const char *prenom, const char *code)
 {
     if (e == NULL || (int)strlen(nom) >= TAILLE_NOM ||
         (int)strlen(prenom) >= TAILLE_NOM ||
         (int)strlen(code) >= TAILLE_CODE) {
-        return false;
+        return 0;
     }
 
     strcpy(e->nom, nom);
@@ -68,7 +67,7 @@ bool etudiant_initialiser(Etudiant *e, const char *nom,
     for (int i = 0; i < NB_NOTES; ++i) {
         e->notes[i] = 0;
     }
-    return true;
+    return 1;
 }
 ```
 
@@ -82,13 +81,13 @@ const char *etudiant_nom(const Etudiant *e)
     return e->nom;
 }
 
-bool etudiant_definir_note(Etudiant *e, int i, int note)
+int etudiant_definir_note(Etudiant *e, int i, int note)
 {
     if (e == NULL || i < 0 || i >= NB_NOTES || note < 0 || note > 100) {
-        return false;
+        return 0;
     }
     e->notes[i] = note;
-    return true;
+    return 1;
 }
 ```
 
