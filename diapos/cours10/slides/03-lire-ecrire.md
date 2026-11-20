@@ -14,7 +14,7 @@
 int caractere;
 
 while ((caractere = fgetc(fichier)) != EOF) {
-    putchar(caractere);
+	putchar(caractere);
 }
 ```
 
@@ -31,11 +31,11 @@ Après la boucle, utiliser <code>ferror</code> pour distinguer erreur et fin nor
 char ligne[CAPACITE_LIGNE];
 
 while (fgets(ligne, CAPACITE_LIGNE, fichier) != NULL) {
-    fputs(ligne, stdout);
+	fputs(ligne, stdout);
 }
 
 if (ferror(fichier)) {
-    perror("lecture");
+	perror("lecture");
 }
 ```
 
@@ -50,7 +50,7 @@ int identifiant;
 double note;
 
 if (fscanf(fichier, "%d %lf", &identifiant, &note) == 2) {
-    /* deux conversions réussies */
+	/* deux conversions réussies */
 }
 ```
 
@@ -89,6 +89,8 @@ Les fonctions retournent un nombre d’éléments complets, pas un nombre d’oc
 
 ---
 
+<!-- .slide: class="compact" -->
+
 ## Patron complet de lecture
 
 ```c
@@ -96,18 +98,18 @@ Les fonctions retournent un nombre d’éléments complets, pas un nombre d’oc
 
 FILE *f = fopen("notes.txt", "r");
 if (f == NULL) {
-    perror("notes.txt");
-    return EXIT_FAILURE;
+	perror("notes.txt");
+	return EXIT_FAILURE;
 }
 
 char ligne[CAPACITE_LIGNE];
 while (fgets(ligne, CAPACITE_LIGNE, f) != NULL) {
-    /* analyser ligne */
+	/* analyser ligne */
 }
 
 int statut = ferror(f) ? EXIT_FAILURE : EXIT_SUCCESS;
 if (fclose(f) == EOF) {
-    statut = EXIT_FAILURE;
+	statut = EXIT_FAILURE;
 }
 return statut;
 ```

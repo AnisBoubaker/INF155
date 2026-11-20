@@ -131,10 +131,12 @@ On les regroupe pour :
 ## Interface · <code>chaines.h</code>
 
 ```c
+#include <string.h>
+
 void retirer_retour_ligne(char texte[]);
 int compter_caractere(const char texte[], char cible);
 void remplacer_caractere(char texte[],
-                         char ancien, char nouveau);
+	char ancien, char nouveau);
 ```
 
 Les prototypes annoncent les paramètres et les valeurs retournées.
@@ -149,15 +151,17 @@ Un en-tête peut être inclus par plusieurs chemins dans un même fichier source
 #ifndef CHAINES_H
 #define CHAINES_H
 
+#include <string.h>
+
 void retirer_retour_ligne(char texte[]);
 int compter_caractere(const char texte[], char cible);
 void remplacer_caractere(char texte[],
-                         char ancien, char nouveau);
+	char ancien, char nouveau);
 
 #endif
 ```
 
-À la première inclusion, <code>CHAINES_H</code> est défini. Aux inclusions suivantes, le contenu est ignoré. Choisir un nom de garde unique par en-tête.
+À la première inclusion, <code>CHAINES_H</code> est défini. Aux suivantes, le contenu est ignoré. La garde reprend le nom du module en <code>UPPER_SNAKE_CASE</code>, suivi de <code>_H</code>.
 
 ---
 
@@ -167,13 +171,14 @@ void remplacer_caractere(char texte[],
 
 ```c
 #include "chaines.h"
-#include <string.h>
 
 /* Définitions des trois fonctions,
-   à écrire en C à partir du pseudocode. */
+	à écrire en C à partir du pseudocode. */
 ```
 
 On place ici les définitions de <code>retirer_retour_ligne</code>, <code>compter_caractere</code> et <code>remplacer_caractere</code>.
+
+Les dépendances du module, ici <code>string.h</code>, sont incluses dans <code>chaines.h</code>.
 
 Inclure <code>"chaines.h"</code> permet de :
 
@@ -193,15 +198,15 @@ Inclure <code>"chaines.h"</code> permet de :
 
 int main(void)
 {
-    char texte[] = "allo le monde\n";
+	char texte[] = "allo le monde\n";
 
-    retirer_retour_ligne(texte);
-    int nombre = compter_caractere(texte, 'o');
-    remplacer_caractere(texte, ' ', '_');
+	retirer_retour_ligne(texte);
+	int nombre = compter_caractere(texte, 'o');
+	remplacer_caractere(texte, ' ', '_');
 
-    printf("%s\n", texte);
-    printf("%d\n", nombre);
-    return 0;
+	printf("%s\n", texte);
+	printf("%d\n", nombre);
+	return 0;
 }
 ```
 
@@ -238,8 +243,24 @@ Dans <code>chaines.h</code> :
 - les prototypes des fonctions offertes;
 - les commentaires décrivant leur utilisation;
 - les types et les constantes dont les clients ont besoin.
+- les inclusions des dépendances du module.
 
-Les détails des traitements et les éventuelles fonctions internes restent dans <code>chaines.c</code>.
+Les détails des traitements et les fonctions internes restent dans <code>chaines.c</code>. Une fonction utilisée seulement dans ce fichier doit être déclarée <code>static</code>.
+
+---
+
+## Une fonction interne au module
+
+Dans <code>chaines.c</code>, une fonction auxiliaire peut rester privée au fichier :
+
+```c
+static int est_retour_ligne(char caractere)
+{
+	return caractere == '\n';
+}
+```
+
+<code>static</code> limite sa visibilité à ce fichier. Son prototype ne figure pas dans <code>chaines.h</code>.
 
 ---
 
@@ -251,6 +272,8 @@ Les détails des traitements et les éventuelles fonctions internes restent dans
 #ifndef CHAINES_H
 #define CHAINES_H
 
+#include <string.h>
+
 /* Remplace le retour de ligne final par '\0' dans texte. */
 void retirer_retour_ligne(char texte[]);
 
@@ -261,7 +284,7 @@ int compter_caractere(const char texte[], char cible);
 /* Remplace chaque occurrence d'ancien par nouveau dans texte.
  * nouveau doit être différent de '\0'. */
 void remplacer_caractere(char texte[],
-                         char ancien, char nouveau);
+	char ancien, char nouveau);
 
 #endif
 ```
@@ -272,13 +295,9 @@ void remplacer_caractere(char texte[],
 
 Ajouter <code>main.c</code>, <code>chaines.c</code> et <code>chaines.h</code> au même projet dans l’IDE.
 
-Dans CLion, vérifier et mettre à jour au besoin la liste des fichiers dans <code>CMakeLists.txt</code> :
+Dans CLion, vérifier que les trois fichiers apparaissent dans le projet et que les sources sont ajoutées à la cible de l’exercice.
 
-```cmake
-add_executable(MonProjet main.c chaines.c chaines.h)
-```
-
-Lorsqu’on lance la compilation du projet, l’IDE compile les fichiers <code>.c</code> et réunit le code compilé pour produire l’exécutable.
+Lancer le programme depuis l’IDE, puis consulter les messages et vérifier le résultat.
 
 <p class="callout small">Pour réutiliser le module dans un autre projet, y ajouter <code>chaines.h</code> et <code>chaines.c</code>, puis inclure l’en-tête dans les fichiers qui l’utilisent.</p>
 
@@ -291,8 +310,9 @@ Lorsqu’on lance la compilation du projet, l’IDE compile les fichiers <code>.
 <div class="ide-walkthrough">
   <div class="ide-instructions">
     <ol>
-      <li>Dans le panneau <strong>Project</strong>, faire un clic droit sur <strong>MonProjet</strong>.</li>
+      <li>Dans le panneau <strong>Project</strong>, faire un clic droit sur le projet (<strong>MonProjet</strong> dans les captures).</li>
       <li>Choisir <strong>New</strong>, puis <strong>C/C++ Source File</strong>.</li>
+      <li>Pour vos projets, choisir un nom en <code>snake_case</code>, comme <code>mon_projet</code>.</li>
     </ol>
   </div>
   <img src="assets/clion-menu-nouveau-fichier.png" width="1130" height="1134" alt="Dans CLion, menu contextuel de MonProjet avec New puis C/C++ Source File sélectionnés.">
@@ -326,7 +346,7 @@ Les fichiers <code>chaines.c</code> et <code>chaines.h</code> apparaissent dans 
 
 <img src="assets/clion-projet-module.png" width="1430" height="562" alt="Projet CLion après l’ajout du module : main.c, chaines.c et chaines.h sont présents et figurent dans add_executable dans CMakeLists.txt.">
 
-<p class="callout small">Dans <code>CMakeLists.txt</code>, vérifier que <code>add_executable</code> contient <code>main.c</code>, <code>chaines.c</code> et <code>chaines.h</code>. Ajouter les fichiers manquants au besoin.</p>
+<p class="callout small">Vérifier que les deux fichiers du module sont présents et que CLion inclut la source dans la cible du projet.</p>
 
 ---
 
@@ -338,7 +358,7 @@ CLion génère automatiquement la garde dans <code>chaines.h</code> et le <code>
 
 <img src="assets/clion-garde-inclusion.png" width="1160" height="598" alt="Fichiers générés par CLion : chaines.c contient #include &quot;chaines.h&quot;; chaines.h contient la garde #ifndef MONPROJET_CHAINES_H, #define MONPROJET_CHAINES_H et #endif.">
 
-<p class="callout small"><strong>Vous devez savoir écrire vous-mêmes la garde d’inclusion et la directive <code>#include</code>, même si CLion les génère automatiquement.</strong></p>
+<p class="callout small">Renommer la garde générée en <code>CHAINES_H</code>. Vous devez savoir écrire la garde et la directive <code>#include</code>, même si CLion les génère.</p>
 
 ---
 

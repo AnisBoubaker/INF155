@@ -11,32 +11,32 @@
 ## Définir une structure
 
 ```c
-struct Etudiant {
-    char nom[40];
-    char prenom[40];
-    char code[16];
-    int note_tp1;
-    int note_tp2;
-    int note_tp3;
-    int note_intra;
-    int note_final;
+struct etudiant {
+	char nom[40];
+	char prenom[40];
+	char code[16];
+	int note_tp1;
+	int note_tp2;
+	int note_tp3;
+	int note_intra;
+	int note_final;
 };
 ```
 
-La définition crée un nouveau type étiqueté <code>struct Etudiant</code>; elle ne crée encore aucun étudiant.
+La définition crée le type <code>struct etudiant</code>, sans créer d’étudiant. L’étiquette <code>etudiant</code> et les champs suivent <code>snake_case</code>.
 
 ---
 
 ## Déclarer une variable
 
 ```c
-struct Etudiant etudiant;
+struct etudiant etudiant;
 ```
 
 L’objet contient un emplacement pour chacun des champs. Sa taille inclut aussi, éventuellement, des octets de remplissage imposés par l’alignement.
 
 ```c
-printf("%d\n", (int)sizeof(struct Etudiant));
+printf("%d\n", (int)sizeof(struct etudiant));
 ```
 
 <p class="tiny">La taille n’est pas nécessairement la somme exacte des tailles des champs.</p>
@@ -46,15 +46,15 @@ printf("%d\n", (int)sizeof(struct Etudiant));
 ## Donner un alias avec <code>typedef</code>
 
 ```c
-typedef struct {
-    char nom[40];
-    char prenom[40];
-    char code[16];
-    int notes[5];
+typedef struct etudiant {
+	char nom[40];
+	char prenom[40];
+	char code[16];
+	int notes[5];
 } Etudiant;
 ```
 
-On peut maintenant écrire :
+L’alias <code>Etudiant</code> suit <code>PascalCase</code>; l’étiquette <code>etudiant</code> suit <code>snake_case</code>. On peut écrire :
 
 ```c
 Etudiant etudiant;
@@ -67,10 +67,10 @@ Etudiant groupe[30];
 
 ```c
 Etudiant etudiant = {
-    .nom = "Jean",
-    .prenom = "Valjean",
-    .code = "VALJ12345678",
-    .notes = {82, 85, 78, 80, 91}
+	.nom = "Jean",
+	.prenom = "Valjean",
+	.code = "VALJ12345678",
+	.notes = {82, 85, 78, 80, 91}
 };
 ```
 

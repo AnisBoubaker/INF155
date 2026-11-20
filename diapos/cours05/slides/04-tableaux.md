@@ -65,7 +65,7 @@ int *debut = valeurs;
 int *fin = valeurs + 5;
 
 for (int *p = debut; p != fin; ++p) {
-    printf("%d\n", *p);
+	printf("%d\n", *p);
 }
 ```
 
@@ -81,13 +81,13 @@ for (int *p = debut; p != fin; ++p) {
 
 ```c
 for (int i = 0; i < 5; ++i) {
-    printf("%d\n", valeurs[i]);
+	printf("%d\n", valeurs[i]);
 }
 ```
 
 ```c
 for (int *p = valeurs; p != valeurs + 5; ++p) {
-    printf("%d\n", *p);
+	printf("%d\n", *p);
 }
 ```
 
@@ -113,8 +113,8 @@ La fonction reçoit un pointeur, pas une copie du tableau. Elle doit donc recevo
 ```c
 int *creer_tableau(void)
 {
-    int valeurs[3] = {10, 20, 30};
-    return valeurs;  // erreur conceptuelle : durée de vie terminée
+	int valeurs[3] = {10, 20, 30};
+	return valeurs;  // erreur conceptuelle : durée de vie terminée
 }
 ```
 

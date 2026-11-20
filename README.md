@@ -103,3 +103,24 @@ L’aperçu ouvre toujours l’ensemble du cours. Utiliser ensuite le bouton **I
 3. Le flux `.github/workflows/pages.yml` publiera ensuite le site à chaque poussée sur `main`.
 
 Reveal.js 4.4.0 est inclus localement dans `vendor/reveal/` afin que les présentations ne dépendent pas d’un CDN. Sa licence MIT est conservée dans ce dossier.
+
+## Convention de nommage du cours
+
+Appliquer cette convention dans tous les exemples, exercices et ajouts au cours :
+
+| Élément | Convention | Exemples |
+|---|---|---|
+| Alias `typedef`, classes et énumérations | `PascalCase` | `Etudiant`, `CompteBancaire` |
+| Étiquettes des structures C | `snake_case` | `struct etudiant` |
+| Variables, paramètres, fonctions, méthodes, champs et attributs | `snake_case` | `note_finale`, `calculer_moyenne`, `obtenir_solde` |
+| Constantes nommées et macros, y compris les gardes d’inclusion | `UPPER_SNAKE_CASE` | `TAUX_TPS`, `NB_NOTES`, `ETUDIANT_H` |
+
+En `PascalCase`, chaque mot commence par une majuscule, sans soulignement. En `snake_case`, les mots sont en minuscules et séparés par `_`; en `UPPER_SNAKE_CASE`, ils sont en majuscules. Les autres noms créés pour les exemples, notamment les noms de fichiers et de cibles de compilation, suivent `snake_case`.
+
+Les noms imposés par les langages, les bibliothèques et les outils conservent leur orthographe officielle : `int`, `double`, `FILE`, `std::string`, `NULL`, `EXIT_SUCCESS`, `CMakeLists.txt`, etc. En C++, les constructeurs et destructeurs reprennent obligatoirement le nom de leur classe, donc sa casse `PascalCase`.
+
+Les noms volontairement non conformes restent permis dans les exercices de correction et les démonstrations de casse, à condition d’être clairement présentés comme tels. Les captures d’écran existantes peuvent montrer des noms générés par un outil; préciser la convention à appliquer dans le texte qui les accompagne.
+
+Les exemples utilisent une tabulation par niveau d’indentation, des accolades même pour une seule instruction et des lignes d’au plus 100 caractères. Les variables globales sont interdites. Les fonctions internes à un module sont `static`; les dépendances du module sont incluses dans son `.h`. Une garde reprend le nom du module en majuscules, suivi de `_H`.
+
+Le [guide des conventions](documents/conventions_codage_inf155.md) constitue la référence à suivre pour les exemples. Les versions Word et PDF sont conservées dans `documents/`; le [PDF destiné aux étudiants](documents/conventions_codage_inf155.pdf) est accessible depuis l’accueil du site. Les exercices s’exécutent dans CLion.

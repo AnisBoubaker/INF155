@@ -37,7 +37,7 @@ int *entier = (int *)malloc(sizeof(int));
 int *entier = (int *)malloc(sizeof(int));
 
 if (entier == NULL) {
-    /* traiter l'échec */
+	return EXIT_FAILURE;
 }
 
 *entier = 10;
@@ -54,7 +54,7 @@ int nombre = 30;
 double *valeurs = (double *)malloc(nombre * (int)sizeof(double));
 
 if (valeurs == NULL) {
-    return EXIT_FAILURE;
+	return EXIT_FAILURE;
 }
 
 valeurs[3] = 25.2;
@@ -72,11 +72,14 @@ Le calcul du nombre d’octets peut lui-même dépasser la capacité d’un <cod
 #include <limits.h>
 
 if (nombre < 0 || nombre > INT_MAX / (int)sizeof(double)) {
-    /* taille impossible */
+	return EXIT_FAILURE;
 }
 
 int nombre_octets = nombre * (int)sizeof(double);
 valeurs = (double *)malloc(nombre_octets);
+if (valeurs == NULL) {
+	return EXIT_FAILURE;
+}
 ```
 
 ---

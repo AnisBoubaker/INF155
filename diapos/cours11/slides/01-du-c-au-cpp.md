@@ -11,8 +11,8 @@
 ## En C : données et fonctions séparées
 
 ```c
-typedef struct {
-    int notes[5];
+typedef struct etudiant {
+	int notes[5];
 } Etudiant;
 
 int definir_note(Etudiant *e, int i, int note);
@@ -28,11 +28,11 @@ Le module rapproche déjà un type de ses opérations par les noms et les fichie
 ```cpp
 class Etudiant {
 private:
-    int notes[5];
+	int notes[5];
 
 public:
-    int definir_note(int i, int note);
-    double calculer_moyenne() const;
+	int definir_note(int i, int note);
+	double calculer_moyenne() const;
 };
 ```
 
@@ -60,8 +60,8 @@ Un programme C++ peut combiner :
 
 int main()
 {
-    std::cout << "Bonjour C++\n";
-    return 0;
+	std::cout << "Bonjour C++\n";
+	return 0;
 }
 ```
 
@@ -69,17 +69,8 @@ Les variables, conditions, boucles, fonctions, tableaux et pointeurs existent to
 
 ---
 
-## Compiler un fichier C++
+## Utiliser un fichier C++ dans CLion
 
-Le suffixe usuel est <code>.cpp</code> et le compilateur doit traiter le programme comme du C++.
-
-```sh
-c++ -std=c++17 -Wall -Wextra -Wpedantic \
-    main.cpp -o programme
-```
-
-```sh
-./programme
-```
+Utiliser le projet C++ de l’exercice et des sources en <code>.cpp</code>, puis lancer le programme depuis CLion.
 
 <p class="warning small">C++ est apparenté au C, mais un programme C n’est pas automatiquement un programme C++ valide.</p>

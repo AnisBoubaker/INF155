@@ -13,12 +13,12 @@
 ```c
 int nombre;
 if (scanf("%d", &nombre) != 1 || nombre <= 0) {
-    return EXIT_FAILURE;
+	return EXIT_FAILURE;
 }
 
 double *mesures = (double *)malloc(nombre * (int)sizeof(double));
 if (mesures == NULL) {
-    return EXIT_FAILURE;
+	return EXIT_FAILURE;
 }
 
 /* utiliser mesures[0] à mesures[nombre - 1] */
@@ -36,7 +36,7 @@ int taille = (int)strlen(source) + 1;
 
 char *copie = (char *)malloc(taille);
 if (copie != NULL) {
-    memcpy(copie, source, taille);
+	memcpy(copie, source, taille);
 }
 ```
 
@@ -46,11 +46,23 @@ La taille comprend le zéro terminal. Le propriétaire de <code>copie</code> dev
 
 ## Matrice comme tableau de pointeurs
 
+On suppose les dimensions positives et les produits des tailles déjà vérifiés.
+
 ```c
 double **m = (double **)malloc(lignes * (int)sizeof(double *));
+if (m == NULL) {
+	return EXIT_FAILURE;
+}
 
 for (int i = 0; i < lignes; ++i) {
-    m[i] = (double *)malloc(colonnes * (int)sizeof(double));
+	m[i] = (double *)malloc(colonnes * (int)sizeof(double));
+	if (m[i] == NULL) {
+		for (int j = 0; j < i; ++j) {
+			free(m[j]);
+		}
+		free(m);
+		return EXIT_FAILURE;
+	}
 }
 ```
 
@@ -62,7 +74,7 @@ Cette représentation permet des lignes de tailles différentes, mais exige de g
 
 ```c
 for (int i = 0; i < lignes; ++i) {
-    free(m[i]);
+	free(m[i]);
 }
 free(m);
 ```

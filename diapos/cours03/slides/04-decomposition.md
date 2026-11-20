@@ -5,11 +5,11 @@ Nos premiers programmes contenaient surtout une seule fonction :
 ```c
 int main(void)
 {
-    // déclarations
-    // saisie
-    // calculs
-    // affichage
-    return EXIT_SUCCESS;
+	// déclarations
+	// saisie
+	// calculs
+	// affichage
+	return EXIT_SUCCESS;
 }
 ```
 

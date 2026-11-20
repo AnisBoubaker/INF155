@@ -22,26 +22,39 @@ Un module peut offrir :
 
 ---
 
-## Interface · <code>etudiant.h</code>
+## Interface · <code>etudiant.h</code> <span class="small">(début)</span>
+
+Les deux extraits suivants forment un même fichier d’en-tête.
 
 ```c
 #ifndef ETUDIANT_H
 #define ETUDIANT_H
 
+#include <stdio.h>
+#include <string.h>
+
 #define TAILLE_NOM 40
 #define TAILLE_CODE 16
 #define NB_NOTES 5
 
-typedef struct {
-    char nom[TAILLE_NOM];
-    char prenom[TAILLE_NOM];
-    char code[TAILLE_CODE];
-    int notes[NB_NOTES];
+typedef struct etudiant {
+	char nom[TAILLE_NOM];
+	char prenom[TAILLE_NOM];
+	char code[TAILLE_CODE];
+	int notes[NB_NOTES];
 } Etudiant;
+```
 
+---
+
+## Interface · <code>etudiant.h</code> <span class="small">(suite)</span>
+
+```c
 int etudiant_initialiser(Etudiant *e, const char *nom,
-                         const char *prenom, const char *code);
+	const char *prenom, const char *code);
 double etudiant_moyenne(const Etudiant *e);
+const char *etudiant_nom(const Etudiant *e);
+int etudiant_definir_note(Etudiant *e, int i, int note);
 #endif
 ```
 
@@ -49,25 +62,30 @@ L’initialisation retourne un <code>int</code> : <code>1</code> pour la réussi
 
 ---
 
+<!-- .slide: class="compact" -->
+
 ## Initialiser sans allocation dynamique
 
 ```c
 int etudiant_initialiser(Etudiant *e, const char *nom,
-                         const char *prenom, const char *code)
+	const char *prenom, const char *code)
 {
-    if (e == NULL || (int)strlen(nom) >= TAILLE_NOM ||
-        (int)strlen(prenom) >= TAILLE_NOM ||
-        (int)strlen(code) >= TAILLE_CODE) {
-        return 0;
-    }
+	if (e == NULL || nom == NULL || prenom == NULL || code == NULL) {
+		return 0;
+	}
+	if ((int)strlen(nom) >= TAILLE_NOM ||
+		(int)strlen(prenom) >= TAILLE_NOM ||
+		(int)strlen(code) >= TAILLE_CODE) {
+		return 0;
+	}
 
-    strcpy(e->nom, nom);
-    strcpy(e->prenom, prenom);
-    strcpy(e->code, code);
-    for (int i = 0; i < NB_NOTES; ++i) {
-        e->notes[i] = 0;
-    }
-    return 1;
+	strcpy(e->nom, nom);
+	strcpy(e->prenom, prenom);
+	strcpy(e->code, code);
+	for (int i = 0; i < NB_NOTES; ++i) {
+		e->notes[i] = 0;
+	}
+	return 1;
 }
 ```
 
@@ -78,16 +96,16 @@ int etudiant_initialiser(Etudiant *e, const char *nom,
 ```c
 const char *etudiant_nom(const Etudiant *e)
 {
-    return e->nom;
+	return e->nom;
 }
 
 int etudiant_definir_note(Etudiant *e, int i, int note)
 {
-    if (e == NULL || i < 0 || i >= NB_NOTES || note < 0 || note > 100) {
-        return 0;
-    }
-    e->notes[i] = note;
-    return 1;
+	if (e == NULL || i < 0 || i >= NB_NOTES || note < 0 || note > 100) {
+		return 0;
+	}
+	e->notes[i] = note;
+	return 1;
 }
 ```
 
@@ -99,8 +117,8 @@ int etudiant_definir_note(Etudiant *e, int i, int note)
 Etudiant ada;
 
 if (etudiant_initialiser(&ada, "Lovelace", "Ada", "LOVA12345678")) {
-    etudiant_definir_note(&ada, 0, 95);
-    printf("%.1f\n", etudiant_moyenne(&ada));
+	etudiant_definir_note(&ada, 0, 95);
+	printf("%.1f\n", etudiant_moyenne(&ada));
 }
 ```
 

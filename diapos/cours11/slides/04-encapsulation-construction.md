@@ -18,10 +18,10 @@
 ```cpp
 class CompteBancaire {
 private:
-    double solde;
+	double solde;
 
 public:
-    void deposer(double montant);
+	void deposer(double montant);
 };
 ```
 
@@ -46,12 +46,12 @@ Avec un attribut privé, les modifications passent par une méthode qui vérifie
 ```cpp
 int retirer(double montant)
 {
-    if (montant <= 0.0 || montant > solde) {
-        return 0;
-    }
+	if (montant <= 0.0 || montant > solde) {
+		return 0;
+	}
 
-    solde -= montant;
-    return 1;
+	solde -= montant;
+	return 1;
 }
 ```
 
@@ -66,18 +66,18 @@ Ici, un retrait accepté ne peut pas rendre le solde négatif. La méthode retou
 ```cpp
 class CompteBancaire {
 private:
-    std::string titulaire;
-    double solde;
+	std::string titulaire;
+	double solde;
 
 public:
-    CompteBancaire(std::string nom);
-    void deposer(double montant);
-    int retirer(double montant);
-    double obtenir_solde() const;
+	CompteBancaire(std::string nom);
+	void deposer(double montant);
+	int retirer(double montant);
+	double obtenir_solde() const;
 };
 ```
 
-Le constructeur porte le même nom que la classe et ne déclare aucun type de retour.
+Le constructeur porte obligatoirement le même nom que la classe, donc en <code>PascalCase</code>. Il ne déclare aucun type de retour.
 
 ---
 
@@ -85,7 +85,7 @@ Le constructeur porte le même nom que la classe et ne déclare aucun type de re
 
 ```cpp
 CompteBancaire::CompteBancaire(std::string nom)
-    : titulaire(nom), solde(0.0)
+	: titulaire(nom), solde(0.0)
 {
 }
 ```
@@ -105,7 +105,7 @@ La déclaration crée une instance déjà associée à un titulaire et à un sol
 ```cpp
 double CompteBancaire::obtenir_solde() const
 {
-    return solde;
+	return solde;
 }
 ```
 
@@ -122,8 +122,8 @@ std::cout << compte.obtenir_solde() << "\n";
 ```cpp
 int main()
 {
-    CompteBancaire compte("Ada Lovelace");
-    compte.deposer(125.0);
+	CompteBancaire compte("Ada Lovelace");
+	compte.deposer(125.0);
 }  // destruction automatique de compte
 ```
 

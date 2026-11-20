@@ -232,12 +232,13 @@ a && b || !0 && c && !d
 
 ```c
 int age;
-int majeur;
 
 printf("Veuillez saisir l'âge : ");
-scanf("%d", &age);
+if (scanf("%d", &age) != 1 || age < 0) {
+	return 1;
+}
 
-majeur = age >= 18;
+int majeur = age >= 18;
 printf("Majeur = %d\n", majeur);
 ```
 

@@ -66,8 +66,8 @@ printf("Ceci est mon premier programme!\n");
 printf("Votre salaire est de %.2f $\n", salaire);
 
 printf("Salaire : %.2f $, heures supplémentaires : %d\n",
-       salaire,
-       nb_heures_supp);
+	salaire,
+	nb_heures_supp);
 ```
 
 <p class="callout small">Chaque spécificateur de format doit correspondre au type de l’argument associé.</p>
@@ -125,7 +125,7 @@ scanf("%d", &age);
 
 ```c
 if (scanf("%d", &age) != 1) {
-    printf("Entrée invalide.\n");
+	printf("Entrée invalide.\n");
 }
 ```
 
@@ -141,7 +141,9 @@ if (scanf("%d", &age) != 1) {
 double sous_total;
 
 printf("Sous-total : ");
-scanf("%lf", &sous_total);
+if (scanf("%lf", &sous_total) != 1 || sous_total < 0.0) {
+	return 1;
+}
 
 double taxes = sous_total * taux;
 double total = sous_total + taxes;

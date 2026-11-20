@@ -14,7 +14,7 @@
 
 <ol class="plan">
   <li>Architecture d’un ordinateur</li>
-  <li>Programme, algorithme et compilation</li>
+  <li>Programme, algorithme et utilisation de CLion</li>
   <li>Anatomie d’un programme en C</li>
   <li>Préprocesseur et commentaires</li>
   <li>Variables, types et conversions</li>

@@ -28,7 +28,7 @@ rewind(fichier);
 
 ```c
 if (rename("ancien.txt", "nouveau.txt") != 0) {
-    perror("rename");
+	perror("rename");
 }
 ```
 
@@ -40,7 +40,7 @@ Le résultat dépend du système : destination existante, volumes différents et
 
 ```c
 if (remove("temporaire.txt") != 0) {
-    perror("remove");
+	perror("remove");
 }
 ```
 

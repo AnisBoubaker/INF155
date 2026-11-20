@@ -38,9 +38,9 @@ Le type est « tableau de 3 éléments, chacun étant un tableau de 4 <code>int<
 
 ```c
 int grille[3][4] = {
-    {1, 2, 4, 5},
-    {8, 4, 3, 2},
-    {7, 0, 0, 1}
+	{1, 2, 4, 5},
+	{8, 4, 3, 2},
+	{7, 0, 0, 1}
 };
 ```
 
@@ -65,10 +65,10 @@ Chaque indice commence à zéro et doit demeurer dans sa propre limite.
 
 ```c
 for (int ligne = 0; ligne < 3; ++ligne) {
-    for (int colonne = 0; colonne < 4; ++colonne) {
-        printf("%3d", grille[ligne][colonne]);
-    }
-    putchar('\n');
+	for (int colonne = 0; colonne < 4; ++colonne) {
+		printf("%3d", grille[ligne][colonne]);
+	}
+	putchar('\n');
 }
 ```
 
@@ -90,7 +90,7 @@ La case <code>grille[l][c]</code> se trouve conceptuellement après <code>l × 4
 
 ```c
 void afficher(int lignes, int colonnes,
-              const int tableau[lignes][colonnes]);
+	const int tableau[lignes][colonnes]);
 ```
 
 Avec un tableau 2D, la fonction doit connaître la longueur d’une ligne pour localiser correctement chaque case.
@@ -103,13 +103,13 @@ Avec un tableau 2D, la fonction doit connaître la longueur d’une ligne pour l
 
 ```c
 void remplir(int lignes, int colonnes,
-             int tableau[lignes][colonnes], int valeur)
+	int tableau[lignes][colonnes], int valeur)
 {
-    for (int l = 0; l < lignes; ++l) {
-        for (int c = 0; c < colonnes; ++c) {
-            tableau[l][c] = valeur;
-        }
-    }
+	for (int l = 0; l < lignes; ++l) {
+		for (int c = 0; c < colonnes; ++c) {
+			tableau[l][c] = valeur;
+		}
+	}
 }
 ```
 
@@ -121,9 +121,9 @@ void remplir(int lignes, int colonnes,
 void afficher_ligne(const int ligne[], int colonnes);
 
 int grille[3][4] = {
-    {1, 2, 4, 5},
-    {8, 4, 3, 2},
-    {7, 0, 0, 1}
+	{1, 2, 4, 5},
+	{8, 4, 3, 2},
+	{7, 0, 0, 1}
 };
 
 afficher_ligne(grille[0], 4);

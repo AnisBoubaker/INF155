@@ -79,7 +79,7 @@ Après la copie, <code>a</code> et <code>b</code> ont commencé avec le même é
 
 ```cpp
 class Temperature {
-    /* description du type */
+	/* description du type */
 };
 
 Temperature actuelle;
@@ -100,7 +100,7 @@ Définir une classe ne crée encore aucun objet :
 
 ```cpp
 class Minuterie {
-    /* description */
+	/* description */
 };
 ```
 

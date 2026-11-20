@@ -28,7 +28,7 @@ char destination[CAPACITE_DESTINATION];
 const char *source = "Bonjour";
 
 if ((int)strlen(source) < CAPACITE_DESTINATION) {
-    strcpy(destination, source);
+	strcpy(destination, source);
 }
 ```
 
@@ -47,7 +47,7 @@ const char *nom = "Ada";
 
 int requis = (int)(strlen(message) + strlen(nom) + 1);
 if (requis <= CAPACITE_MESSAGE) {
-    strcat(message, nom);
+	strcat(message, nom);
 }
 ```
 
@@ -55,17 +55,21 @@ if (requis <= CAPACITE_MESSAGE) {
 
 ---
 
-## Formater avec <code>sprintf</code>
+## Formater avec <code>snprintf</code>
 
 ```c
 #define CAPACITE_RESULTAT 64
 char resultat[CAPACITE_RESULTAT];
 int note = 93;
 
-int taille = sprintf(resultat, "Note finale : %d %%", note);
+int taille = snprintf(resultat, CAPACITE_RESULTAT,
+	"Note finale : %d %%", note);
+if (taille < 0 || taille >= CAPACITE_RESULTAT) {
+	/* Traiter l'erreur ou la troncature. */
+}
 ```
 
-<code>sprintf</code> écrit le texte formaté dans le tableau et retourne le nombre de caractères écrits, sans compter le zéro terminal. Le tableau doit être assez grand pour contenir le texte et le <code>'\0'</code>.
+<code>snprintf</code> limite l’écriture à la capacité fournie, zéro terminal compris. Son résultat indique la longueur requise, sans le zéro terminal; une valeur négative signale une erreur.
 
 ---
 
@@ -100,13 +104,13 @@ double prix = atof("19.95");    // 19.95
 
 ```c
 char *strncpy(char *destination, const char *source,
-              size_t nombre);
+	size_t nombre);
 
 char *strncat(char *destination, const char *source,
-              size_t max_ajout);
+	size_t max_ajout);
 
 int snprintf(char *destination, size_t capacite,
-             const char *format, ...);
+	const char *format, ...);
 ```
 
 ---

@@ -19,7 +19,7 @@ Les deux algorithmes du cours retournent :
 int position = fouille_lineaire(valeurs, nombre, cible);
 
 if (position != -1) {
-    printf("Trouvee a l'indice %d\n", position);
+	printf("Trouvee a l'indice %d\n", position);
 }
 ```
 
@@ -49,13 +49,13 @@ La <strong>fouille linéaire</strong>, aussi appelée séquentielle :
 ```c
 int fouille_lineaire(const int valeurs[], int nombre, int cible)
 {
-    for (int i = 0; i < nombre; ++i) {
-        if (valeurs[i] == cible) {
-            return i;
-        }
-    }
+	for (int i = 0; i < nombre; ++i) {
+		if (valeurs[i] == cible) {
+			return i;
+		}
+	}
 
-    return -1;
+	return -1;
 }
 ```
 
@@ -122,21 +122,23 @@ Après la comparaison au milieu, on conserve uniquement la moitié qui peut enco
 ```c
 int fouille_binaire(const int valeurs[], int nombre, int cible)
 {
-    int debut = 0, fin = nombre;
+	int debut = 0, fin = nombre;
 
-    while (debut < fin) {
-        int milieu = debut + (fin - debut) / 2;
+	while (debut < fin) {
+		int milieu = debut + (fin - debut) / 2;
 
-        if (valeurs[milieu] == cible) return milieu;
+		if (valeurs[milieu] == cible) {
+			return milieu;
+		}
 
-        if (valeurs[milieu] < cible) {
-            debut = milieu + 1;
-        } else {
-            fin = milieu;
-        }
-    }
+		if (valeurs[milieu] < cible) {
+			debut = milieu + 1;
+		} else {
+			fin = milieu;
+		}
+	}
 
-    return -1;
+	return -1;
 }
 ```
 

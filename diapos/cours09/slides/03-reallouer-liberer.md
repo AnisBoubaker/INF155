@@ -44,10 +44,10 @@ Si l’appel échoue, <code>valeurs</code> devient <code>NULL</code> et l’adre
 double *temp = (double *)realloc(valeurs, nouveau_nombre * (int)sizeof(double));
 
 if (temp == NULL) {
-    /* valeurs désigne encore l'ancien bloc */
+	/* valeurs désigne encore l'ancien bloc */
 } else {
-    valeurs = temp;
-    nombre = nouveau_nombre;
+	valeurs = temp;
+	nombre = nouveau_nombre;
 }
 ```
 
@@ -90,8 +90,8 @@ int *a = (int *)malloc(n * (int)sizeof(int));
 int *b = (int *)malloc(n * (int)sizeof(int));
 
 if (a != NULL && b != NULL) {
-    /* traitement */
-    resultat = EXIT_SUCCESS;
+	/* traitement */
+	resultat = EXIT_SUCCESS;
 }
 
 free(b);

@@ -13,13 +13,13 @@
 ```cpp
 class Point {
 public:
-    int x;
-    int y;
+	int x;
+	int y;
 };
 ```
 
-- <code>class Point</code> commence la définition du type;
-- <code>x</code> et <code>y</code> sont des attributs;
+- <code>class Point</code> définit un type dont le nom suit <code>PascalCase</code>;
+- <code>x</code> et <code>y</code> sont des attributs en <code>snake_case</code>;
 - <code>public</code> rend ces membres accessibles;
 - le <code>;</code> final est obligatoire.
 
@@ -59,18 +59,18 @@ nom_objet.nom_membre
 ```cpp
 class Point {
 public:
-    int x;
-    int y;
+	int x;
+	int y;
 
-    void deplacer(int dx, int dy)
-    {
-        x += dx;
-        y += dy;
-    }
+	void deplacer(int dx, int dy)
+	{
+		x += dx;
+		y += dy;
+	}
 };
 ```
 
-Une fonction définie dans une classe est appelée une <strong>méthode</strong>.
+Une fonction définie dans une classe est appelée une <strong>méthode</strong>. Son nom suit <code>snake_case</code>, comme celui des autres fonctions.
 
 ---
 

@@ -4,7 +4,7 @@
 
 # Notre premier programme en C
 
-<p class="lede">Observer l’anatomie d’un fichier source et le chemin qui mène à un programme exécutable.</p>
+<p class="lede">Observer l’anatomie d’un fichier source, puis exécuter le programme dans CLion.</p>
 
 ---
 
@@ -23,16 +23,18 @@ total = prix * quantite;</code></pre>
   <div class="card">
     <h3>Structure conditionnelle</h3>
     <p>Un bloc s’exécute seulement si une condition est vraie.</p>
-    <pre><code class="language-c">if (note &gt;= 60)
-    printf("Réussi");
-else
-    printf("Échec");</code></pre>
+    <pre><code class="language-c">if (note &gt;= 60) {
+	printf("Réussi");
+} else {
+	printf("Échec");
+}</code></pre>
   </div>
   <div class="card">
     <h3>Boucle</h3>
     <p>Un bloc est répété tant qu’une condition le demande.</p>
-    <pre><code class="language-c">for (i = 0; i &lt; 3; i++)
-    printf("%d\n", i);</code></pre>
+    <pre><code class="language-c">for (i = 0; i &lt; 3; i++) {
+	printf("%d\n", i);
+}</code></pre>
   </div>
 </div>
 
@@ -43,7 +45,7 @@ else
 ## Anatomie d’un programme
 
 ```c
-/* Programme : CalculSalaire
+/* Programme : calcul_salaire
  * Auteur    : Votre nom
  * Rôle      : Calculer et afficher un salaire.
  */
@@ -53,15 +55,15 @@ else
 
 int main(void)
 {
-    double taux_horaire;
-    int nb_heures;
-    double salaire;
-
-    printf("Taux horaire : ");
-    scanf("%lf", &taux_horaire);
-
-    salaire = nb_heures * taux_horaire;
-    return EXIT_SUCCESS;
+	double taux_horaire;
+	int nb_heures;
+	printf("Taux horaire et nombre d'heures : ");
+	if (scanf("%lf %d", &taux_horaire, &nb_heures) != 2) {
+		return EXIT_FAILURE;
+	}
+	double salaire = nb_heures * taux_horaire;
+	printf("Salaire : %.2f $\n", salaire);
+	return EXIT_SUCCESS;
 }
 ```
 
@@ -73,74 +75,29 @@ int main(void)
 
 # Du fichier source à l’exécution
 
-<p class="lede">Créer un projet, écrire le programme, le compiler, corriger les erreurs puis l’exécuter dans l’environnement de développement.</p>
+<p class="lede">Créer un projet, écrire le programme, l’exécuter et corriger les erreurs dans l’environnement de développement.</p>
 
 ---
 
-## Compilation d’un programme
+## Exécuter un programme dans CLion
 
-La compilation transforme du code de haut niveau en instructions que le processeur peut exécuter.
+1. Ouvrir le projet de l’exercice dans CLion.
+2. Écrire le programme dans le fichier source prévu.
+3. Lancer le programme depuis l’IDE.
+4. Lire le résultat dans la console et le comparer au résultat attendu.
 
-<div class="pipeline">
-  <div><strong>Prétraitement</strong><span>Prépare le code source</span></div>
-  <div><strong>Compilation</strong><span>Produit les fichiers objets</span></div>
-  <div><strong>Liaison</strong><span>Construit l’exécutable</span></div>
-</div>
-
-<p class="small">Cette vue est volontairement simplifiée; les chaînes de compilation modernes comportent d’autres étapes internes.</p>
+<p class="callout">L’IDE prend en charge la construction du programme avec la configuration du projet.</p>
 
 ---
 
-## Compilation d’un programme C
+## Lire les messages de l’IDE
 
-<div class="pipeline">
-  <div><strong>1 · Prétraitement</strong><span><code>.c</code> → source préparée</span></div>
-  <div><strong>2 · Compilation</strong><span>source → <code>.o</code> / <code>.obj</code></span></div>
-  <div><strong>3 · Liaison</strong><span>objets → exécutable</span></div>
-</div>
+- Corriger les erreurs et les avertissements signalés par CLion.
+- Vérifier que les fichiers nécessaires font partie du projet.
+- Exécuter plusieurs cas, y compris les limites et les entrées incorrectes.
+- Refaire les essais après une modification.
 
-<div class="comparison">
-  <div><h3>Votre code</h3><p>Les fichiers source que vous écrivez.</p></div>
-  <div><h3>Les bibliothèques</h3><p>Du code déjà compilé, fourni par le système ou par d’autres projets.</p></div>
-</div>
-
----
-
-## 1 · Prétraitement
-
-Le préprocesseur traite les lignes qui commencent par <code>#</code>.
-
-- Insère le contenu des fichiers d’en-tête demandés avec <code>#include</code>.
-- Remplace les macros définies avec <code>#define</code>.
-- Inclut ou exclut des portions de code selon des conditions.
-
-<p class="callout"><strong>Résultat :</strong> une version préparée du code source C, prête pour le compilateur.</p>
-
----
-
-## 2 · Compilation
-
-Chaque fichier source est analysé et traduit séparément.
-
-- Vérification de la syntaxe et des types.
-- Transformation en instructions adaptées à la plateforme ciblée.
-- Production d’un <strong>fichier objet</strong> qui n’est pas encore un programme complet.
-
-<p class="callout"><strong>Résultat :</strong> un ou plusieurs fichiers <code>.o</code> sur Unix/macOS ou <code>.obj</code> sous Windows.</p>
-
----
-
-## 3 · Liaison
-
-L’éditeur de liens combine plusieurs fichiers objets et le code objet des bibliothèques pour construire un exécutable.
-
-<div class="pipeline">
-  <div><strong>Fichiers objets + bibliothèques</strong><span><code>main.o</code> + <code>calcul.o</code> + <code>affichage.o</code> + …<br>+ code objet des bibliothèques</span></div>
-  <div><strong>Éditeur de liens</strong><span>Résout les références et combine le code objet</span></div>
-  <div><strong>Exécutable</strong><span>Programme complet</span></div>
-</div>
-
-<p class="small">Une référence manquante produit une erreur de liaison, même si chaque fichier source est syntaxiquement valide.</p>
+<p class="warning">Une exécution sans message d’erreur ne garantit pas que le résultat est correct.</p>
 
 ---
 
@@ -213,18 +170,16 @@ L’éditeur de liens combine plusieurs fichiers objets et le code objet des bib
 
 int main(void)       /* Point d’entrée du programme. */
 {
-    double taux;     /* Déclarations de variables. */
-    int heures;
-    double total;
+	double taux;     /* Déclarations de variables. */
+	int heures;
+	printf("Taux horaire et nombre d'heures : ");
+	if (scanf("%lf %d", &taux, &heures) != 2) {
+		return 1;
+	}
 
-    printf("Taux horaire : ");
-    scanf("%lf", &taux);
-    printf("Nombre d'heures : ");
-    scanf("%d", &heures);
+	double total = heures * taux;  /* Traitement. */
+	printf("Salaire : %.2f $\n", total); /* Sortie. */
 
-    total = heures * taux;  /* Traitement. */
-    printf("Salaire : %.2f $\n", total); /* Sortie. */
-
-    return 0;
+	return 0;
 }
 ```

@@ -28,8 +28,8 @@ Une fonction ne retourne directement qu’une valeur. Les variables locales de l
 ```c
 void trouver_extremes(int a, int b)
 {
-    int minimum = a < b ? a : b;
-    int maximum = a > b ? a : b;
+	int minimum = a < b ? a : b;
+	int maximum = a > b ? a : b;
 }
 ```
 
@@ -42,8 +42,8 @@ Les deux variables appartiennent à l’appel. Elles cessent d’exister à la f
 ```c
 void trouver_extremes(int a, int b, int *min, int *max)
 {
-    *min = a < b ? a : b;
-    *max = a > b ? a : b;
+	*min = a < b ? a : b;
+	*max = a > b ? a : b;
 }
 ```
 
@@ -74,18 +74,18 @@ La copie du pointeur désigne le même objet que l’adresse originale.
 
 void trouver_extremes(int a, int b, int *min, int *max)
 {
-    *min = a < b ? a : b;
-    *max = a > b ? a : b;
+	*min = a < b ? a : b;
+	*max = a > b ? a : b;
 }
 
 int main(void)
 {
-    int min;
-    int max;
+	int min;
+	int max;
 
-    trouver_extremes(8, 3, &min, &max);
-    printf("min = %d, max = %d\n", min, max);
-    return 0;
+	trouver_extremes(8, 3, &min, &max);
+	printf("min = %d, max = %d\n", min, max);
+	return 0;
 }
 ```
 
@@ -114,9 +114,9 @@ Le commentaire doit préciser :
 ```c
 void afficher_valeur(const int *valeur)
 {
-    if (valeur != NULL) {
-        printf("%d\n", *valeur);
-    }
+	if (valeur != NULL) {
+		printf("%d\n", *valeur);
+	}
 }
 ```
 

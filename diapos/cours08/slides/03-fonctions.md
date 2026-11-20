@@ -13,7 +13,7 @@
 ```c
 void afficher_etudiant(Etudiant etudiant)
 {
-    printf("%s, %s\n", etudiant.nom, etudiant.prenom);
+	printf("%s, %s\n", etudiant.nom, etudiant.prenom);
 }
 ```
 
@@ -26,7 +26,7 @@ La fonction reçoit une copie complète. Ses modifications n’affectent pas l�
 ```c
 void afficher_etudiant(const Etudiant *etudiant)
 {
-    printf("%s, %s\n", etudiant->nom, etudiant->prenom);
+	printf("%s, %s\n", etudiant->nom, etudiant->prenom);
 }
 ```
 
@@ -61,13 +61,13 @@ Les parenthèses sont nécessaires dans la seconde forme, car <code>.</code> a p
 ```c
 int definir_note(Etudiant *etudiant, int evaluation, int note)
 {
-    if (etudiant == NULL || evaluation < 0 || evaluation >= 5 ||
-        note < 0 || note > 100) {
-        return 0;
-    }
+	if (etudiant == NULL || evaluation < 0 || evaluation >= 5 ||
+		note < 0 || note > 100) {
+		return 0;
+	}
 
-    etudiant->notes[evaluation] = note;
-    return 1;
+	etudiant->notes[evaluation] = note;
+	return 1;
 }
 ```
 
@@ -78,15 +78,15 @@ Le contrat valide à la fois le pointeur, l’indice et la note. La fonction ret
 ## Calculer une moyenne
 
 ```c
-double moyenne(const Etudiant *etudiant)
+double etudiant_moyenne(const Etudiant *etudiant)
 {
-    static const double poids[] = {0.1, 0.1, 0.1, 0.3, 0.4};
-    double total = 0.0;
+	static const double POIDS[] = {0.1, 0.1, 0.1, 0.3, 0.4};
+	double total = 0.0;
 
-    for (int i = 0; i < 5; ++i) {
-        total += etudiant->notes[i] * poids[i];
-    }
-    return total;
+	for (int i = 0; i < 5; ++i) {
+		total += etudiant->notes[i] * POIDS[i];
+	}
+	return total;
 }
 ```
 
@@ -99,8 +99,8 @@ Une fonction peut retourner une structure par valeur.
 ```c
 Etudiant creer_etudiant(void)
 {
-    Etudiant resultat = {0};
-    return resultat;
+	Etudiant resultat = {0};
+	return resultat;
 }
 ```
 

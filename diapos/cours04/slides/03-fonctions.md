@@ -42,16 +42,16 @@ Le paramètre <code>notes</code> ne contient pas la taille du tableau fourni par
 ```c
 double calculer_moyenne(const int notes[], int nombre)
 {
-    if (nombre <= 0) {
-        return 0.0;
-    }
+	if (nombre <= 0) {
+		return 0.0;
+	}
 
-    long somme = 0;
-    for (int i = 0; i < nombre; ++i) {
-        somme += notes[i];
-    }
+	long somme = 0;
+	for (int i = 0; i < nombre; ++i) {
+		somme += notes[i];
+	}
 
-    return (double)somme / nombre;
+	return (double)somme / nombre;
 }
 ```
 
@@ -64,9 +64,9 @@ double calculer_moyenne(const int notes[], int nombre)
 ```c
 void incrementer(int valeurs[], int nombre)
 {
-    for (int i = 0; i < nombre; ++i) {
-        ++valeurs[i];
-    }
+	for (int i = 0; i < nombre; ++i) {
+		++valeurs[i];
+	}
 }
 ```
 

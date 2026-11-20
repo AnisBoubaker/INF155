@@ -18,8 +18,9 @@ Pour définir une fonction, il faut préciser :
 </div>
 
 ```c
-double calculer_taxe(double montant) {  // prototype + début du corps
-    return montant * 0.05;
+double calculer_taxe(double montant)
+{  // début du corps
+	return montant * 0.05;
 }
 ```
 
@@ -37,13 +38,13 @@ double calculer_taxe(double montant) {  // prototype + début du corps
  */
 unsigned long long factorielle(int n)
 {
-    unsigned long long resultat = 1;
+	unsigned long long resultat = 1;
 
-    for (int i = 2; i <= n; i++) {
-        resultat *= i;
-    }
+	for (int i = 2; i <= n; i++) {
+		resultat *= i;
+	}
 
-    return resultat;
+	return resultat;
 }
 ```
 
@@ -54,11 +55,13 @@ unsigned long long factorielle(int n)
 ## Syntaxe générale
 
 ```c
-type_retour nom_fonction(type_1 parametre_1, type_2 parametre_2)
+TypeRetour nom_fonction(Type1 parametre_1, Type2 parametre_2)
 {
-    // déclarations et instructions
+	// déclarations et instructions
 }
 ```
+
+<code>TypeRetour</code>, <code>Type1</code> et <code>Type2</code> représentent des types réels, comme <code>double</code> ou <code>int</code>.
 
 Le prototype communique trois informations :
 
@@ -79,12 +82,11 @@ double calculer_moyenne(double somme, int nombre);
 Le nom :
 
 - sert à appeler la fonction;
-- respecte les règles lexicales d’un identifiant C;
+- respecte les règles lexicales et la convention <code>snake_case</code>;
 - décrit le traitement effectué;
-- Si la fonction **retourne** une valeur: adopte généralement une forme nominale
-(ex.: moyenne_notes, saisie, etc.).
-- Si la fonction **ne retourne pas** de valeur: adopte généralement un forme verbale
-(ex.: afficher_menu) 
+- annonce l’intention : <code>calculer_moyenne</code> pour un calcul;
+- utilise un verbe pour une action : <code>afficher_menu</code>;
+- peut décrire un prédicat : <code>est_vide</code>.
 
 <p class="callout small">Préférer <code>calculer_moyenne</code> à <code>traitement2</code>.</p>
 
@@ -134,8 +136,8 @@ Le corps contient les instructions qui réalisent le traitement.
 ```c
 double calculer_moyenne(double somme, int nombre)
 {
-    double moyenne = somme / nombre;
-    return moyenne;
+	double moyenne = somme / nombre;
+	return moyenne;
 }
 ```
 
@@ -149,13 +151,13 @@ Les paramètres <code>somme</code> et <code>nombre</code>, ainsi que la variable
 ```c
 unsigned long long factorielle(int n)
 {
-    unsigned long long resultat = 1;
+	unsigned long long resultat = 1;
 
-    for (int i = 2; i <= n; i++) {
-        resultat *= i;
-    }
+	for (int i = 2; i <= n; i++) {
+		resultat *= i;
+	}
 
-    return resultat;
+	return resultat;
 }
 ```
 
@@ -170,16 +172,16 @@ unsigned long long factorielle(int n)
 ```c
 double valeur_absolue(double x)
 {
-    if (x < 0.0) {
-        return -x;
-    }
+	if (x < 0.0) {
+		return -x;
+	}
 
-    return x;
+	return x;
 }
 ```
 
 <p class="callout small">Une fonction peut contenir plusieurs <code>return</code>; chacun doit respecter le type de retour annoncé.</p>
-<p class="callout small">L'utilisation de plusieurs <code>return</code> dans une même fonction devrait être réservé à des cas d'optimisation et de simplification de l'algorithme (qui en facilite la lecture)</p>
+<p class="callout small">Un retour anticipé peut traiter une erreur et réduire l’imbrication. Chaque sortie doit libérer les ressources déjà acquises.</p>
 
 ---
 
@@ -190,11 +192,11 @@ Un seul point de sortie peut simplifier certains raisonnements, mais plusieurs s
 ```c
 void afficher_si_positif(int valeur)
 {
-    if (valeur <= 0) {
-        return;
-    }
+	if (valeur <= 0) {
+		return;
+	}
 
-    printf("%d\n", valeur);
+	printf("%d\n", valeur);
 }
 ```
 
@@ -207,10 +209,10 @@ void afficher_si_positif(int valeur)
 ```c
 void afficher_menu(void)
 {
-    printf("1 — Créer un client\n");
-    printf("2 — Modifier un client\n");
-    printf("3 — Supprimer un client\n");
-    printf("9 — Quitter\n");
+	printf("1 — Créer un client\n");
+	printf("2 — Modifier un client\n");
+	printf("3 — Supprimer un client\n");
+	printf("9 — Quitter\n");
 }
 ```
 

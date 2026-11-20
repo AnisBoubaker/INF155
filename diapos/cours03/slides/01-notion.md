@@ -29,7 +29,9 @@ Jusqu’ici, nous avons déjà utilisé plusieurs fonctions :
 
 ```c
 printf("Bonjour\n");
-scanf("%d", &age);
+if (scanf("%d", &age) != 1) {
+	return 1;
+}
 ```
 
 <div class="cards">

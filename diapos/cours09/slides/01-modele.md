@@ -21,9 +21,9 @@ void traiter(int n);
 
 int main(void)
 {
-    int n = 4;
-    traiter(n);
-    return 0;
+	int n = 4;
+	traiter(n);
+	return 0;
 }
 ```
 <!-- .element: data-id="memory-program" -->
@@ -61,10 +61,10 @@ void analyser(double valeurs[], int n);
 
 void traiter(int n)
 {
-    int somme = 0;
-    double valeurs[4];
+	int somme = 0;
+	double valeurs[4];
 
-    analyser(valeurs, n);
+	analyser(valeurs, n);
 }
 ```
 <!-- .element: data-id="memory-program" -->
@@ -102,10 +102,10 @@ void analyser(double valeurs[], int n);
 
 void traiter(int n)
 {
-    int somme = 0;
-    double valeurs[4];
+	int somme = 0;
+	double valeurs[4];
 
-    analyser(valeurs, n);
+	analyser(valeurs, n);
 }
 ```
 <!-- .element: data-id="memory-program" -->
@@ -144,13 +144,13 @@ void traiter(int n)
 
 ```c
 double *copie = (double *)malloc(
-    n * (int)sizeof(double));
+	n * (int)sizeof(double));
 char *texte = (char *)malloc(32);
 
 if (copie == NULL || texte == NULL) {
-    free(texte);
-    free(copie);
-    return;
+	free(texte);
+	free(copie);
+	return;
 }
 /* Les deux allocations ont réussi. */
 ```

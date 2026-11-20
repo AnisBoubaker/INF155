@@ -36,7 +36,7 @@ Une boucle exécute plusieurs fois une portion de code.
 
 ```c
 while (condition) {
-    // traitement répété tant que la condition est vraie
+	// traitement répété tant que la condition est vraie
 }
 ```
 
@@ -56,15 +56,16 @@ while (condition) {
 
 ```c
 int nombre;
+printf("Saisir un entier entre 0 et 20 : ");
+if (scanf("%d", &nombre) != 1 || nombre < 0 || nombre > 20) {
+	return 1;
+}
+
 unsigned long long factorielle = 1;
 int compteur = 1;
-
-printf("Saisir un entier entre 0 et 20 : ");
-scanf("%d", &nombre);
-
 while (compteur <= nombre) {
-    factorielle *= compteur;
-    compteur++;
+	factorielle *= compteur;
+	compteur++;
 }
 
 printf("%d! = %llu\n", nombre, factorielle);
@@ -86,7 +87,7 @@ printf("Veuillez saisir la température : ");
 scanf("%f", &temperature);
 
 while (temperature < 25.0f) {
-    puissance++;
+	puissance++;
 }
 ```
 
@@ -97,6 +98,8 @@ while (temperature < 25.0f) {
 ## Boucles infinies
 
 Une boucle ne s’arrête jamais lorsque sa condition ne devient jamais fausse.
+
+<p class="warning small">Règle du cours : ne pas remplacer la condition d’arrêt par <code>while (1)</code> et <code>break</code>, sauf demande explicite.</p>
 
 Causes fréquentes :
 
@@ -131,7 +134,7 @@ Sortie : 21
 
 ```c
 do {
-    // traitement exécuté au moins une fois
+	// traitement exécuté au moins une fois
 } while (condition);
 ```
 
@@ -147,8 +150,10 @@ La condition est évaluée <strong>après</strong> le corps.
 char choix;
 
 do {
-    printf("Choisir A, B ou C : ");
-    scanf(" %c", &choix);
+	printf("Choisir A, B ou C : ");
+	if (scanf(" %c", &choix) != 1) {
+		return 1;
+	}
 } while (choix != 'A' && choix != 'B' && choix != 'C');
 
 printf("Choix valide : %c\n", choix);
@@ -181,7 +186,7 @@ Déterminer :
 
 ```c
 for (initialisation; condition; progression) {
-    // traitement répété
+	// traitement répété
 }
 ```
 
@@ -202,7 +207,7 @@ for (initialisation; condition; progression) {
 int maximum = 20;
 
 for (int i = 0; i < maximum; i++) {
-    printf("Répétition %d\n", i + 1);
+	printf("Répétition %d\n", i + 1);
 }
 
 printf("Terminé !\n");
@@ -223,7 +228,7 @@ Réécrire le calcul de la factorielle avec une boucle <code>for</code>.
 unsigned long long factorielle = 1;
 
 for (/* à compléter */) {
-    /* à compléter */
+	/* à compléter */
 }
 ```
 

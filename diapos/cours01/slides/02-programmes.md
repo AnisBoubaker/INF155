@@ -119,13 +119,15 @@ Afficher max
 
 ```c
 int x, y, max;
-scanf("%d", &x);
-scanf("%d", &y);
+if (scanf("%d %d", &x, &y) != 2) {
+	return 1;
+}
 
-if (x > y)
-    max = x;
-else
-    max = y;
+if (x > y) {
+	max = x;
+} else {
+	max = y;
+}
 
 printf("%d\n", max);
 ```

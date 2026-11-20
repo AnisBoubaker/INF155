@@ -26,9 +26,9 @@ Une structure conditionnelle permet de décider :
 
 ```c
 if (condition) {
-    // exécuté si la condition est vraie
+	// exécuté si la condition est vraie
 } else {
-    // exécuté sinon
+	// exécuté sinon
 }
 ```
 
@@ -48,9 +48,9 @@ int valeur1 = 10;
 int valeur2 = 3;
 
 if (valeur1 % valeur2 == 0) {
-    printf("%d est divisible par %d\n", valeur1, valeur2);
+	printf("%d est divisible par %d\n", valeur1, valeur2);
 } else {
-    printf("%d n'est pas divisible par %d\n", valeur1, valeur2);
+	printf("%d n'est pas divisible par %d\n", valeur1, valeur2);
 }
 ```
 
@@ -64,11 +64,11 @@ Une structure conditionnelle peut être placée à l’intérieur d’une autre.
 
 ```c
 if (valeur1 % valeur2 == 0) {
-    printf("Divisible par %d\n", valeur2);
+	printf("Divisible par %d\n", valeur2);
 } else {
-    if (valeur1 % valeur3 == 0) {
-        printf("Mais divisible par %d\n", valeur3);
-    }
+	if (valeur1 % valeur3 == 0) {
+		printf("Mais divisible par %d\n", valeur3);
+	}
 }
 ```
 
@@ -101,16 +101,18 @@ Le programme doit aussi distinguer :
 ```c
 char choix;
 printf("Pressez A, B ou C : ");
-scanf(" %c", &choix);
+if (scanf(" %c", &choix) != 1) {
+	return 1;
+}
 
 if (choix == 'A') {
-    printf("Vous avez choisi A.\n");
+	printf("Vous avez choisi A.\n");
 } else if (choix == 'B') {
-    printf("Vous avez choisi B.\n");
+	printf("Vous avez choisi B.\n");
 } else if (choix == 'C') {
-    printf("Vous avez choisi C.\n");
+	printf("Vous avez choisi C.\n");
 } else {
-    printf("Choix invalide.\n");
+	printf("Choix invalide.\n");
 }
 ```
 
@@ -124,14 +126,14 @@ Lorsque la décision compare une même expression à plusieurs valeurs entières
 
 ```c
 switch (choix) {
-    case 'A':
-        // traitement A
-        break;
-    case 'B':
-        // traitement B
-        break;
-    default:
-        // aucun cas précédent
+	case 'A':
+		// traitement A
+		break;
+	case 'B':
+		// traitement B
+		break;
+	default:
+		// aucun cas précédent
 }
 ```
 
@@ -160,14 +162,14 @@ Si l’utilisateur saisit <code>B</code>, quelles lignes seront affichées ?
 
 ```c
 switch (choix) {
-    case 'A':
-        printf("Vous avez choisi A.\n");
-    case 'B':
-        printf("Vous avez choisi B.\n");
-    case 'C':
-        printf("Vous avez choisi C.\n");
-    default:
-        printf("Fin du sélecteur.\n");
+	case 'A':
+		printf("Vous avez choisi A.\n");
+	case 'B':
+		printf("Vous avez choisi B.\n");
+	case 'C':
+		printf("Vous avez choisi C.\n");
+	default:
+		printf("Fin du sélecteur.\n");
 }
 ```
 
@@ -181,8 +183,8 @@ switch (choix) {
 
 ```c
 case 'B':
-    printf("Vous avez choisi B.\n");
-    break;
+	printf("Vous avez choisi B.\n");
+	break;
 ```
 
 On la rencontrera aussi dans les boucles, où elle permet de quitter la boucle la plus proche.

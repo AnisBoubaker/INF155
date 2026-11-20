@@ -16,7 +16,7 @@
 FILE *fichier = fopen("notes.txt", "r");
 ```
 
-<code>FILE *</code> référence l’état interne du flux : tampon, position, indicateurs de fin et d’erreur.
+<code>FILE *</code> référence l’état interne du flux : tampon, position, indicateurs de fin et d’erreur. Le nom <code>FILE</code> est imposé par <code>stdio.h</code>.
 
 Nous utilisons déjà trois flux standards : <code>stdin</code>, <code>stdout</code> et <code>stderr</code>.
 
@@ -28,8 +28,8 @@ Nous utilisons déjà trois flux standards : <code>stdin</code>, <code>stdout</c
 FILE *fichier = fopen("notes.txt", "r");
 
 if (fichier == NULL) {
-    perror("notes.txt");
-    return EXIT_FAILURE;
+	perror("notes.txt");
+	return EXIT_FAILURE;
 }
 ```
 
@@ -83,8 +83,8 @@ Sur certains systèmes, texte et binaire sont identiques; sur d’autres, le mod
 
 ```c
 if (fclose(fichier) == EOF) {
-    perror("fermeture");
-    return EXIT_FAILURE;
+	perror("fermeture");
+	return EXIT_FAILURE;
 }
 ```
 

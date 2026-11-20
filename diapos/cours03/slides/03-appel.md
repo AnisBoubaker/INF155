@@ -69,9 +69,9 @@ Le résultat de <code>factorielle(10)</code>, soit <code>3628800</code>, est :
 ```c
 int main(void)
 {
-    int n = 5;
-    unsigned long long resultat;
-    // prochain traitement…
+	int n = 5;
+	unsigned long long resultat;
+	// prochain traitement…
 }
 ```
 
@@ -115,13 +115,13 @@ Les arguments sont évalués et copiés, puis le contrôle passe au corps de <co
  */
 unsigned long long factorielle(int n)
 {
-    unsigned long long resultat = 1;
+	unsigned long long resultat = 1;
 
-    for (int i = 2; i <= n; i++) {
-        resultat *= i;
-    }
+	for (int i = 2; i <= n; i++) {
+		resultat *= i;
+	}
 
-    return resultat;
+	return resultat;
 }
 ```
 

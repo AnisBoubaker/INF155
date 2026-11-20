@@ -8,6 +8,8 @@
 
 ---
 
+<!-- .slide: class="compact" -->
+
 ## Interface · <code>compte_bancaire.h</code>
 
 ```cpp
@@ -18,14 +20,14 @@
 
 class CompteBancaire {
 private:
-    std::string titulaire;
-    double solde;
+	std::string titulaire;
+	double solde;
 
 public:
-    CompteBancaire(std::string nom);
-    void deposer(double montant);
-    int retirer(double montant);
-    double obtenir_solde() const;
+	CompteBancaire(std::string nom);
+	void deposer(double montant);
+	int retirer(double montant);
+	double obtenir_solde() const;
 };
 
 #endif
@@ -39,15 +41,15 @@ public:
 #include "compte_bancaire.h"
 
 CompteBancaire::CompteBancaire(std::string nom)
-    : titulaire(nom), solde(0.0)
+	: titulaire(nom), solde(0.0)
 {
 }
 
 void CompteBancaire::deposer(double montant)
 {
-    if (montant > 0.0) {
-        solde += montant;
-    }
+	if (montant > 0.0) {
+		solde += montant;
+	}
 }
 ```
 
@@ -60,17 +62,17 @@ void CompteBancaire::deposer(double montant)
 ```cpp
 int CompteBancaire::retirer(double montant)
 {
-    if (montant <= 0.0 || montant > solde) {
-        return 0;
-    }
+	if (montant <= 0.0 || montant > solde) {
+		return 0;
+	}
 
-    solde -= montant;
-    return 1;
+	solde -= montant;
+	return 1;
 }
 
 double CompteBancaire::obtenir_solde() const
 {
-    return solde;
+	return solde;
 }
 ```
 
@@ -86,27 +88,26 @@ Le résultat du retrait est un <code>int</code> : <code>1</code> pour la réussi
 
 int main()
 {
-    CompteBancaire ada("Ada Lovelace");
-    CompteBancaire alan("Alan Turing");
+	CompteBancaire ada("Ada Lovelace");
+	CompteBancaire alan("Alan Turing");
 
-    ada.deposer(200.0);
-    alan.deposer(80.0);
-    ada.retirer(50.0);
+	ada.deposer(200.0);
+	alan.deposer(80.0);
+	ada.retirer(50.0);
 
-    std::cout << ada.obtenir_solde() << "\n";
-    std::cout << alan.obtenir_solde() << "\n";
-    return 0;
+	std::cout << ada.obtenir_solde() << "\n";
+	std::cout << alan.obtenir_solde() << "\n";
+	return 0;
 }
 ```
 
 ---
 
-## Compiler plusieurs fichiers C++
+## Exécuter le projet C++ dans CLion
 
-```sh
-c++ -std=c++17 -Wall -Wextra -Wpedantic \
-    main.cpp compte_bancaire.cpp -o banque
-```
+Ajouter <code>main.cpp</code>, <code>compte_bancaire.cpp</code> et <code>compte_bancaire.h</code> au projet de l’exercice, puis lancer le programme depuis l’IDE.
+
+Consulter les messages de CLion et vérifier que le programme affiche <code>150</code>, puis <code>80</code>.
 
 Comme en C :
 

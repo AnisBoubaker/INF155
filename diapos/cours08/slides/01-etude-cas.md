@@ -25,11 +25,11 @@ Le programme doit saisir, afficher, calculer une moyenne et trier les étudiants
 ## Approche par tableaux parallèles
 
 ```c
-char noms[MAX][TAILLE_NOM];
-char prenoms[MAX][TAILLE_NOM];
-char codes[MAX][TAILLE_CODE];
-int tp1[MAX], tp2[MAX], tp3[MAX];
-int intra[MAX], final[MAX];
+char noms[MAX_ETUDIANTS][TAILLE_NOM];
+char prenoms[MAX_ETUDIANTS][TAILLE_NOM];
+char codes[MAX_ETUDIANTS][TAILLE_CODE];
+int tp1[MAX_ETUDIANTS], tp2[MAX_ETUDIANTS], tp3[MAX_ETUDIANTS];
+int intra[MAX_ETUDIANTS], final[MAX_ETUDIANTS];
 ```
 
 Toutes les informations de l’étudiant <code>i</code> partagent le même indice.

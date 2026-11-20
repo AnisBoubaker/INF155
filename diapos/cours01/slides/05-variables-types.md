@@ -61,7 +61,7 @@ int salaire = 1500;
 Avant d’utiliser une variable, on doit la déclarer pour permettre au compilateur de connaître son nom et son type.
 
 ```text
-type identifiant [= valeur_initiale];
+Type identifiant [= valeur_initiale];
 ```
 
 ```c
@@ -70,7 +70,7 @@ char note_finale;
 double moyenne = 0.0;
 ```
 
-<p class="small">Depuis C99, une déclaration peut être placée au plus près de sa première utilisation dans un bloc.</p>
+<p class="small"><code>Type</code> représente un type réel, comme <code>int</code> ou <code>double</code>. Depuis C99, une déclaration peut être placée au plus près de sa première utilisation dans un bloc.</p>
 
 ---
 
@@ -86,7 +86,37 @@ Conventions à respecter :
 
 - commencer par une minuscule;
 - utiliser un nom représentatif;
-- séparer les mots avec <code>_</code> : <code>nombre_heures_travaillees</code>. <span class="small">(_snail case_)</span>
+- écrire les mots en minuscules et les séparer avec <code>_</code> : <code>nombre_heures_travaillees</code> (<code>snake_case</code>).
+
+---
+
+## Convention de nommage du cours
+
+| Élément | Convention | Exemple |
+|---|---|---|
+| Alias de types et classes | <code>PascalCase</code> | <code>Etudiant</code>, <code>CompteBancaire</code> |
+| Étiquettes des structures C | <code>snake_case</code> | <code>struct etudiant</code> |
+| Variables, paramètres, fonctions et membres | <code>snake_case</code> | <code>note_finale</code>, <code>calculer_moyenne</code> |
+| Constantes et macros, y compris les gardes d’inclusion | <code>UPPER_SNAKE_CASE</code> | <code>NB_NOTES</code>, <code>ETUDIANT_H</code> |
+
+<code>PascalCase</code> : chaque mot commence par une majuscule, sans <code>_</code>.
+
+<p class="callout small">Les noms imposés par le langage ou ses bibliothèques gardent leur orthographe : <code>int</code>, <code>double</code>, <code>FILE</code>, <code>NULL</code>, etc.</p>
+
+---
+
+## Présentation du code
+
+- Une tabulation par niveau d’indentation.
+- Des accolades même pour une seule instruction.
+- Une instruction par ligne et des espaces autour des opérateurs.
+- Une variable déclarée près de sa première utilisation.
+
+```c
+if (note >= 60) {
+	printf("Reussi\n");
+}
+```
 
 ---
 
@@ -118,7 +148,7 @@ int Salaire;
 int salairE;
 ```
 
-Ces quatre identifiants désignent <strong>quatre variables différentes</strong>.
+Ces quatre identifiants désignent <strong>quatre variables différentes</strong>. Seul <code>salaire</code> respecte notre convention pour les variables; les trois autres sont des contre-exemples.
 
 <p class="callout">Une convention cohérente évite les confusions et rend le code plus facile à parcourir.</p>
 
@@ -126,7 +156,7 @@ Ces quatre identifiants désignent <strong>quatre variables différentes</strong
 
 ## Exercice · Choisir de bons identifiants
 
-Pour chaque proposition, déterminer si elle est permise et si elle respecte la convention du cours.
+Pour chaque nom de <strong>variable</strong> proposé, déterminer s’il est permis et s’il respecte <code>snake_case</code>.
 
 <div class="cards cards--four">
   <div class="card"><h3><code>prixCumulatif</code></h3></div>
@@ -141,6 +171,7 @@ Pour chaque proposition, déterminer si elle est permise et si elle respecte la 
 
 Notes:
 Points à faire ressortir : chiffre initial, accent, mot réservé, casse, nom trop vague et convention snake_case.
+`prixCumulatif` devient `prix_cumulatif`; `NombreHeures` devient `nombre_heures` pour une variable, mais sa casse PascalCase conviendrait à un type. `2eme_valeur`, `nom_équipe` et `union` ne respectent pas les règles lexicales retenues dans ce cours. `_compteur` est permis comme variable locale, mais ne commence pas par une minuscule comme demandé; préférer `compteur`. `tmp` est permis, mais peu représentatif; `taux_horaire` convient. Les noms non conformes sont ici des propositions à corriger, pas des modèles à suivre.
 
 ---
 
@@ -252,15 +283,15 @@ char un_autre_caractere = 115; // 's' en ASCII
 ```c
 int main(void)
 {
-    int compteur = 0;
-    double circonference = 0.0;
-    char caractere = 'A';
+	int compteur = 0;
+	double circonference = 0.0;
+	char caractere = 'A';
 
-    compteur = compteur + 1;
-    circonference = 2.0 * 3.14159 * 4.5;
-    caractere = 'B';
+	compteur = compteur + 1;
+	circonference = 2.0 * 3.14159 * 4.5;
+	caractere = 'B';
 
-    return 0;
+	return 0;
 }
 ```
 

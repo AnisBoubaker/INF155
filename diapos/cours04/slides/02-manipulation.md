@@ -48,7 +48,7 @@ Le langage C ne vérifie généralement pas les limites à l’exécution. Un d�
 int notes[NB_NOTES] = {70, 89, 72, 65, 92, 77, 81, 78};
 
 for (int i = 0; i < NB_NOTES; ++i) {
-    printf("notes[%d] = %d\n", i, notes[i]);
+	printf("notes[%d] = %d\n", i, notes[i]);
 }
 ```
 
@@ -62,7 +62,7 @@ La condition utilise <code>&lt;</code>, car <code>NB_NOTES</code> n’est pas un
 int somme = 0;
 
 for (int i = 0; i < NB_NOTES; ++i) {
-    somme += notes[i];
+	somme += notes[i];
 }
 
 double moyenne = (double)somme / NB_NOTES;
@@ -79,7 +79,7 @@ L’accumulateur <code>somme</code> conserve le résultat partiel pendant le par
 int valeurs[NB_VALEURS];
 
 for (int i = 0; i < NB_VALEURS; ++i) {
-    valeurs[i] = 0;
+	valeurs[i] = 0;
 }
 ```
 

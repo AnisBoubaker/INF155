@@ -64,7 +64,7 @@ int *pointeur_entier = NULL;
 
 ```c
 if (pointeur_entier != NULL) {
-    printf("%d\n", *pointeur_entier);
+	printf("%d\n", *pointeur_entier);
 }
 ```
 

@@ -32,16 +32,16 @@ void fonction_test(void);
 
 int main(void)
 {
-    int i = 100;
-    fonction_test();
-    printf("%d\n", j);  // erreur : j n'est pas visible ici
-    return EXIT_SUCCESS;
+	int i = 100;
+	fonction_test();
+	printf("%d\n", j);  // erreur : j n'est pas visible ici
+	return EXIT_SUCCESS;
 }
 
 void fonction_test(void)
 {
-    int j = 3;
-    printf("%d\n", i);  // erreur : i n'est pas visible ici
+	int j = 3;
+	printf("%d\n", i);  // erreur : i n'est pas visible ici
 }
 ```
 
@@ -49,7 +49,7 @@ void fonction_test(void)
 
 ---
 
-## Variables globales
+## Variables globales · Contre-exemple interdit
 
 Une variable définie hors de toute fonction a une durée de vie qui couvre l’exécution du programme et une portée déterminée par sa déclaration.
 
@@ -65,7 +65,7 @@ Par opposition, une variable déclarée dans un bloc est <strong>locale</strong>
 
 <!-- .slide: class="compact" -->
 
-## Exemple avec variables globales
+## Contre-exemple · État partagé
 
 ```c
 int i = 0;
@@ -75,23 +75,23 @@ void fonction_test(void);
 
 int main(void)
 {
-    i = 100;
-    fonction_test();
-    printf("j = %d\n", j);
-    return EXIT_SUCCESS;
+	i = 100;
+	fonction_test();
+	printf("j = %d\n", j);
+	return EXIT_SUCCESS;
 }
 
 void fonction_test(void)
 {
-    j = i % 3;
+	j = i % 3;
 }
 ```
 
-Le programme compile, mais plusieurs fonctions peuvent maintenant lire ou modifier le même état partagé.
+Ce contre-exemple est interdit dans les travaux : plusieurs fonctions peuvent lire ou modifier le même état partagé.
 
 ---
 
-## Composition avec état global
+## Contre-exemple · Composition avec état global
 
 <div class="program-layout program-layout--stacked">
   <div class="global-block">Variables globales</div>
@@ -113,9 +113,32 @@ L’état global mutable :
 - complique les tests et le diagnostic d’erreurs;
 - rend la réutilisation plus difficile.
 
-<p class="warning"><strong>Règle du cours :</strong> ne pas utiliser de variables globales, sauf demande explicite dans un exercice.</p>
+<p class="warning"><strong>Règle du cours :</strong> ne jamais utiliser de variables globales.</p>
 
-<p class="callout small">Préférer transmettre les données par paramètres et récupérer les résultats par valeur de retour.</p>
+<p class="callout small">Transmettre les données par paramètres et récupérer les résultats par valeur de retour.</p>
+
+---
+
+<!-- .slide: class="compact" -->
+
+## Remplacer l’état global par des paramètres
+
+```c
+int calculer_reste(int valeur)
+{
+	return valeur % 3;
+}
+
+int main(void)
+{
+	int i = 100;
+	int j = calculer_reste(i);
+	printf("j = %d\n", j);
+	return 0;
+}
+```
+
+Les données appartiennent à <code>main</code>; la fonction reçoit uniquement la valeur nécessaire.
 
 ---
 
@@ -139,7 +162,7 @@ L’espace mémoire d’un processus est habituellement présenté en plusieurs 
 <div class="memory-layout memory-layout--state">
   <div class="memory-stack muted"><strong>Pile</strong><span>Prête pour les appels</span></div>
   <div class="memory-heap muted"><strong>Tas</strong><span>Disponible</span></div>
-  <div class="memory-data active"><strong>Données</strong><span><code>double k;</code></span></div>
+  <div class="memory-data active"><strong>Données</strong><span>Objets à durée statique</span></div>
   <div class="memory-code active"><strong>Code</strong><span><code>main</code>, <code>fonction_test</code></span></div>
 </div>
 

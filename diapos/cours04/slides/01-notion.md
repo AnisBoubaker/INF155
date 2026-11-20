@@ -38,10 +38,10 @@ int notes[8] = {70, 89, 72, 65, 92, 77, 81, 78};
 ## Déclarer un tableau
 
 ```c
-type identifiant[nombre_elements];
+TypeElement identifiant[nombre_elements];
 ```
 
-Exemples :
+<code>TypeElement</code> représente le type des éléments. Exemples :
 
 ```c
 int notes[8];

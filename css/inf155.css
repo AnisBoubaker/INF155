@@ -89,6 +89,31 @@ body {
   gap: 1.1rem;
 }
 
+.course-resources {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.course-resources h1 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.course-resources a {
+  color: var(--ets-red-dark);
+  font-weight: 700;
+  text-underline-offset: 0.2em;
+}
+
+.course-resources a:hover,
+.course-resources a:focus-visible {
+  color: var(--ink);
+}
+
 .course-card {
   position: relative;
   display: grid;
@@ -335,6 +360,7 @@ body {
 }
 
 .reveal pre code {
+  tab-size: 4;
   max-height: 455px;
   padding: 1.05em 1.2em;
   background: var(--code);
@@ -1947,6 +1973,10 @@ html.print-pdf .reveal .slides section.code-compare {
 
 .reveal .compact pre {
   font-size: 0.72em;
+}
+
+.reveal .compact pre code {
+  max-height: none;
 }
 
 .reveal .full-image img {

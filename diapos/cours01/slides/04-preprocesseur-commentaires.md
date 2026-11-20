@@ -51,7 +51,7 @@ Définit une <strong>macro</strong> : le préprocesseur remplace chaque occurren
 double circonference = 2.0 * PI * rayon;
 ```
 
-<p class="small">Pour une valeur typée, le langage C permet aussi d’utiliser une variable qualifiée par <code>const</code>.</p>
+<p class="small">Les constantes et macros du cours suivent <code>UPPER_SNAKE_CASE</code>. Pour une valeur typée, on peut aussi utiliser <code>const</code>.</p>
 
 ---
 
@@ -114,7 +114,7 @@ total = sous_total + taxes;</code></pre>
   <div>
     <h3>En bloc</h3>
     <pre><code class="language-c">/*
- * Programme : CalculSalaire
+ * Programme : calcul_salaire
  * Auteur    : Votre nom
  */</code></pre>
     <p class="small">Commence par <code>/*</code> et se termine par <code>*/</code>.</p>

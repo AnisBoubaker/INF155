@@ -47,8 +47,8 @@ errno = 0;
 long valeur = strtol(note, &fin, 10);
 
 if (errno == ERANGE || fin == note || *fin != '\0' ||
-    valeur < 0 || valeur > 100) {
-    /* note invalide */
+	valeur < 0 || valeur > 100) {
+	/* note invalide */
 }
 ```
 
@@ -65,9 +65,9 @@ Une fonction de lecture qui retourne <code>EOF</code> ou <code>NULL</code> peut 
 
 ```c
 if (ferror(fichier)) {
-    perror("lecture");
+	perror("lecture");
 } else if (feof(fichier)) {
-    /* fin normale */
+	/* fin normale */
 }
 ```
 
@@ -77,7 +77,7 @@ if (ferror(fichier)) {
 
 <p class="section-kicker">À retenir</p>
 
-# Un fichier fiable est un protocole, pas seulement une suite d’octets
+# Fichiers et validation
 
 <ol class="plan">
   <li>Vérifier ouverture, lecture, écriture et fermeture.</li>

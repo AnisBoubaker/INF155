@@ -12,7 +12,7 @@
 
 ```c
 char nom[20];
-scanf("%s", nom); //Remarquez l'absence du &, pourquoi? 
+scanf("%s", nom); //Remarquez l'absence du &, pourquoi?
 ```
 
 Sans largeur maximale, une entrée trop longue déborde le tableau. De plus, <code>%s</code> s’arrête au premier espace.
@@ -20,7 +20,9 @@ Sans largeur maximale, une entrée trop longue déborde le tableau. De plus, <co
 Une largeur explicite réduit le risque :
 
 ```c
-scanf("%19s", nom);
+if (scanf("%19s", nom) != 1) {
+	return 1;
+}
 ```
 
 Mais cette forme ne lit toujours pas une ligne complète.
@@ -34,7 +36,7 @@ Mais cette forme ne lit toujours pas une ligne complète.
 char ligne[CAPACITE_LIGNE];
 
 if (fgets(ligne, CAPACITE_LIGNE, stdin) != NULL) {
-    printf("Vous avez saisi : %s", ligne);
+	printf("Vous avez saisi : %s", ligne);
 }
 ```
 
