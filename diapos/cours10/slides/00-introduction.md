@@ -16,6 +16,4 @@
   <li>Persistance, texte et binaire</li>
   <li>Ouvrir et fermer un flux</li>
   <li>Lire et écrire</li>
-  <li>Se déplacer, renommer et supprimer</li>
-  <li>Analyser une ligne structurée</li>
 </ol>
