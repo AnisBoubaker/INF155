@@ -55,13 +55,29 @@ donnees/notes.txt
 ## Modes d’ouverture texte
 
 | Mode | Lecture | Écriture | Effet à l’ouverture |
-|---|:---:|:---:|---|
-| <code>r</code> | oui | non | le fichier doit exister |
-| <code>w</code> | non | oui | crée ou tronque |
-| <code>a</code> | non | oui | crée ou ajoute à la fin |
-| <code>r+</code> | oui | oui | le fichier doit exister |
-| <code>w+</code> | oui | oui | crée ou tronque |
-| <code>a+</code> | oui | oui | crée; écrit à la fin |
+|---|---|---|---|
+| <code>r</code> | oui, position choisie | non | doit exister, contenu conservé |
+| <code>w</code> | non | oui, position choisie | crée le fichier ou le vide s’il existe |
+| <code>a</code> | non | fin seulement | crée le fichier ou conserve son contenu |
+| <code>r+</code> | oui, position choisie | oui, position choisie | doit exister, contenu conservé |
+| <code>w+</code> | oui, position choisie | oui, position choisie | crée le fichier ou le vide s’il existe |
+| <code>a+</code> | oui, position choisie | fin seulement | crée le fichier ou conserve son contenu |
+
+<p class="small"><strong>Position :</strong> lecture et écriture partagent une position courante qui avance après chaque opération. <code>rewind</code> revient au début et <code>fseek</code> change de position. En <code>a</code>/<code>a+</code>, toute écriture reste à la fin, même après un déplacement.</p>
+
+<p class="small"><strong>Écrire au milieu :</strong> remplace le contenu à cet endroit, sans insérer ni décaler la suite.</p>
+
+<p class="small"><strong>Modes <code>+</code> :</strong> intercaler un repositionnement (<code>fseek</code> ou <code>rewind</code>) entre lecture et écriture. Après une écriture, <code>fflush</code> suffit aussi avant de lire.</p>
+
+<p class="tiny">En mode texte, <code>fseek</code> accepte un déplacement nul, ou une position obtenue par <code>ftell</code> avec <code>SEEK_SET</code>.</p>
+
+<aside class="notes">
+<p>Les accès ont lieu à la position courante. « Position choisie » suppose un fichier qui permet le repositionnement et un appel valide qui réussit. Les modes r, r+, w et w+ commencent au début. Avec w et w+, le fichier est vide dès l’ouverture. w+ permet de relire ce que le programme y écrit ensuite.</p>
+<p>En a+, utiliser rewind avant de lire depuis le début, car la position initiale de lecture dépend de l’implémentation. Les écritures en a et a+ vont toujours à la fin, indépendamment de la position choisie pour lire.</p>
+<p>Pour les modes +, une lecture doit être suivie d’un repositionnement avant une écriture, sauf si la lecture a rencontré la fin du fichier. Une écriture doit être suivie de fflush ou d’un repositionnement avant une lecture. fflush seul après une lecture ne remplace pas le repositionnement en C portable.</p>
+<p>L’écriture au milieu remplace les données, sans insertion. Sur les systèmes usuels, la suite reste en place. En C portable, une écriture dans un flux texte peut aussi tronquer la suite selon l’implémentation.</p>
+<p>Références : <a href="https://sourceware.org/glibc/manual/latest/html_node/Opening-Streams.html">GNU C Library, Opening Streams</a> et <a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf">C11, N1570, sections 7.21.3, 7.21.5.3 et 7.21.9.2</a>.</p>
+</aside>
 
 ---
 
