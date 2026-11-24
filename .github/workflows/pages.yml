@@ -15,10 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Récupérer le dépôt
@@ -35,6 +32,15 @@ jobs:
         with:
           path: .
 
+  # Laisser la tâche d’envoi se terminer avant de rechercher l’artéfact.
+  # https://github.com/actions/deploy-pages/issues/451
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Publier
         id: deployment
         uses: actions/deploy-pages@v5

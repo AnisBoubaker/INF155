@@ -31,7 +31,7 @@ Après la boucle, utiliser <code>ferror</code> pour distinguer erreur et fin nor
 char ligne[CAPACITE_LIGNE];
 
 while (fgets(ligne, CAPACITE_LIGNE, fichier) != NULL) {
-	fputs(ligne, stdout);
+	printf("%s", ligne);
 }
 
 if (ferror(fichier)) {
@@ -55,6 +55,21 @@ if (fscanf(fichier, "%d %lf", &identifiant, &note) == 2) {
 ```
 
 Toujours vérifier le nombre de conversions réussies. Une entrée mal formée reste souvent dans le flux.
+
+---
+
+## Lecture d'une ligne formatée avec <code>fscanf</code>
+
+```c
+int identifiant;
+double note;
+char nom[100];
+if (fscanf(fichier, "%d,%lf,%99[^,\r\n]", &identifiant, &note, nom) == 3) {
+	/* trois conversions réussies */
+}
+```
+
+Le format `%[^,]` permet de lire une chaine de caractère jusqu'à la virgule (`,`). `%99[^,\r\n]` lit jusqu’à 99 caractères, jusqu’à une virgule ou une fin de ligne, sans consommer ce séparateur. La limite laisse une place pour le caractère terminal '\0' dans `nom`.
 
 ---
 
