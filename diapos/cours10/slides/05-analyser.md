@@ -65,7 +65,7 @@ Une fonction de lecture qui retourne <code>EOF</code> ou <code>NULL</code> peut 
 
 ```c
 if (ferror(fichier)) {
-	perror("lecture");
+	printf("Erreur lors de la lecture du fichier.\n");
 } else if (feof(fichier)) {
 	/* fin normale */
 }

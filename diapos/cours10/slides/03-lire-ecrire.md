@@ -35,7 +35,7 @@ while (fgets(ligne, CAPACITE_LIGNE, fichier) != NULL) {
 }
 
 if (ferror(fichier)) {
-	perror("lecture");
+	printf("Erreur lors de la lecture du fichier.\n");
 }
 ```
 
@@ -98,7 +98,7 @@ Les fonctions retournent un nombre d’éléments complets, pas un nombre d’oc
 
 FILE *f = fopen("notes.txt", "r");
 if (f == NULL) {
-	perror("notes.txt");
+	printf("Impossible d'ouvrir notes.txt.\n");
 	return EXIT_FAILURE;
 }
 

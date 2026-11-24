@@ -28,7 +28,7 @@ rewind(fichier);
 
 ```c
 if (rename("ancien.txt", "nouveau.txt") != 0) {
-	perror("rename");
+	printf("Impossible de renommer ancien.txt en nouveau.txt.\n");
 }
 ```
 
@@ -40,7 +40,7 @@ Le résultat dépend du système : destination existante, volumes différents et
 
 ```c
 if (remove("temporaire.txt") != 0) {
-	perror("remove");
+	printf("Impossible de supprimer temporaire.txt.\n");
 }
 ```
 

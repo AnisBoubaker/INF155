@@ -28,7 +28,7 @@ Nous utilisons déjà trois flux standards : <code>stdin</code>, <code>stdout</c
 FILE *fichier = fopen("notes.txt", "r");
 
 if (fichier == NULL) {
-	perror("notes.txt");
+	printf("Impossible d'ouvrir notes.txt.\n");
 	return EXIT_FAILURE;
 }
 ```
@@ -83,7 +83,7 @@ Sur certains systèmes, texte et binaire sont identiques; sur d’autres, le mod
 
 ```c
 if (fclose(fichier) == EOF) {
-	perror("fermeture");
+	printf("Erreur lors de la fermeture du fichier.\n");
 	return EXIT_FAILURE;
 }
 ```

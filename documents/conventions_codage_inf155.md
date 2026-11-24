@@ -2,7 +2,7 @@
 
 INF155 • Programmation en C • École de technologie supérieure
 
-Version du 20 novembre 2026
+Version du 24 novembre 2026
 
 Ce guide rassemble les conventions à appliquer dans vos programmes du cours. Elles servent à rendre le code lisible, cohérent et plus facile à vérifier. Le guide porte principalement sur le C; une courte annexe est consacrée au C++. Appliquez les règles au fur et à mesure que les notions sont abordées. Une consigne particulière d’un travail précise les contraintes propres à ce travail.
 
@@ -268,14 +268,14 @@ Vérifiez l’ouverture avant toute utilisation.
 ```c
 FILE *fichier = fopen("notes.txt", "r");
 if (fichier == NULL) {
-	perror("notes.txt");
+	printf("Impossible d'ouvrir notes.txt.\n");
 	return EXIT_FAILURE;
 }
 
 /* Lire et traiter les donnees en verifiant les resultats. */
 
 if (fclose(fichier) == EOF) {
-	perror("fermeture");
+	printf("Erreur lors de la fermeture du fichier.\n");
 	return EXIT_FAILURE;
 }
 ```
