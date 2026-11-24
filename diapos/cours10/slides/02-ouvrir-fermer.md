@@ -54,14 +54,14 @@ donnees/notes.txt
 
 ## Modes d’ouverture texte
 
-| Mode | Lecture | Écriture | Effet à l’ouverture |
-|---|---|---|---|
-| <code>r</code> | oui, position choisie | non | doit exister, contenu conservé |
-| <code>w</code> | non | oui, position choisie | crée le fichier ou le vide s’il existe |
-| <code>a</code> | non | fin seulement | crée le fichier ou conserve son contenu |
-| <code>r+</code> | oui, position choisie | oui, position choisie | doit exister, contenu conservé |
-| <code>w+</code> | oui, position choisie | oui, position choisie | crée le fichier ou le vide s’il existe |
-| <code>a+</code> | oui, position choisie | fin seulement | crée le fichier ou conserve son contenu |
+| Mode            | Lecture               | Écriture             | Effet à l’ouverture                                |
+| --------------- | --------------------- | --------------------- | ---------------------------------------------------- |
+| <code>r</code>  | oui, position choisie | non                   | doit exister, contenu conservé                      |
+| <code>w</code>  | non                   | oui, position choisie | crée le fichier ou le vide s’il existe             |
+| <code>a</code>  | non                   | fin seulement         | crée le fichier ou conserve son contenu s'il existe |
+| <code>r+</code> | oui, position choisie | oui, position choisie | doit exister, contenu conservé                      |
+| <code>w+</code> | oui, position choisie | oui, position choisie | crée le fichier ou le vide s’il existe             |
+| <code>a+</code> | oui, position choisie | fin seulement         | crée le fichier ou conserve son contenu s'il existe |
 
 <p class="small"><strong>Position :</strong> lecture et écriture partagent une position courante qui avance après chaque opération. <code>rewind</code> revient au début et <code>fseek</code> change de position. En <code>a</code>/<code>a+</code>, toute écriture reste à la fin, même après un déplacement.</p>
 
